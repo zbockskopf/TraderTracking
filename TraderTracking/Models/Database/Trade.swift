@@ -24,6 +24,7 @@ class Trade: Object , ObjectKeyIdentifiable {
     @Persisted var stopLoss: Double?
     @Persisted var takeProfit: Double?
     @Persisted var photoDirectory: String?
+    @Persisted var isHindsight: Bool = false
     @Persisted var win: Bool?
     @Persisted var loss: Bool?
 }

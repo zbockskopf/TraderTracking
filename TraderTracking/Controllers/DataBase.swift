@@ -17,7 +17,7 @@ class RealmController: NSObject, ObservableObject {
     @Published var numLosses: String = ""
     @Published var trades: [Trade] = []
     @Published var symbols: [Symbol] = []
-    private var realm: Realm!
+    var realm: Realm!
     var myImage: MyImages!
     private var hasLaunched = UserDefaults.standard.bool(forKey: "launchedBefore")
 
@@ -78,8 +78,8 @@ class RealmController: NSObject, ObservableObject {
 
 
     func getWinRate() {
-        let wins = Double(realm.objects(Trade.self).filter("win = true").count)
-        let losses = Double(realm.objects(Trade.self).filter("loss = true").count)
+        let wins = Double(realm.objects(Trade.self).filter("win = true AND isHindsight = false").count)
+        let losses = Double(realm.objects(Trade.self).filter("loss = true AND isHindsight = false").count)
 
         let percentFormatter            = NumberFormatter()
         percentFormatter.numberStyle    = NumberFormatter.Style.percent
@@ -91,9 +91,9 @@ class RealmController: NSObject, ObservableObject {
         winRate = percentFormatter.string(for: temp)!
     }
 
-    func addTrade(trade: Trade, image: Image?){
-        if trade.photos != nil{
-            myImage.saveImage(imageName: trade.photos!, image: image!.asUIImage())
+    func addTrade(trade: Trade, images: [UIImage]?){
+        if trade.photoDirectory != nil{
+            myImage.saveImages(directory: trade.photoDirectory!, images: images!)
         }
         try! realm.write{
             realm.add(trade)
@@ -120,5 +120,19 @@ class RealmController: NSObject, ObservableObject {
             realm.add(temp)
         }
         getWinRate()
+    }
+    
+    func deleteAll() {
+        var tempDirectoires: [String] = []
+        for i in realm.objects(Trade.self) {
+            if i.photoDirectory != nil{
+                tempDirectoires.append(i.photoDirectory!)
+            }
+        }
+        myImage.deleteAllImages(directories: tempDirectoires)
+        try! realm.write {
+            realm.deleteAll()
+        }
+        setDefaults()
     }
 }

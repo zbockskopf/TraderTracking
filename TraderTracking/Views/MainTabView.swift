@@ -24,6 +24,7 @@ struct MainTabView: View {
             HStack(spacing: 0){
                 SideMenu(currentXOffset: $currentXOffset, xOffset: $xOffset)
                     .frame(width: screenWidth * 0.8)
+                    .environmentObject(realmController)
 
                 ZStack{
                     TabView(selection: $selection) {

@@ -18,19 +18,20 @@ struct NewTradeView: View {
     @ObservedResults(Trade.self) var trades
     @ObservedResults(Symbol.self) var symbols
 
-    @State var symbol: Symbol
+    @State var symbol: String = "MES"
     @State private var dateEntered: Date = Date()
-    @State private var entry: String = ""
+    @State private var entry: String = "1"
     @State private var dateExited: Date = Date()
-    @State private var exit: String = ""
-    @State private var positionSize: String = ""
+    @State private var exit: String = "2"
+    @State private var positionSize: String = "1"
     @State private var selectedPositionType: PositionType = .long
     @State private var selectedSession: Session = .ny
-    @State private var stopLoss: String = ""
-    @State private var takeProfit: String = ""
+    @State private var stopLoss: String = "1"
+    @State private var takeProfit: String = "1"
+    @State private var isHindsight = false
     
-    @State private var selectedItem: PhotosPickerItem? = nil
-    @State private var selectedImageData: Image? = nil
+    @State private var selectedItems: [PhotosPickerItem] = []
+    @State private var selectedImages: [UIImage] = []
 
     var body: some View {
         NavigationView{
@@ -49,10 +50,13 @@ struct NewTradeView: View {
 //                            }
 //                }
                 Form{
+                    Toggle(isOn: $isHindsight, label: {
+                        Text("Hindsight")
+                    })
                     Picker("Symbol", selection: $symbol) {
                         ForEach(realmController.symbols){ sy in
                             Text(sy.name)
-                                .tag(sy as Symbol)
+                                .tag(sy.name)
                         }
                     }
                     DatePicker("Entered", selection: $dateEntered)
@@ -60,8 +64,8 @@ struct NewTradeView: View {
                     TextField("Entry", text: $entry)
                         .padding()
                         .keyboardType(.decimalPad)
-                    DatePicker("Exited", selection: $dateExited)
-                        .padding()
+//                    DatePicker("Exited", selection: $dateExited)
+//                        .padding()
                     TextField("Exit", text: $exit)
                         .padding()
                         .keyboardType(.decimalPad)
@@ -88,6 +92,7 @@ struct NewTradeView: View {
                     TextField("Take Profit", text: $takeProfit)
                         .padding()
                         .keyboardType(.decimalPad)
+                    
                 }
                 .navigationBarItems(
                     leading:
@@ -106,27 +111,48 @@ struct NewTradeView: View {
                         }
                 )
                 PhotosPicker(
-                            selection: $selectedItem,
-                            matching: .images,
+                            selection: $selectedItems,
+                            matching: .any(of: [.images, .not(.videos)]),
                             photoLibrary: .shared()) {
                                 Text("Select a photo")
                             }
-                            .onChange(of: selectedItem) { newItem in
+                            .onChange(of: selectedItems) { newItem in
                                 Task {
-                                    // Retrieve selected asset in the form of Data
-                                    if let data = try? await newItem?.loadTransferable(type: Image.self) {
-                                        selectedImageData = data
+//                                    selectedImages = []
+                                    selectedImages.append(screenShotView.asUiImage())
+                                    for item in newItem {
+                                        if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data){
+                                            selectedImages.append(image)
+                                        }
                                     }
+                                    
                                 }
                             }
-            if let selectedImageData{
-                selectedImageData
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 250, height: 250)
+                if selectedImages.count > 0{
+                    ZStack{
+                        Image(uiImage: selectedImages[0])
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 50, height: 50)
+                    }
+                        .overlay(
+                            ZStack{
+                                Color.black
+                                    .opacity(0.3)
+                                Text(String(selectedImages.count - 1) + "+")
+                            }
+                    )
+                }
             }
-
-            }
+            
+            
+        }
+    }
+    
+    var screenShotView: some View {
+        ZStack{
+            Text(formatDateForPicture())
+                .frame(width: 200, height: 200)
         }
     }
 
@@ -134,7 +160,7 @@ struct NewTradeView: View {
     private func addTrade() {
 
         let temp = Trade()
-        temp.symbol = symbol
+        temp.symbol = realmController.realm.object(ofType: Symbol.self, forPrimaryKey: symbol)
         temp.dateEntered = dateEntered
         temp.entry = Double(entry)!
         temp.dateExited = dateExited
@@ -144,16 +170,8 @@ struct NewTradeView: View {
         temp.session = selectedSession
         temp.stopLoss = Double(stopLoss)!
         temp.takeProfit = Double(takeProfit)!
-        
-        let formatter3 = DateFormatter()
-        formatter3.dateFormat = "HH-mm-E-d-MMM-y"
-        
-        if trades.filter("photos = %@", formatter3.string(from: dateEntered)).count < 1 {
-            temp.photos = formatter3.string(from: dateEntered)
-        }else{
-            temp.photos = formatter3.string(from: dateEntered) + "-1"
-        }
-        
+        temp.photoDirectory = formatDate() + symbol
+        temp.isHindsight = isHindsight
         if selectedPositionType == .long {
           if (Double(exit)! - Double(entry)!).sign == .minus {
               sheetAction = .loss
@@ -175,6 +193,22 @@ struct NewTradeView: View {
                 temp.win = true
             }
         }
-        realmController.addTrade(trade: temp, image: selectedImageData)
+        
+        realmController.addTrade(trade: temp, images: selectedImages)
+    }
+    
+    private func formatDate() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH-mm-E-d-MMM-y"
+        return formatter.string(from: dateEntered)
+    }
+    
+    
+    private func formatDateForPicture() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = " EE - MMM d, yy"
+        return symbol + formatter.string(from: dateEntered)
     }
 }
+
+

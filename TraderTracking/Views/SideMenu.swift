@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct SideMenu: View {
-
-    var followerCount = 1
+    @EnvironmentObject var realmController: RealmController
     
     var screenWidth = UIScreen.main.bounds.width
     @Binding var currentXOffset: CGFloat
     @Binding var xOffset: CGFloat
+    
+    @State private var showDeleteAlert: Bool = false
     var body: some View {
         VStack{
             VStack(alignment: .leading) {
@@ -31,10 +32,22 @@ struct SideMenu: View {
                     })
 
                     Spacer()
+                    
                 }
             }
             .padding(.horizontal)
-
+            Button {
+                showDeleteAlert.toggle()
+                
+            } label: {
+                Text("Delete")
+                    .foregroundColor(.red)
+            }
+            .alert(isPresented: $showDeleteAlert){
+                Alert(title: Text("Are you sure you want to delete everything?"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete")){
+                    realmController.deleteAll()
+                })
+            }
         }
         .frame(
               minWidth: 0,

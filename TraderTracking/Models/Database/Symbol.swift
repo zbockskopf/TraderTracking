@@ -9,8 +9,8 @@ import Foundation
 import RealmSwift
 
 class Symbol: Object , ObjectKeyIdentifiable {
-    @Persisted(primaryKey: true) var _id: ObjectId
-    @Persisted var name: String
+    @Persisted var _id: ObjectId
+    @Persisted (primaryKey: true) var name: String
     @Persisted var market: String
     @Persisted var tickValue: Double
 }

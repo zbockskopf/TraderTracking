@@ -13,8 +13,8 @@ import ConfettiSwiftUI
 struct ContentView: View {
 
     @EnvironmentObject var realmController: RealmController
-    @ObservedResults(Trade.self, where: {$0.win == true} ) var wins
-    @ObservedResults(Trade.self, where: {$0.loss == true} ) var losses
+    @ObservedResults(Trade.self, filter: NSPredicate(format: "win = true AND isHindsight = false")) var wins
+    @ObservedResults(Trade.self, filter: NSPredicate(format: "loss = true AND isHindsight = false")) var losses
     @ObservedResults(Symbol.self) var symbols
 
     @State private var confettiCounter: Int = 0
@@ -77,7 +77,7 @@ struct ContentView: View {
                         .sheet(isPresented: $showNewTrade, onDismiss: {
                             delayConfetti(sheetAction: sheetAction, realmController: realmController)
                         }){
-                            NewTradeView(realmController: realmController, sheetAction: $sheetAction, symbol: symbols.first!)
+                            NewTradeView(realmController: realmController, sheetAction: $sheetAction)
                         }
 
                     // Button(action: {
