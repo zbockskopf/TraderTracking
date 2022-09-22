@@ -27,12 +27,12 @@ struct TradesListView: View {
                     Section(header: Text(dateChanger(date: Date(), i:i), style: .date)){
                         
                         ForEach(trades.filter("dateEntered < %@", dateChanger(date: Date(), i:i))){ t in
-                            TradeRow(symbol: t.symbol!.name, date: t.dateEntered, entry: String(t.entry), exit: String(t.exit), win: t.win!, loss: t.loss!, photos: realmController.myImage.loadImageFromDiskWith(fileName: t.photos!))
+                            TradeRow(symbol: t.symbol!.name, date: t.dateEntered, entry: String(t.entry), exit: String(t.exit), win: t.win!, loss: t.loss!)
                         }
 
                         .onDelete(perform: { t in
                             t.forEach { i in
-                                realmController.myImage.deleteImage(fileName: trades[i].photos!)
+                                realmController.myImage.deleteImage(fileName: trades[i].photoDirectory!)
                                 $trades.remove(trades[i])
                             }
                             
@@ -104,8 +104,8 @@ struct TradesListView: View {
         let temp = trades.filter("dateEntered BETWEEN {%@, %@}",Calendar.current.date(byAdding: .day, value: -7, to: Date())!, Date())
         var images: [IFImage] = []
         for i in temp{
-            if i.photos != nil{
-                images.append(IFImage(image: RealmController.shared.myImage.loadImageFromDiskWith(fileName: i.photos!)!))
+            if i.photoDirectory != nil{
+                images.append(IFImage(image: RealmController.shared.myImage.loadImageFromDiskWith(fileName: i.photoDirectory!)!))
             }
         }
         return images
@@ -124,15 +124,15 @@ struct TradeRow: View {
     var exit: String
     var win: Bool
     var loss: Bool
-    var photos: UIImage?
+//    var photos: UIImage?
 
     var body: some View {
         VStack(alignment: .leading){
             HStack{
-                Image(uiImage: photos!)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 40, height: 40)
+//                Image(uiImage: photos!)
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(width: 40, height: 40)
               Text(symbol)
                   .padding()
               VStack{
