@@ -19,19 +19,17 @@ class TradeListViewModel: ObservableObject {
     @Published var imageViewerOffset: CGSize = .zero
     
     
-    
-    @ObservedResults(Trade.self) var trades
-    
-    func getImages() {
-        let temp = trades.filter("dateEntered BETWEEN {%@, %@}",Calendar.current.date(byAdding: .day, value: -7, to: Date())!, Date())
-        for i in temp{
-            if i.photos != nil{
-                allImages.append(RealmController.shared.myImage.loadImageFromDiskWith(fileName: i.photos!)!)
-            }
-        }
-        print(temp.count)
-    }
-    
+//    @ObservedResults(Trade.self) var trades
+//
+//    func getImages() {
+//        let temp = trades.filter("dateEntered BETWEEN {%@, %@}",Calendar.current.date(byAdding: .day, value: -7, to: Date())!, Date())
+//        for i in temp{
+//            if i.photos != nil{
+//                allImages.append(Image(uiImage: RealmController.shared.myImage.loadImageFromDiskWith(fileName: i.photos!)!))
+//            }
+//        }
+//        print(temp.count)
+//    }
     
     func onChange(value: CGSize) {
         imageViewerOffset = value

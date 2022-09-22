@@ -42,7 +42,7 @@ class MyImages {
 
 
 
-    func loadImageFromDiskWith(fileName: String) -> Image? {
+    func loadImageFromDiskWith(fileName: String) -> UIImage? {
 
       let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
 
@@ -52,7 +52,7 @@ class MyImages {
         if let dirPath = paths.first {
             let imageUrl = URL(fileURLWithPath: dirPath).appendingPathComponent(fileName)
             let image = UIImage(contentsOfFile: imageUrl.path)
-            return Image(uiImage: image!)
+            return image
 
         }
 

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import RealmSwift
 
 struct NewTradeView: View {
 
@@ -14,8 +15,10 @@ struct NewTradeView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var sheetAction: SheetAction
     @State private var presentImporter = false
+    @ObservedResults(Trade.self) var trades
+    @ObservedResults(Symbol.self) var symbols
 
-    @State private var symbol: Symbol?
+    @State var symbol: Symbol
     @State private var dateEntered: Date = Date()
     @State private var entry: String = ""
     @State private var dateExited: Date = Date()
@@ -49,7 +52,7 @@ struct NewTradeView: View {
                     Picker("Symbol", selection: $symbol) {
                         ForEach(realmController.symbols){ sy in
                             Text(sy.name)
-                                .tag(sy)
+                                .tag(sy as Symbol)
                         }
                     }
                     DatePicker("Entered", selection: $dateEntered)
@@ -141,9 +144,16 @@ struct NewTradeView: View {
         temp.session = selectedSession
         temp.stopLoss = Double(stopLoss)!
         temp.takeProfit = Double(takeProfit)!
+        
         let formatter3 = DateFormatter()
         formatter3.dateFormat = "HH-mm-E-d-MMM-y"
-        temp.photos = formatter3.string(from: dateEntered)
+        
+        if trades.filter("photos = %@", formatter3.string(from: dateEntered)).count < 1 {
+            temp.photos = formatter3.string(from: dateEntered)
+        }else{
+            temp.photos = formatter3.string(from: dateEntered) + "-1"
+        }
+        
         if selectedPositionType == .long {
           if (Double(exit)! - Double(entry)!).sign == .minus {
               sheetAction = .loss

@@ -15,12 +15,14 @@ struct ContentView: View {
     @EnvironmentObject var realmController: RealmController
     @ObservedResults(Trade.self, where: {$0.win == true} ) var wins
     @ObservedResults(Trade.self, where: {$0.loss == true} ) var losses
+    @ObservedResults(Symbol.self) var symbols
 
     @State private var confettiCounter: Int = 0
     @State private var showNewTrade = false
     @State private var sheetAction: SheetAction = SheetAction.nothing
 
     var screenWidth = UIScreen.main.bounds.width
+    	
     @Binding var currentXOffset: CGFloat
     @Binding var xOffset: CGFloat
 
@@ -66,16 +68,16 @@ struct ContentView: View {
                                 .foregroundColor(.white)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 25)
-                                        .stroke(Color("32a84c"), lineWidth: 2)
+                                        .stroke(Color.green, lineWidth: 2)
                             )
                         }
-                        .background(Color.green) // If you have this
+                        .background(Color.green)
                         .cornerRadius(25)
                         .confettiCannon(counter: $confettiCounter)
                         .sheet(isPresented: $showNewTrade, onDismiss: {
                             delayConfetti(sheetAction: sheetAction, realmController: realmController)
                         }){
-                            NewTradeView(realmController: realmController, sheetAction: $sheetAction)
+                            NewTradeView(realmController: realmController, sheetAction: $sheetAction, symbol: symbols.first!)
                         }
 
                     // Button(action: {

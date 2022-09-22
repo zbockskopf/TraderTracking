@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-TraderTracking-TraderTrackingUITests/Pods-TraderTracking-TraderTrackingUITests-frameworks.sh
-${BUILT_PRODUCTS_DIR}/SwiftConfettiView/SwiftConfettiView.framework
+${BUILT_PRODUCTS_DIR}/Realm/Realm.framework
+${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework

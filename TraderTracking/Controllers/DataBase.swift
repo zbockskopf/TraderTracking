@@ -101,6 +101,7 @@ class RealmController: NSObject, ObservableObject {
         getWinRate()
     }
 
+
     func addWin() {
         let temp = Trade()
         temp.win = true

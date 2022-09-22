@@ -31,13 +31,6 @@ struct SideMenu: View {
                     })
 
                     Spacer()
-
-                    Button(action: {}, label: {
-                        Image(systemName: "ellipsis.circle")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(Color("blue"))
-                    })
                 }
             }
             .padding(.horizontal)

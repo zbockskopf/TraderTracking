@@ -10,6 +10,24 @@
       }
     },
     {
+      "identity" : "imageui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/alberto093/ImageUI.git",
+      "state" : {
+        "branch" : "develop",
+        "revision" : "ebaef3d67002a8d5de792ef7f3591ec3f163b4b8"
+      }
+    },
+    {
+      "identity" : "nuke",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kean/Nuke.git",
+      "state" : {
+        "revision" : "9df754fe4ca4c5abdf3376e4e9ec33b3485bf180",
+        "version" : "11.2.1"
+      }
+    },
+    {
       "identity" : "realm-core",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-core",

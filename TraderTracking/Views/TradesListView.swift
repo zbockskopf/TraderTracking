@@ -7,6 +7,7 @@
 
 import SwiftUI
 import RealmSwift
+import ImageUI
 
 
 struct TradesListView: View {
@@ -14,19 +15,19 @@ struct TradesListView: View {
     @EnvironmentObject var realmController: RealmController
     @EnvironmentObject var tradeListData: TradeListViewModel
     @ObservedResults(Trade.self) var trades
-    
+    @Binding var imageIsShown: Bool
     
 //    var index: Int
 
     var body: some View {
-        NavigationView{
+        NavigationStack{
             List {
                 ForEach(0..<7){ i in
 
                     Section(header: Text(dateChanger(date: Date(), i:i), style: .date)){
                         
                         ForEach(trades.filter("dateEntered < %@", dateChanger(date: Date(), i:i))){ t in
-                            TradeRow(date: t.dateEntered, entry: String(t.entry), exit: String(t.exit), win: t.win!, loss: t.loss!, photos: realmController.myImage.loadImageFromDiskWith(fileName: t.photos!))
+                            TradeRow(symbol: t.symbol!.name, date: t.dateEntered, entry: String(t.entry), exit: String(t.exit), win: t.win!, loss: t.loss!, photos: realmController.myImage.loadImageFromDiskWith(fileName: t.photos!))
                         }
 
                         .onDelete(perform: { t in
@@ -42,26 +43,72 @@ struct TradesListView: View {
             }
             .navigationBarTitle("")
             .navigationBarItems(
-                leading:
+                trailing:
                     Button(action: {
                         withAnimation(.easeInOut){
+                            imageIsShown.toggle()
                             tradeListData.showImageViewer.toggle()
-                            
                         }
                     }, label: {
-                            Image(systemName: "plus.circle.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 40, height: 40)
-                                .clipShape(Circle())
+                        Text("Study")
+                            .frame(minWidth: 0, maxWidth: 50)
+                            .font(.system(size: 10))
+                            .padding()
+                            .foregroundColor(.white)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 25)
+                                    .stroke(Color.green, lineWidth: 2)
+                        )
+//                            Image(systemName: "plus.circle.fill")
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(width: 40, height: 40)
+//                                .clipShape(Circle())
                                 
                     })
-                    .foregroundColor(Color.black)
+                    .fullScreenCover(isPresented: $imageIsShown, content: {
+                        NavigationStack{
+                            ZStack{
+                                if getImages().count == 0 {
+                                    Text("No Photos")
+                                }else{
+                                    ImageUIView(isPresented: $imageIsShown, images: getImages())
+                                        .environmentObject(tradeListData)
+                                        
+                                        .edgesIgnoringSafeArea(.all)
+                                }
+                                
+                            }
+                            .navigationBarItems(
+                                leading:
+                                    Button(action: {
+                                        imageIsShown.toggle()
+                                    }, label: {
+                                        Text("Cancel")
+                                            .foregroundColor(Color(UIColor.label))
+                                        
+                                    })
+                            )
+                            .toolbarBackground(Color(UIColor.secondarySystemBackground), for: .navigationBar)
+                            
+                        
+                        }
+                    })
+//                    .foregroundColor(Color.black)
             )
-            .onAppear{
-                tradeListData.getImages()
+
+        }
+    }
+    
+    func getImages() -> [IFImage] {
+        let temp = trades.filter("dateEntered BETWEEN {%@, %@}",Calendar.current.date(byAdding: .day, value: -7, to: Date())!, Date())
+        var images: [IFImage] = []
+        for i in temp{
+            if i.photos != nil{
+                images.append(IFImage(image: RealmController.shared.myImage.loadImageFromDiskWith(fileName: i.photos!)!))
             }
         }
+        return images
     }
     
     func dateChanger(date: Date, i: Int) -> Date {
@@ -71,22 +118,22 @@ struct TradesListView: View {
 }
 
 struct TradeRow: View {
-//    var symbol: String
+    var symbol: String
     var date: Date
     var entry: String
     var exit: String
     var win: Bool
     var loss: Bool
-    var photos: Image?
+    var photos: UIImage?
 
     var body: some View {
         VStack(alignment: .leading){
             HStack{
-                photos?
+                Image(uiImage: photos!)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 40, height: 40)
-              Text("MES")
+              Text(symbol)
                   .padding()
               VStack{
                 Text("Entry:")
