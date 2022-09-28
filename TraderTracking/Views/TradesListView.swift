@@ -39,6 +39,16 @@ struct TradesListView: View {
                             }
                             
                         })
+                        .swipeActions(edge: .leading, content: {
+                            Button {
+                                editSheet.toggle()
+                            } label: {
+                                Label("", systemImage: "pencil")
+                            }
+                            .tint(.green)
+
+                        })
+                        
                     }
                 }
                 

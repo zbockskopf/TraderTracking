@@ -20,14 +20,14 @@ struct NewTradeView: View {
 
     @State var symbol: String = "MES"
     @State private var dateEntered: Date = Date()
-    @State private var entry: String = "1"
+    @State private var entry: String = ""
     @State private var dateExited: Date = Date()
-    @State private var exit: String = "2"
-    @State private var positionSize: String = "1"
+    @State private var exit: String = ""
+    @State private var positionSize: String = ""
     @State private var selectedPositionType: PositionType = .long
     @State private var selectedSession: Session = .ny
-    @State private var stopLoss: String = "1"
-    @State private var takeProfit: String = "1"
+    @State private var stopLoss: String = ""
+    @State private var takeProfit: String = ""
     @State private var isHindsight = false
     
     @State private var selectedItems: [PhotosPickerItem] = []

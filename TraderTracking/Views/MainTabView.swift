@@ -18,6 +18,7 @@ struct MainTabView: View {
     @State var xOffset: CGFloat = 0
     @State var currentXOffset: CGFloat = 0
     @Environment(\.colorScheme) var scheme
+    
 
     var body: some View {
         GeometryReader { reader in
@@ -29,7 +30,6 @@ struct MainTabView: View {
                     .environmentObject(realmController)
 
                 ZStack{
-                    
                     TabView(selection: $selection) {
                         ContentView(currentXOffset: $currentXOffset, xOffset: $xOffset)
                             .tabItem {

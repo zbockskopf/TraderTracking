@@ -94,6 +94,34 @@ struct ContentView: View {
                             xOffset = -screenWidth * 0.8
                         }
                     }
+                    .gesture(
+                        DragGesture()
+                            .onChanged({ value in
+                                if value.startLocation.x < CGFloat(100.0){
+                                    if value.translation.width > 0 && xOffset != 0 { // left to right
+                                        withAnimation {
+                                            xOffset = currentXOffset + value.translation.width
+                                        }
+                                    } else if value.translation.width < 0 && xOffset != -screenWidth * 0.8 {
+                                        withAnimation {
+                                            xOffset = currentXOffset + value.translation.width
+                                        }
+                                    }
+                                }
+                            })
+                            .onEnded({ value in
+                                if value.translation.width > 0 { // left to right
+                                    withAnimation {
+                                        xOffset = 0
+                                    }
+                                } else {
+                                    withAnimation {
+                                        xOffset = -screenWidth * 0.8
+                                    }
+                                }
+                                currentXOffset = xOffset
+                            })
+                    )
             }
             .navigationBarTitle("")
             .navigationBarItems(

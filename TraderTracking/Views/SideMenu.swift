@@ -16,8 +16,9 @@ struct SideMenu: View {
     
     @State private var showDeleteAlert: Bool = false
     var body: some View {
-        VStack{
+        ZStack{
             VStack(alignment: .leading) {
+                
                 HStack(alignment: .top) {
                     Button(action: {
                         withAnimation{
@@ -33,16 +34,23 @@ struct SideMenu: View {
 
                     Spacer()
                     
+                    
+                    
                 }
+                Divider()
+                VStack{
+                    Button {
+                        showDeleteAlert.toggle()
+                        
+                    } label: {
+                        Text("Delete")
+                            .foregroundColor(.red)
+                    }
+                }
+                Spacer()
             }
             .padding(.horizontal)
-            Button {
-                showDeleteAlert.toggle()
-                
-            } label: {
-                Text("Delete")
-                    .foregroundColor(.red)
-            }
+            
             .alert(isPresented: $showDeleteAlert){
                 Alert(title: Text("Are you sure you want to delete everything?"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete")){
                     realmController.deleteAll()
