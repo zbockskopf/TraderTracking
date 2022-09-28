@@ -88,7 +88,6 @@
 		F2262F2C28D96721005F85B2 /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
 		F29FF89328D97C3100F58F24 /* helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helper.swift; sourceTree = "<group>"; };
 		F2B1C53528DAB293005C6B12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F2C0406528E384F30012CA83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F2FB3DB528D9F82100B7757A /* ImageHandeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHandeling.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -205,7 +204,6 @@
 		9268E23028D3CA4100D63337 /* TraderTracking */ = {
 			isa = PBXGroup;
 			children = (
-				F2C0406528E384F30012CA83 /* Info.plist */,
 				F29FF89228D97C0C00F58F24 /* MICS */,
 				92332B8B28D41E31007020FC /* Views */,
 				9220CBC428D3E83A00494F39 /* Models */,

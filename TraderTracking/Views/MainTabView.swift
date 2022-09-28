@@ -15,83 +15,153 @@ struct MainTabView: View {
 
     @State private var imageIsShown: Bool = false
     var screenWidth = UIScreen.main.bounds.width
-    @State var xOffset: CGFloat = 0
-    @State var currentXOffset: CGFloat = 0
-    @Environment(\.colorScheme) var scheme
+    @State var showMenu: Bool  = false
+    
+    init() {
+        UITabBar.appearance().isHidden = true
+    }
+     
+    @State var currentTab = "Tracker-Active"
+    @State var offset: CGFloat = 0
+    @State var lastStoredOffset: CGFloat = 0
+    @GestureState var gestureOffset: CGFloat = 0
+    
+
 
     var body: some View {
-        GeometryReader { reader in
+        
+        let sideBarWidth = getRect().width - 90
+        
+        NavigationView{
                                 
             HStack(spacing: 0){
                 
-                SideMenu(currentXOffset: $currentXOffset, xOffset: $xOffset)
-                    .frame(width: screenWidth * 0.8)
+                SideMenu(showMenu: $showMenu)
                     .environmentObject(realmController)
 
-                ZStack{
-                    TabView(selection: $selection) {
-                        ContentView(currentXOffset: $currentXOffset, xOffset: $xOffset)
-                            .tabItem {
-                                selection == 0 ? Image("Tracker-Active") : Image("Tracker-Inactive")
-                                Text("")
-                            }
-                            
+                VStack(spacing: 0){
+                    TabView(selection: $currentTab) {
+                        ContentView(showMenu: $showMenu)
                             .environmentObject(realmController)
-                            .tag(0)
+                            .tag("Tracker-Active")
                         TradesListView(imageIsShown: $imageIsShown)
-                            .tabItem {
-                                selection == 1 ? Image("List-Active") : Image("List-Inactive")
-                                Text("")
-                            }
                             .environmentObject(realmController)
                             .environmentObject(tradeListData)
-                            .tag(1)
-//                        ImageUIView()
-//                            .tag(2)
-                        (scheme == .light ? Color.black : Color.white).opacity(0.3)
-                            .opacity(xOffset == 0 ? 0.7 : 0)
-                            .ignoresSafeArea()
+                            .tag("List-Active")
                     }
-                    .frame(width: screenWidth)
-
-
+                    VStack(spacing: 0){
+                            Divider()
+                            HStack(spacing: 0){
+                                TabButton(image: "Tracker-Active")
+                                TabButton(image: "List-Active")
+                            }
+                            .padding([.top], 15)
+                        }
+                    .frame(width: getRect().width)
                 }
-//                .overlay(
-//                    ZStack{
-//                        if imageIsShown{
-//                            NavigationView{
-//                                ImageUIView(isPresented: $imageIsShown)
-//                                    .environmentObject(tradeListData)
-//                                    .navigationBarItems(
-//                                        leading:
-//                                            Button(action: {
-//                                                print("test")
-//                                                if let topController = UIApplication.topViewController() {
-//                                                topController.dismiss(animated: true)
-//                                            }
-//                                            }, label: {
-//                                                if currentXOffset != 0.0 {
-//                                                    Image("Profile")
-//                                                        .resizable()
-//                                                        .scaledToFit()
-//                                                        .frame(width: 40, height: 40)
-//                                                        .clipShape(Circle())
-//                                                }
-//                                            })
-//                                    )
-//                            }
-//                        }
-//                    }
-//                )
+                .frame(width: getRect().width)
+                .overlay(
+                    Rectangle()
+                        .fill(
+                            Color.primary
+                                .opacity(Double((offset / sideBarWidth) / 5))
+                                
+                        )
+                        .ignoresSafeArea(.container, edges: .vertical)
+                        .onTapGesture {
+                            withAnimation {
+                                showMenu.toggle()
+                            }
+                        }
+                )
+                
+            }
+            .frame(width: getRect().width + sideBarWidth)
+            .offset(x: -sideBarWidth / 2)
+            .offset(x: offset > 0 ? offset : 0)
+            .gesture(
+                DragGesture()
+                    .updating($gestureOffset, body: { value, out, _ in
+                        out = value.translation.width
+                    })
+                    .onEnded(onEnd(value:))
+            )
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarHidden(true)
+            
+        }
+        .animation(.easeOut, value: offset == 0)
+        .onChange(of: showMenu) { newValue in
+            if showMenu && offset == 0 {
+                offset = sideBarWidth
+                lastStoredOffset = offset
+            }
+            
+            if !showMenu && offset == sideBarWidth {
+                offset = 0
+                lastStoredOffset = 0
             }
         }
-        .onAppear {
-               xOffset = -screenWidth * 0.8 // hides the menu
-               currentXOffset = xOffset
-           }
-           .offset(x: xOffset)
-
-
+        .onChange(of: gestureOffset) { newVaule in
+            onChange()
+        }
+    }
+    
+    
+    func onChange() {
+        let sideBarWidth = getRect().width - 90
+        offset = (gestureOffset != 0) ? (gestureOffset + lastStoredOffset < sideBarWidth ? gestureOffset + lastStoredOffset : offset) : offset
+    }
+    
+    func onEnd(value: DragGesture.Value) {
+        let sideBarWidth = getRect().width - 90
+        
+        let translation = value.translation.width
+        
+        if translation > 0 {
+            if translation > (sideBarWidth / 2){
+                offset = sideBarWidth
+                showMenu = true
+            }else{
+                if offset == sideBarWidth {
+                    return
+                }
+                offset = 0
+                showMenu = false
+            }
+        }else{
+            if -translation > (sideBarWidth / 2){
+                offset = 0
+                showMenu = false
+            }else{
+                if offset == 0 || !showMenu{
+                    return
+                }
+                offset = sideBarWidth
+                showMenu = true
+            }
+        }
+        
+        lastStoredOffset = offset
+    }
+    
+    @ViewBuilder
+    func TabButton(image: String)-> some View {
+        
+        Button {
+            withAnimation {
+                currentTab = image
+            }
+        } label: {
+            Image(image)
+                .resizable()
+                .renderingMode(.template)
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 28, height: 27)
+                .foregroundColor(currentTab == image ? .green : .gray)
+                .frame(maxWidth: .infinity)
+        }
+        
     }
 }
 
