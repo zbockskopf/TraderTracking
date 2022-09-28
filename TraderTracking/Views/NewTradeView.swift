@@ -32,68 +32,113 @@ struct NewTradeView: View {
     
     @State private var selectedItems: [PhotosPickerItem] = []
     @State private var selectedImages: [UIImage] = []
+    
+    @State private var openFile: Bool = false
 
     var body: some View {
         NavigationView{
-            VStack{
-//                HStack{
-//                    Button("Open") {
-//                        presentImporter = true
-//                    }.fileImporter(isPresented: $presentImporter, allowedContentTypes: [.png]) { result in
-//                                switch result {
-//                                case .success(let url):
-//                                    realmController.myImage.saveImage(imageName: <#T##String#>, image: url)
-//                                    //use `url.startAccessingSecurityScopedResource()` if you are going to read the data
-//                                case .failure(let error):
-//                                    print(error)
-//                                }
-//                            }
-//                }
                 Form{
-                    Toggle(isOn: $isHindsight, label: {
-                        Text("Hindsight")
-                    })
-                    Picker("Symbol", selection: $symbol) {
-                        ForEach(realmController.symbols){ sy in
-                            Text(sy.name)
-                                .tag(sy.name)
+                    Section{
+                        Toggle(isOn: $isHindsight, label: {
+                            Text("Hindsight")
+                        })
+                        Picker("Symbol", selection: $symbol) {
+                            ForEach(realmController.symbols){ sy in
+                                Text(sy.name)
+                                    .tag(sy.name)
+                            }
                         }
                     }
-                    DatePicker("Entered", selection: $dateEntered)
-                        .padding()
-                    TextField("Entry", text: $entry)
-                        .padding()
-                        .keyboardType(.decimalPad)
-//                    DatePicker("Exited", selection: $dateExited)
-//                        .padding()
-                    TextField("Exit", text: $exit)
-                        .padding()
-                        .keyboardType(.decimalPad)
-                    TextField("Size", text: $positionSize)
-                        .padding()
-                        .keyboardType(.decimalPad)
-                    Picker("Type", selection: $selectedPositionType){
-                        ForEach(PositionType.allCases, id: \.self){ val in
-                            Text(val.localizedName)
-                                .tag(val)
+                    Section{
+                        DatePicker("Entered", selection: $dateEntered)
+                            .padding()
+                        TextField("Entry", text: $entry)
+                            .padding()
+                            .keyboardType(.decimalPad)
+                        DatePicker("Exited", selection: $dateExited)
+                            .padding()
+
+                        TextField("Exit", text: $exit)
+                            .padding()
+                            .keyboardType(.decimalPad)
+                        TextField("Stop Loss", text: $stopLoss)
+                            .padding()
+                            .keyboardType(.decimalPad)
+                        TextField("Take Profit", text: $takeProfit)
+                            .padding()
+                            .keyboardType(.decimalPad)
+                    }
+                    Section{
+                        TextField("Size", text: $positionSize)
+                            .padding()
+                            .keyboardType(.decimalPad)
+                        
+                        Picker("Type", selection: $selectedPositionType){
+                            ForEach(PositionType.allCases, id: \.self){ val in
+                                Text(val.localizedName)
+                                    .tag(val)
+                            }
+                        }
+                            .padding()
+                        Picker("Session", selection: $selectedSession){
+                            ForEach(Session.allCases, id: \.self){ val in
+                                Text(val.localizedName)
+                                    .tag(val)
+                            }
+                        }
+                            .padding()
+                    }
+                    Section{
+                        PhotosPicker(
+                                    selection: $selectedItems,
+                                    matching: .any(of: [.images, .not(.videos)]),
+                                    photoLibrary: .shared()) {
+                                        HStack{
+                                            Image(systemName: "photo")
+                                            Text("Add Photo(s)")
+                                        }
+                                        
+                                    }
+                                    .onChange(of: selectedItems) { newItem in
+                                        Task {
+                                            selectedImages.append(screenShotView.asUiImage())
+                                            for item in newItem {
+                                                if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data){
+                                                    selectedImages.append(image)
+                                                }
+                                            }
+                                        }
+                                    }
+                        Button(action: {
+                            openFile.toggle()
+                        }, label: {
+                            HStack{
+                                Image(systemName: "folder")
+                                Text("Select file(s)")
+                            }
+                            
+                        })
+                                
+                        if selectedImages.count > 0{
+                            HStack {
+                                Image(uiImage: selectedImages[0])
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 50, height: 50)
+                            }
+                                .overlay(
+                                    ZStack{
+                                        Color.black
+                                            .opacity(0.3)
+                                        Text(String(selectedImages.count - 1) + "+")
+                                    }
+                            )
                         }
                     }
-                        .padding()
-                    Picker("Session", selection: $selectedSession){
-                        ForEach(Session.allCases, id: \.self){ val in
-                            Text(val.localizedName)
-                                .tag(val)
-                        }
-                    }
-                        .padding()
-                    TextField("Stop Loss", text: $stopLoss)
-                        .padding()
-                        .keyboardType(.decimalPad)
-                    TextField("Take Profit", text: $takeProfit)
-                        .padding()
-                        .keyboardType(.decimalPad)
-                    
                 }
+                .fileImporter(isPresented: $openFile, allowedContentTypes: [.image], allowsMultipleSelection: true, onCompletion: importImage)
+                .navigationBarTitle("New Trade")
+                .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(
                     leading:
                         Button(action: {
@@ -110,51 +155,41 @@ struct NewTradeView: View {
                             Text("Done")
                         }
                 )
-                PhotosPicker(
-                            selection: $selectedItems,
-                            matching: .any(of: [.images, .not(.videos)]),
-                            photoLibrary: .shared()) {
-                                Text("Select a photo")
-                            }
-                            .onChange(of: selectedItems) { newItem in
-                                Task {
-//                                    selectedImages = []
-                                    selectedImages.append(screenShotView.asUiImage())
-                                    for item in newItem {
-                                        if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data){
-                                            selectedImages.append(image)
-                                        }
-                                    }
-                                    
-                                }
-                            }
-                if selectedImages.count > 0{
-                    ZStack{
-                        Image(uiImage: selectedImages[0])
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 50, height: 50)
-                    }
-                        .overlay(
-                            ZStack{
-                                Color.black
-                                    .opacity(0.3)
-                                Text(String(selectedImages.count - 1) + "+")
-                            }
-                    )
-                }
-            }
-            
-            
         }
     }
     
     var screenShotView: some View {
-        ZStack{
+        VStack{
+            Text(symbol)
             Text(formatDateForPicture())
-                .frame(width: 200, height: 200)
+            if isHindsight{
+                Text("Hindsight")
+            }
         }
+        .background(.white)
+        .frame(minWidth: UIScreen.main.bounds.width, minHeight: UIScreen.main.bounds.height)
     }
+    
+   func importImage(_ res: Result<[URL], Error>) {
+       do{
+           
+           var urls: [URL] = try res.get()
+
+           selectedImages.append(screenShotView.asUiImage())
+           for i in urls{
+               guard i.startAccessingSecurityScopedResource() else { return }
+               if let imageData = try? Data(contentsOf: i),
+                  let image = UIImage(data: imageData) {
+                   selectedImages.append(image)
+               }
+               i.stopAccessingSecurityScopedResource()
+           }
+           
+       } catch{
+           print ("error reading")
+           print (error.localizedDescription)
+       }
+   }
 
 
     private func addTrade() {
@@ -194,6 +229,10 @@ struct NewTradeView: View {
             }
         }
         
+        if isHindsight {
+            sheetAction = .nothing
+        }
+        
         realmController.addTrade(trade: temp, images: selectedImages)
     }
     
@@ -206,8 +245,8 @@ struct NewTradeView: View {
     
     private func formatDateForPicture() -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = " EE - MMM d, yy"
-        return symbol + formatter.string(from: dateEntered)
+        formatter.dateFormat = "EEEE - MMMM d, yyyy"
+        return formatter.string(from: dateEntered)
     }
 }
 

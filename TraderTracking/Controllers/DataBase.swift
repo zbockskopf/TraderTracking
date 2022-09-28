@@ -88,7 +88,13 @@ class RealmController: NSObject, ObservableObject {
         var temp: Double = Double((wins/(wins + losses)))
         numWins = String(Int(wins))
         numLosses = String(Int(losses))
-        winRate = percentFormatter.string(for: temp)!
+        
+        if wins == 0.0 && losses == 0.0 {
+            winRate = "No Trades"
+        }else{
+            winRate = percentFormatter.string(for: temp)!
+        }
+        
     }
 
     func addTrade(trade: Trade, images: [UIImage]?){

@@ -17,13 +17,11 @@ struct TradesListView: View {
     @ObservedResults(Trade.self) var trades
     @Binding var imageIsShown: Bool
     
-    @State private var dateOne: Date?
-    @State private var dateTwo: Date?
     @State private var all: Bool?
+    @State private var selectedTrade: Trade? = nil
+    
     var calendar = Calendar.current
     
-//    var index: Int
-
     var body: some View {
         NavigationStack{
             List {
@@ -32,16 +30,8 @@ struct TradesListView: View {
                     Section(header: Text(calendar.date(byAdding: .day, value: -i, to: Date())!, style: .date)){
                         
                         ForEach(trades.filter("dateEntered BETWEEN {%@, %@}", dateChanger(date: Date(), i:i, isPrevDay: false), dateChanger(date: Date(), i:i, isPrevDay: true))) { t in
-                            TradeRow(symbol: t.symbol!.name, date: t.dateEntered, entry: String(t.entry), exit: String(t.exit), win: t.win!, loss: t.loss!, hindsight: t.isHindsight)
-                                .onTapGesture {
-                                        self.all = true
-                                        self.dateOne = calendar.startOfDay(for: calendar.date(byAdding: .day, value: -i, to: t.dateEntered)!)
-                                        self.dateTwo = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: calendar.date(byAdding: .day, value: -i, to: t.dateEntered)!)
-                                    imageIsShown.toggle()
-                                   
-                                }
+                            TradeRow(trade: t, selectedTrade: $selectedTrade, imageIsShown: $imageIsShown)
                         }
-
                         .onDelete(perform: { t in
                             t.forEach { i in
                                 realmController.myImage.deleteImage(fileName: trades[i].photoDirectory!)
@@ -81,16 +71,14 @@ struct TradesListView: View {
                     })
                     .fullScreenCover(isPresented: $imageIsShown, onDismiss: {
                         self.all = nil
-                        self.dateOne = nil
-                        self.dateTwo = nil
                     }, content: {
                         NavigationStack{
                             ZStack{
-                                if getImages(all: true, dateOne: nil, dateTwo: nil).count == 0 {
+                                if getImages(all: true, trade: nil).count == 0 {
                                     Text("No Photos")
                                 }else{
                                     
-                                    ImageUIView(isPresented: $imageIsShown, images: getImages(all: all ?? false, dateOne: dateOne, dateTwo: dateTwo))
+                                    ImageUIView(isPresented: $imageIsShown, images: getImages(all: all ?? false, trade: selectedTrade ))
                                         .environmentObject(tradeListData)
                                         .edgesIgnoringSafeArea(.all)
                                 }
@@ -115,13 +103,13 @@ struct TradesListView: View {
         }
     }
     
-    func getImages(all: Bool, dateOne: Date?, dateTwo: Date?) -> [IFImage] {
+    func getImages(all: Bool, trade: Trade?) -> [IFImage] {
         var temp: Results<Trade>
         
         if all {
             temp = trades.filter("dateEntered BETWEEN {%@, %@}",Calendar.current.date(byAdding: .day, value: -7, to: Date())!, Date())
         }else{
-            temp = trades.filter("dateEntered BETWEEN {%@, %@}",dateOne!, dateTwo!)
+            temp = trades.filter("dateEntered BETWEEN {%@, %@}",calendar.startOfDay(for: trade!.dateEntered), calendar.date(bySettingHour: 23, minute: 59, second: 59, of: trade!.dateEntered)!)
         }
         
         var images: [IFImage] = []
@@ -150,66 +138,65 @@ struct TradesListView: View {
 }
 
 struct TradeRow: View {
-    var symbol: String
-    var date: Date
-    var entry: String
-    var exit: String
-    var win: Bool
-    var loss: Bool
-    var hindsight: Bool
-//    var photos: UIImage?
+    var trade: Trade
+    @Binding var selectedTrade: Trade?
+    @Binding var imageIsShown: Bool
 
     var body: some View {
         VStack(alignment: .leading){
+            Spacer()
             HStack{
-//                Image(uiImage: photos!)
-//                    .resizable()
-//                    .scaledToFit()
-//                    .frame(width: 40, height: 40)
-              Text(symbol)
+
+                Text(trade.symbol!.name)
                   .padding()
               VStack{
                 Text("Entry:")
 
-                Text(entry)
+                  Text(String(trade.entry))
 
               }
               .padding()
 
               VStack{
                   Text("Exit:")
-                  Text(exit)
+                  Text(String(trade.exit))
               }
               .padding()
 
 
             }
 
-
+            Spacer()
         HStack{
             HStack{
-                Text(date, style: .date)
-                Text(date, style: .time)
+                Text(trade.dateEntered, style: .date)
+                Text(trade.dateEntered, style: .time)
             }
-            if win{
+            if trade.win!{
                 Circle()
                     .fill(.green)
                     .frame(width: 20, height: 20)
             }
 
-            if loss{
+            if trade.loss!{
                 Circle()
                     .fill(.red)
                     .frame(width: 20, height: 20)
             }
             
-            if hindsight {
+            if trade.isHindsight {
                 Circle()
                     .fill(.blue)
                     .frame(width: 20, height: 20)
             }
         }
+            Spacer()
       }
+//        .onTapGesture {
+//            print("test")
+//            self.selectedTrade = self.trade
+//            imageIsShown.toggle()
+//        }
 
     }
 }

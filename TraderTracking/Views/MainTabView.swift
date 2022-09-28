@@ -21,7 +21,9 @@ struct MainTabView: View {
 
     var body: some View {
         GeometryReader { reader in
+                                
             HStack(spacing: 0){
+                
                 SideMenu(currentXOffset: $currentXOffset, xOffset: $xOffset)
                     .frame(width: screenWidth * 0.8)
                     .environmentObject(realmController)
@@ -46,12 +48,13 @@ struct MainTabView: View {
                             .tag(1)
 //                        ImageUIView()
 //                            .tag(2)
+                        (scheme == .light ? Color.black : Color.white).opacity(0.3)
+                            .opacity(xOffset == 0 ? 0.7 : 0)
+                            .ignoresSafeArea()
                     }
                     .frame(width: screenWidth)
 
-//                    (scheme == .light ? Color.black : Color.white).opacity(0.3)
-//                        .opacity(xOffset == 0 ? 0.7 : 0)
-//                        .ignoresSafeArea()
+
                 }
 //                .overlay(
 //                    ZStack{
