@@ -17,6 +17,8 @@ struct MainTabView: View {
     var screenWidth = UIScreen.main.bounds.width
     @State var xOffset: CGFloat = 0
     @State var currentXOffset: CGFloat = 0
+    @State var lastStoredOffset: CGFloat = 0
+    @GestureState var gestureOffset: CGFloat = 0
     @Environment(\.colorScheme) var scheme
 
     var body: some View {
@@ -31,7 +33,7 @@ struct MainTabView: View {
                 ZStack{
                     
                     TabView(selection: $selection) {
-                        ContentView(currentXOffset: $currentXOffset, xOffset: $xOffset)
+                        ContentView(currentXOffset: $currentXOffset, xOffset: $xOffset, lastStoredOffset: $lastStoredOffset)
                             .tabItem {
                                 selection == 0 ? Image("Tracker-Active") : Image("Tracker-Inactive")
                                 Text("")

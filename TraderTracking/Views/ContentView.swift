@@ -25,6 +25,8 @@ struct ContentView: View {
     	
     @Binding var currentXOffset: CGFloat
     @Binding var xOffset: CGFloat
+    @Binding var lastStoredOffset: CGFloat
+    @GestureState var gestureOffset: CGFloat = 0
     @Environment(\.colorScheme) var scheme
 
     var body: some View {
@@ -122,33 +124,87 @@ struct ContentView: View {
             )
         .gesture(
             DragGesture()
-                .onChanged({ value in
-                    if value.startLocation.x < CGFloat(100.0){
-                        if value.translation.width > 0 && xOffset != 0 { // left to right
-                            withAnimation {
-                                xOffset = currentXOffset + value.translation.width
-                            }
-                        } else if value.translation.width < 0 && xOffset != -screenWidth * 0.8 {
-                            withAnimation {
-                                xOffset = currentXOffset + value.translation.width
-                            }
-                        }
-                    }
+                .updating($gestureOffset, body: { value, out, _ in
+                    
+                    out = value.translation.width
                 })
-                .onEnded({ value in
-                    if value.translation.width > 0 { // left to right
-                        withAnimation {
-                            xOffset = 0
-                        }
-                    } else {
-                        withAnimation {
-                            xOffset = -screenWidth * 0.8
-                        }
+                .onEnded(onEnd(value:))
+            )
+        .animation(.easeOut, value: offset == 0)
+                .onChange(of: showMenu) { newValue in
+                    let sideBarWidth = -screenWidth * 0.8
+                    if showMenu && offset == 0 {
+                        offset = sideBarWidth
+                        lastStoredOffset = xOffset
                     }
-                    currentXOffset = xOffset
-                })
-        )
+                    
+                    if !showMenu && xOffset == sideBarWidth {
+                        offset = 0
+                        lastStoredOffset = 0
+                    }
+                }
+                .onChange(of: gestureOffset) { newVaule in
+                    onChange()
+                }
+//            DragGesture()
+//                .onChanged({ value in
+//                    if value.startLocation.x < CGFloat(100.0){
+//                        if value.translation.width > 0 && xOffset != 0 { // left to right
+//                            withAnimation {
+//                                xOffset = currentXOffset + value.translation.width
+//                            }
+//                        } else if value.translation.width < 0 && xOffset != -screenWidth * 0.8 {
+//                            withAnimation {
+//                                xOffset = currentXOffset + value.translation.width
+//                            }
+//                        }
+//                    }
+//                })
+//                .onEnded({ value in
+//                    if value.translation.width > 0 { // left to right
+//                        withAnimation {
+//                            xOffset = 0
+//                        }
+//                    } else {
+//                        withAnimation {
+//                            xOffset = -screenWidth * 0.8
+//                        }
+//                    }
+//                    currentXOffset = xOffset
+//                })
+//        )
     }
+            
+            
+    func onChange() {
+            let sideBarWidth = -screenWidth * 0.8
+            xOffset = (gestureOffset != 0) ? (gestureOffset + lastStoredOffset < sideBarWidth ? gestureOffset + lastStoredOffset : xOffset) : xOffset
+        }
+        
+            func onEnd(value: DragGesture.Value) {
+                    let sideBarWidth = -screenWidth * 0.8
+                    
+                    let translation = value.translation.width
+                    
+                    if translation > 0 {
+                        if translation > (sideBarWidth / 2){
+                            xOffset = sideBarWidth
+                        }else{
+                            xOffset = 0
+
+                        }
+                    }else{
+                        if -translation > (sideBarWidth / 2){
+                            xOffset = 0
+                        }else{
+
+                            xOffset = sideBarWidth
+
+                        }
+                    }
+                    
+                    lastStoredOffset = xOffset
+                }
 
 
     private func delayConfetti(sheetAction: SheetAction, realmController: RealmController) {
