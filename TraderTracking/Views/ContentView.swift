@@ -25,40 +25,42 @@ struct ContentView: View {
     	
     @Binding var currentXOffset: CGFloat
     @Binding var xOffset: CGFloat
+    @Environment(\.colorScheme) var scheme
 
     var body: some View {
 
         NavigationView{
-            VStack{
-                Text(realmController.winRate)
-                    .font(.largeTitle)
-                    .padding()
-
-                HStack{
-                    Spacer()
-
-                    VStack{
-                        Text("Wins")
-                        Text(String(wins.count))
-                    }
-                    .foregroundColor(Color(UIColor.label))
-
-                    Spacer()
-
-                    VStack{
-                        Text("Losses")
-                        Text(String(losses.count))
-                    }
-                    .foregroundColor(Color(UIColor.label))
-
-                    Spacer()
-                }
-                .padding()
-
-
-
+            ZStack{
                 VStack{
-                    Button(action: {
+                    Text(realmController.winRate)
+                        .font(.largeTitle)
+                        .padding()
+                    
+                    HStack{
+                        Spacer()
+                        
+                        VStack{
+                            Text("Wins")
+                            Text(String(wins.count))
+                        }
+                        .foregroundColor(Color(UIColor.label))
+                        
+                        Spacer()
+                        
+                        VStack{
+                            Text("Losses")
+                            Text(String(losses.count))
+                        }
+                        .foregroundColor(Color(UIColor.label))
+                        
+                        Spacer()
+                    }
+                    .padding()
+                    
+                    
+                    
+                    VStack{
+                        Button(action: {
                             showNewTrade.toggle()
                         }) {
                             Text("New Trade")
@@ -69,7 +71,7 @@ struct ContentView: View {
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 25)
                                         .stroke(Color.green, lineWidth: 2)
-                            )
+                                )
                         }
                         .background(Color.green)
                         .cornerRadius(25)
@@ -79,31 +81,20 @@ struct ContentView: View {
                         }){
                             NewTradeView(realmController: realmController, sheetAction: $sheetAction)
                         }
-
-                    // Button(action: {
-                    //         showNewTrade.toggle()
-                    //     }) {
-                    //         Text("Loss")
-                    //             .frame(minWidth: 0, maxWidth: 200)
-                    //             .font(.system(size: 18))
-                    //             .padding()
-                    //             .foregroundColor(.white)
-                    //             .overlay(
-                    //                 RoundedRectangle(cornerRadius: 25)
-                    //                     .stroke(Color(UIColor.systemBackground), lineWidth: 2)
-                    //         )
-                    //     }
-                    //     .background(Color.red) // If you have this
-                    //     .cornerRadius(25)
-                    //     .sheet(isPresented: $showNewTrade, onDismiss: {
-                    //         delayConfetti(sheetAction: sheetAction, realmController: realmController)
-                    //     }){
-                    //         NewTradeView(realmController: realmController, sheetAction: $sheetAction)
-                    //     }
+                        
+                    }
+                    .padding()
                 }
-                .padding()
+                (scheme == .light ? Color.black : Color.white).opacity(0.3)
+                    .opacity(xOffset == 0 ? 0.7 : 0)
+                    .ignoresSafeArea()
+                    .allowsHitTesting(xOffset == 0 ? true : false)
+                    .onTapGesture {
+                        withAnimation {
+                            xOffset = -screenWidth * 0.8
+                        }
+                    }
             }
-
             .navigationBarTitle("")
             .navigationBarItems(
                 leading:
@@ -112,7 +103,7 @@ struct ContentView: View {
                             xOffset = 0
                         }
                     }, label: {
-                        if currentXOffset != 0.0 {
+                        if xOffset == -screenWidth * 0.8 {
                             Image("Profile")
                                 .resizable()
                                 .scaledToFit()

@@ -29,13 +29,13 @@ struct MainTabView: View {
                     .environmentObject(realmController)
 
                 ZStack{
+                    
                     TabView(selection: $selection) {
                         ContentView(currentXOffset: $currentXOffset, xOffset: $xOffset)
                             .tabItem {
                                 selection == 0 ? Image("Tracker-Active") : Image("Tracker-Inactive")
                                 Text("")
                             }
-                            
                             .environmentObject(realmController)
                             .tag(0)
                         TradesListView(imageIsShown: $imageIsShown)
@@ -48,41 +48,12 @@ struct MainTabView: View {
                             .tag(1)
 //                        ImageUIView()
 //                            .tag(2)
-                        (scheme == .light ? Color.black : Color.white).opacity(0.3)
-                            .opacity(xOffset == 0 ? 0.7 : 0)
-                            .ignoresSafeArea()
+
                     }
                     .frame(width: screenWidth)
-
-
+                                        
+                                            
                 }
-//                .overlay(
-//                    ZStack{
-//                        if imageIsShown{
-//                            NavigationView{
-//                                ImageUIView(isPresented: $imageIsShown)
-//                                    .environmentObject(tradeListData)
-//                                    .navigationBarItems(
-//                                        leading:
-//                                            Button(action: {
-//                                                print("test")
-//                                                if let topController = UIApplication.topViewController() {
-//                                                topController.dismiss(animated: true)
-//                                            }
-//                                            }, label: {
-//                                                if currentXOffset != 0.0 {
-//                                                    Image("Profile")
-//                                                        .resizable()
-//                                                        .scaledToFit()
-//                                                        .frame(width: 40, height: 40)
-//                                                        .clipShape(Circle())
-//                                                }
-//                                            })
-//                                    )
-//                            }
-//                        }
-//                    }
-//                )
             }
         }
         .onAppear {
