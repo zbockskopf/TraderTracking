@@ -15,6 +15,9 @@ struct SideMenu: View {
     @Binding var xOffset: CGFloat
     
     @State private var showDeleteAlert: Bool = false
+    @State private var showForexCalendar: Bool = false
+    @Binding var showNotificationSettings: Bool
+    
     var body: some View {
         ZStack{
             VStack(alignment: .leading) {
@@ -33,20 +36,16 @@ struct SideMenu: View {
                     })
 
                     Spacer()
-                    
-                    
-                    
                 }
                 Divider()
-                VStack{
-                    Button {
-                        showDeleteAlert.toggle()
-                        
-                    } label: {
-                        Text("Delete")
-                            .foregroundColor(.red)
-                    }
+                VStack(alignment: .listRowSeparatorLeading){
+
+                    ForexCalendarButton(showForexCalendar: $showForexCalendar)
+                    NotificationButton(showNotificationSettings: $showNotificationSettings, xOffset: $xOffset)
+                    DeleteButton(showDeleteAlert: $showDeleteAlert)
+
                 }
+                .fixedSize()
                 Spacer()
             }
             .padding(.horizontal)

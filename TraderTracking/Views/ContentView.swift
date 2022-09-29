@@ -20,6 +20,7 @@ struct ContentView: View {
     @State private var confettiCounter: Int = 0
     @State private var showNewTrade = false
     @State private var sheetAction: SheetAction = SheetAction.nothing
+    @Binding var showNotificationSettings: Bool
 
     var screenWidth = UIScreen.main.bounds.width
     	
@@ -29,7 +30,7 @@ struct ContentView: View {
 
     var body: some View {
 
-        NavigationView{
+        NavigationStack{
             ZStack{
                 VStack{
                     Text(realmController.winRate)
@@ -94,21 +95,21 @@ struct ContentView: View {
                             xOffset = -screenWidth * 0.8
                         }
                     }
-                    .gesture(
-                        DragGesture()
-                            .onChanged({ value in
-                                if value.startLocation.x < CGFloat(100.0){
-                                    if value.translation.width > 0 && xOffset != 0 { // left to right
-                                        withAnimation {
-                                            xOffset = currentXOffset + value.translation.width
-                                        }
-                                    } else if value.translation.width < 0 && xOffset != -screenWidth * 0.8 {
-                                        withAnimation {
-                                            xOffset = currentXOffset + value.translation.width
-                                        }
+                    .gesture( !showNotificationSettings ?
+                              DragGesture()
+                        .onChanged({ value in
+                            if value.startLocation.x < CGFloat(100.0){
+                                if value.translation.width > 0 && xOffset != 0 { // left to right
+                                    withAnimation {
+                                        xOffset = currentXOffset + value.translation.width
+                                    }
+                                } else if value.translation.width < 0 && xOffset != -screenWidth * 0.8 {
+                                    withAnimation {
+                                        xOffset = currentXOffset + value.translation.width
                                     }
                                 }
-                            })
+                            }
+                        })
                             .onEnded({ value in
                                 if value.translation.width > 0 { // left to right
                                     withAnimation {
@@ -120,9 +121,21 @@ struct ContentView: View {
                                     }
                                 }
                                 currentXOffset = xOffset
-                            })
+                            }) : nil
                     )
+                //                NavigationLink(value: "showNotificationSettings") {
+                //                    Text("")
+                //                }
+                //                .hidden()
+                //                NavigationLink(destination: NotificationSettings(), isActive: $showNotificationSettings) {
+                //
+                //                }
+                //                .hidden()
             }
+            .navigationDestination(isPresented: $showNotificationSettings, destination: {
+                NotificationSettings()
+                    .navigationBarTitle("Notifications")
+            })
             .navigationBarTitle("")
             .navigationBarItems(
                 leading:
@@ -148,34 +161,7 @@ struct ContentView: View {
               minHeight: 0,
               maxHeight: .infinity
             )
-        .gesture(
-            DragGesture()
-                .onChanged({ value in
-                    if value.startLocation.x < CGFloat(100.0){
-                        if value.translation.width > 0 && xOffset != 0 { // left to right
-                            withAnimation {
-                                xOffset = currentXOffset + value.translation.width
-                            }
-                        } else if value.translation.width < 0 && xOffset != -screenWidth * 0.8 {
-                            withAnimation {
-                                xOffset = currentXOffset + value.translation.width
-                            }
-                        }
-                    }
-                })
-                .onEnded({ value in
-                    if value.translation.width > 0 { // left to right
-                        withAnimation {
-                            xOffset = 0
-                        }
-                    } else {
-                        withAnimation {
-                            xOffset = -screenWidth * 0.8
-                        }
-                    }
-                    currentXOffset = xOffset
-                })
-        )
+
     }
 
 
