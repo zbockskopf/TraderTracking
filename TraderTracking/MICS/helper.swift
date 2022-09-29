@@ -8,6 +8,17 @@
 import Foundation
 import SwiftUI
 
+
+struct MyFormatter {
+    
+    
+    func numFormat(num: Double) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        return numberFormatter.string(from: NSNumber(value:num))!
+    }
+}
+
 extension Color {
     init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
@@ -116,7 +127,7 @@ struct AppUtility {
     static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
     
         if let delegate = UIApplication.shared.delegate as? AppDelegate {
-            delegate.orientationLock = orientation
+            AppDelegate.orientationLock = orientation
         }
     }
 

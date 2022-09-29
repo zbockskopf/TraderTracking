@@ -13,7 +13,6 @@ struct MainTabView: View {
     @StateObject var tradeListData = TradeListViewModel()
     @State private var selection = 0
 
-    @State private var imageIsShown: Bool = false
     var screenWidth = UIScreen.main.bounds.width
     @State var xOffset: CGFloat = 0
     @State var currentXOffset: CGFloat = 0
@@ -38,7 +37,7 @@ struct MainTabView: View {
                             }
                             .environmentObject(realmController)
                             .tag(0)
-                        TradesListView(imageIsShown: $imageIsShown)
+                        TradesListView()
                             .tabItem {
                                 selection == 1 ? Image("List-Active") : Image("List-Inactive")
                                 Text("")

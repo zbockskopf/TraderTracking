@@ -22,6 +22,7 @@ struct ImageUIView: UIViewControllerRepresentable {
         AppUtility.lockOrientation(.landscape)
         vc.configuration.actions = [.delete, .share]
         vc.configuration.prefersAspectFillZoom = true
+        
 //        browserViewController.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(temp))
 
         return vc
@@ -37,7 +38,7 @@ struct ImageUIView: UIViewControllerRepresentable {
         
             vc.configuration.actions = [.delete, .share]
             vc.delegate = context.coordinator as? any IFBrowserViewControllerDelegate
-            AppUtility.lockOrientation(.landscape)
+            
 //            uiViewController.present(vc, animated: true)
             vc.presentationController?.delegate = context.coordinator
             }

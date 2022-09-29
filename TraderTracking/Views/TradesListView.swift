@@ -15,7 +15,8 @@ struct TradesListView: View {
     @EnvironmentObject var realmController: RealmController
     @EnvironmentObject var tradeListData: TradeListViewModel
     @ObservedResults(Trade.self) var trades
-    @Binding var imageIsShown: Bool
+    @State var imageIsShown: Bool = false
+    @State var tappedImageShown: Bool = false
     
     @State private var all: Bool?
     @State private var selectedTrade: Trade? = nil
@@ -31,6 +32,10 @@ struct TradesListView: View {
                         
                         ForEach(trades.filter("dateEntered BETWEEN {%@, %@}", dateChanger(date: Date(), i:i, isPrevDay: false), dateChanger(date: Date(), i:i, isPrevDay: true))) { t in
                             TradeRow(trade: t, selectedTrade: $selectedTrade, imageIsShown: $imageIsShown)
+
+                                .onTapGesture {
+                                    selectedTrade = t
+                                }
                         }
                         .onDelete(perform: { t in
                             t.forEach { i in
@@ -41,7 +46,7 @@ struct TradesListView: View {
                         })
                         .swipeActions(edge: .leading, content: {
                             Button {
-                                editSheet.toggle()
+//                                editSheet.toggle()
                             } label: {
                                 Label("", systemImage: "pencil")
                             }
@@ -52,6 +57,37 @@ struct TradesListView: View {
                     }
                 }
                 
+            }
+            .fullScreenCover(item: $selectedTrade) { s in
+                NavigationStack{
+                    ZStack{
+                        ImageUIView(isPresented: $tappedImageShown, images: getTappedImages(trade: s))
+                            .environmentObject(tradeListData)
+                            .edgesIgnoringSafeArea(.all)
+                            .onAppear{
+                                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+
+                                windowScene?.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight))
+                            }
+                            .onDisappear{
+                                UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+                                AppDelegate.orientationLock = .portrait
+                            }
+
+                    }
+                    .navigationBarItems(
+                        leading:
+                            Button(action: {
+                                selectedTrade = nil
+                            }, label: {
+                                Text("Cancel")
+                                    .foregroundColor(Color(UIColor.label))
+                                
+                            })
+                    )
+                    .toolbarBackground(Color(UIColor.secondarySystemBackground), for: .navigationBar)
+                }
+
             }
             .navigationBarTitle("")
             .navigationBarItems(
@@ -91,6 +127,14 @@ struct TradesListView: View {
                                     ImageUIView(isPresented: $imageIsShown, images: getImages(all: all ?? false, trade: selectedTrade ))
                                         .environmentObject(tradeListData)
                                         .edgesIgnoringSafeArea(.all)
+//                                        .onAppear{
+//                                            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation") // Forcing the rotation to portrait
+//                                            AppDelegate.orientationLock = .landscape // And making sure it stays that way
+//                                        }
+//                                        .onDisappear{
+//                                            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+//                                            AppDelegate.orientationLock = .portrait
+//                                        }
                                 }
                                 
                             }
@@ -135,6 +179,19 @@ struct TradesListView: View {
         return images
     }
     
+    func getTappedImages(trade: Trade) -> [IFImage] {
+        var images: [IFImage] = []
+
+        if trade.photoDirectory != nil{
+            let tempPhotos = RealmController.shared.myImage.loadImageFromDiskWith(directory: trade.photoDirectory!)!
+            for p in tempPhotos {
+                images.append(IFImage(image: p))
+            }
+        }
+        images.removeFirst()
+        return images
+    }
+    
     func dateChanger(date: Date, i: Int, isPrevDay: Bool) -> Date {
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: calendar.date(byAdding: .day, value: -i, to: date)!)
@@ -151,62 +208,156 @@ struct TradeRow: View {
     var trade: Trade
     @Binding var selectedTrade: Trade?
     @Binding var imageIsShown: Bool
+    
+    var myFormatter = MyFormatter()
 
     var body: some View {
         VStack(alignment: .leading){
-            Spacer()
             HStack{
-
+                if trade.isHindsight {
+                    Circle()
+                        .fill(.blue)
+                        .frame(width: 20, height: 20)
+                        .padding(.top)
+                }else{
+                    if trade.win!{
+                        Circle()
+                            .fill(.green)
+                            .frame(width: 20, height: 20)
+                            .padding(.top)
+                    }
+                    
+                    if trade.loss!{
+                        Circle()
+                            .fill(.red)
+                            .frame(width: 20, height: 20)
+                            .padding(.top)
+                    }
+                }
                 Text(trade.symbol!.name)
-                  .padding()
-              VStack{
-                Text("Entry:")
+                    .padding([.top, .leading])
+                Spacer()
 
-                  Text(String(trade.entry))
+            }
+            Spacer()
+            VStack(alignment: .leading){
+                
+              HStack{
+                  
+                  Text("Entry:")
+                      .bold()
+                  Text("$" + String(myFormatter.numFormat(num: trade.entry)) + " @")
+                  Text(trade.dateEntered, style: .time)
 
               }
-              .padding()
-
-              VStack{
+              .padding([.bottom], 4)
+              HStack{
                   Text("Exit:")
-                  Text(String(trade.exit))
+                      .bold()
+                  Text("$" + String(myFormatter.numFormat(num: trade.exit)) + " @")
+                  Text(trade.dateExited, style: .time)
               }
-              .padding()
+              
 
 
             }
+            .padding()
 
             Spacer()
         HStack{
             HStack{
-                Text(trade.dateEntered, style: .date)
-                Text(trade.dateEntered, style: .time)
-            }
-            if trade.win!{
-                Circle()
-                    .fill(.green)
-                    .frame(width: 20, height: 20)
             }
 
-            if trade.loss!{
-                Circle()
-                    .fill(.red)
-                    .frame(width: 20, height: 20)
-            }
-            
-            if trade.isHindsight {
-                Circle()
-                    .fill(.blue)
-                    .frame(width: 20, height: 20)
-            }
         }
             Spacer()
       }
-//        .onTapGesture {
-//            print("test")
-//            self.selectedTrade = self.trade
-//            imageIsShown.toggle()
-//        }
+    }
+}
 
+struct TradeRow_Preview: PreviewProvider {
+
+    static var previews: some View {
+        NavigationView{
+            TabView{
+                List{
+                    Section(header: Text(Date(), style: .date)){
+                        test1()
+                        test1()
+                    }
+                    
+                    Section(header: Text(Date(), style: .date)){
+                        test1()
+                        test1()
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+struct test1: View {
+    
+    var body: some View {
+        VStack(alignment: .leading){
+            HStack{
+                if false {
+                    Circle()
+                        .fill(.blue)
+                        .frame(width: 20, height: 20)
+                        .padding(.top)
+                }else{
+                    if true{
+                        Circle()
+                            .fill(.green)
+                            .frame(width: 20, height: 20)
+                            .padding(.top)
+                    }
+                    
+                    if false{
+                        Circle()
+                            .fill(.red)
+                            .frame(width: 20, height: 20)
+                            .padding(.top)
+                    }
+                }
+                Text("MES")
+                    .padding([.top, .leading])
+                Spacer()
+                
+//                Text((Date()), style: .time)
+//                    .padding(.top)
+            }
+            Spacer()
+            VStack(alignment: .leading){
+                
+              HStack{
+                Text("Entry:")
+                      .bold()
+                Text(String(MyFormatter().numFormat(num: 12345.00)) + " @")
+                Text(Date(), style: .time)
+
+              }
+              .padding([.bottom], 5)
+
+              HStack{
+                  Text("Exit:")
+                      .bold()
+                  Text(String(MyFormatter().numFormat(num: 12345.00)) + " @")
+                  Text(Date(), style: .time)
+              }
+            }
+            .padding()
+
+            Spacer()
+        HStack{
+            HStack{
+                
+            }
+
+        }
+            Spacer()
+      }
     }
 }
