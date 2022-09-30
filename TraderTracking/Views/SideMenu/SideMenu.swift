@@ -9,7 +9,8 @@ import SwiftUI
 
 struct SideMenu: View {
     @EnvironmentObject var realmController: RealmController
-    
+    @EnvironmentObject var notifications: Notifications
+    let calendarPublisher = NotificationCenter.default.publisher(for: NSNotification.Name("ForexCalendar"))
     var screenWidth = UIScreen.main.bounds.width
     @Binding var currentXOffset: CGFloat
     @Binding var xOffset: CGFloat
@@ -17,6 +18,7 @@ struct SideMenu: View {
     @State private var showDeleteAlert: Bool = false
     @State private var showForexCalendar: Bool = false
     @Binding var showNotificationSettings: Bool
+    @Binding var showProfile: Bool
     
     var body: some View {
         ZStack{
@@ -26,6 +28,7 @@ struct SideMenu: View {
                     Button(action: {
                         withAnimation{
                             xOffset = -screenWidth * 0.8
+                            showProfile.toggle()
                         }
                     }, label: {
                             Image("Profile")
@@ -40,7 +43,7 @@ struct SideMenu: View {
                 Divider()
                 VStack(alignment: .listRowSeparatorLeading){
 
-                    ForexCalendarButton(showForexCalendar: $showForexCalendar)
+                    ForexCalendarButton(showForexCalendar: $notifications.showForexCalendar)
                     NotificationButton(showNotificationSettings: $showNotificationSettings, xOffset: $xOffset)
                     DeleteButton(showDeleteAlert: $showDeleteAlert)
 
@@ -64,6 +67,9 @@ struct SideMenu: View {
               alignment: .topLeading
             )
         .background(Color(UIColor.systemBackground))
+        .onChange(of: notifications.showForexCalendar) { _ in
+
+        }
         .gesture(
             DragGesture()
                 .onChanged({ value in

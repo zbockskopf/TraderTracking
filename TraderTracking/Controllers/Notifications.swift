@@ -9,11 +9,25 @@ import Foundation
 import UserNotifications
 
 
-class Notifications: ObservableObject {
+class Notifications: NSObject, ObservableObject {
     
     
-    init(){
+    @Published var showForexCalendar: Bool = false
+    @Published var notificationTime = UserDefaults.standard.object(forKey: "notificationTime") as! Date{
+        didSet{
+            UserDefaults.standard.setValue(self.notificationTime, forKey: "notificationTime")
+            forexCalendarReminder()
+        }
+    }
+    
+    
+    override init(){
+        super.init()
         requestAuthorization { _ in}
+    }
+    
+    func toggleForexCalendar() {
+        showForexCalendar.toggle()
     }
     
     func requestAuthorization(completion: @escaping  (Bool) -> Void) {
@@ -31,15 +45,20 @@ class Notifications: ObservableObject {
         content.badge = NSNumber(value: 1)
         content.sound = .default
         
+        let calendar = Calendar.current
+        
+        let hour = calendar.component(.hour, from: notificationTime)
+        let min = calendar.component(.minute, from: notificationTime)
+        
         var dateComponents = DateComponents()
-        dateComponents.calendar = Calendar.current
+        dateComponents.calendar = calendar
 
-        dateComponents.hour = 7    // 14:00 hours
-        dateComponents.minute = 00
+        dateComponents.hour = hour    // 14:00 hours
+        dateComponents.minute = min
            
         // Create the trigger as a repeating event.
         let trigger = UNCalendarNotificationTrigger(
-                 dateMatching: dateComponents, repeats: false)
+                 dateMatching: dateComponents, repeats: true)
         
         let uuidString = UUID().uuidString
         let request = UNNotificationRequest(identifier: uuidString,
@@ -57,4 +76,16 @@ class Notifications: ObservableObject {
     func clearNotification() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
+}
+
+extension Notifications: UNUserNotificationCenterDelegate {
+
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                    didReceive response: UNNotificationResponse,
+                                    withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("test")
+        self.toggleForexCalendar()
+        completionHandler()
+        }
 }

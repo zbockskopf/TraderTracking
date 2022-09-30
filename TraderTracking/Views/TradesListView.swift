@@ -64,15 +64,15 @@ struct TradesListView: View {
                         ImageUIView(isPresented: $tappedImageShown, images: getTappedImages(trade: s))
                             .environmentObject(tradeListData)
                             .edgesIgnoringSafeArea(.all)
-                            .onAppear{
-                                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-
-                                windowScene?.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight))
-                            }
-                            .onDisappear{
-                                UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-                                AppDelegate.orientationLock = .portrait
-                            }
+//                            .onAppear{
+//                                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+//
+//                                windowScene?.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight))
+//                            }
+//                            .onDisappear{
+//                                UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+////                                AppDelegate.orientationLock = .portrait
+//                            }
 
                     }
                     .navigationBarItems(

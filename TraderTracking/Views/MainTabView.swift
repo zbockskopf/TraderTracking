@@ -10,6 +10,7 @@ import SwiftUI
 struct MainTabView: View {
 
     var realmController = RealmController()
+    @EnvironmentObject var notifications: Notifications
     @StateObject var tradeListData = TradeListViewModel()
     @State private var selection = 0
 
@@ -19,6 +20,7 @@ struct MainTabView: View {
     @Environment(\.colorScheme) var scheme
     
     @State var showNotificationSettings: Bool = false
+    @State var showProfile: Bool = false
     
 
     var body: some View {
@@ -26,18 +28,20 @@ struct MainTabView: View {
                                 
             HStack(spacing: 0){
                 
-                SideMenu(currentXOffset: $currentXOffset, xOffset: $xOffset, showNotificationSettings: $showNotificationSettings)
+                SideMenu(currentXOffset: $currentXOffset, xOffset: $xOffset, showNotificationSettings: $showNotificationSettings, showProfile: $showProfile)
                     .frame(width: screenWidth * 0.8)
                     .environmentObject(realmController)
+                    .environmentObject(notifications)
 
                 ZStack{
                     TabView(selection: $selection) {
-                        ContentView(showNotificationSettings: $showNotificationSettings, currentXOffset: $currentXOffset, xOffset: $xOffset)
+                        ContentView(showNotificationSettings: $showNotificationSettings, showProfile: $showProfile, currentXOffset: $currentXOffset, xOffset: $xOffset)
                             .tabItem {
                                 selection == 0 ? Image("Tracker-Active") : Image("Tracker-Inactive")
                                 Text("")
                             }
                             .environmentObject(realmController)
+                            .environmentObject(notifications)
                             .tag(0)
                                 .gesture( !showNotificationSettings ?
                                     DragGesture()

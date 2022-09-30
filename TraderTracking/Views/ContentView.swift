@@ -13,6 +13,7 @@ import ConfettiSwiftUI
 struct ContentView: View {
 
     @EnvironmentObject var realmController: RealmController
+    @EnvironmentObject var notifications: Notifications
     @ObservedResults(Trade.self, filter: NSPredicate(format: "win = true AND isHindsight = false")) var wins
     @ObservedResults(Trade.self, filter: NSPredicate(format: "loss = true AND isHindsight = false")) var losses
     @ObservedResults(Symbol.self) var symbols
@@ -21,6 +22,7 @@ struct ContentView: View {
     @State private var showNewTrade = false
     @State private var sheetAction: SheetAction = SheetAction.nothing
     @Binding var showNotificationSettings: Bool
+    @Binding var showProfile: Bool
 
     var screenWidth = UIScreen.main.bounds.width
     	
@@ -135,6 +137,10 @@ struct ContentView: View {
             .navigationDestination(isPresented: $showNotificationSettings, destination: {
                 NotificationSettings()
                     .navigationBarTitle("Notifications")
+                    .environmentObject(notifications)
+            })
+            .navigationDestination(isPresented: $showProfile, destination: {
+                ProfileView()
             })
             .navigationBarTitle("")
             .navigationBarItems(
@@ -191,7 +197,7 @@ enum SheetAction {
 }
 
 
-struct ProfileView: View {
+struct SmallProfileView: View {
     var body: some View {
         Image("Profile")
             .resizable()

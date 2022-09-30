@@ -14,11 +14,29 @@ struct TraderTrackingApp: App {
     @State var currentXOffset: CGFloat = 0
     @State var xOffset: CGFloat = 0
     var realmController = RealmController()
+    var notifications: Notifications?
+    private var hasLaunched = UserDefaults.standard.bool(forKey: "launchedBefore")
+    
+    init() {
+        
+        
+        if !hasLaunched {
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+            UserDefaults.standard.set(Date(), forKey: "notificationTime")
+            realmController.setDefaults()
+        }else{
+            
+        }
+        notifications = Notifications()
+        UNUserNotificationCenter.current().delegate = notifications
+        }
+    
     var body: some Scene {
         WindowGroup {
 //            ContentView(currentXOffset: $currentXOffset, xOffset: $xOffset)
 //                .environmentObject(realmController)
             MainTabView()
+                .environmentObject(notifications!)
                 .onChange(of: scenePhase) { newPhase in
                                     if newPhase == .background {
                                         UIApplication.shared.applicationIconBadgeNumber = 0

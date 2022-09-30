@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct NotificationSettings: View {
+    @EnvironmentObject var notifications: Notifications
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @AppStorage( "checkForexCalendar") var checkForexCalendar: Bool = false
 //    @AppStorage ("checkForexCalendarTime") var checkForexCalendarTime: Date?
-    let notification = Notifications()
     var body: some View {
         List{
             Toggle(isOn: $checkForexCalendar) {
@@ -19,9 +19,9 @@ struct NotificationSettings: View {
             }
             .onChange(of: checkForexCalendar) { newValue in
                 if newValue{
-                    notification.forexCalendarReminder()
+                    notifications.forexCalendarReminder()
                 }else{
-                    notification.clearNotification()
+                    notifications.clearNotification()
                 }
                 
             }
@@ -29,13 +29,16 @@ struct NotificationSettings: View {
             if checkForexCalendar{
                 HStack{
                     Text("Time")
-                   
+                    Spacer()
+                    DatePicker("", selection: $notifications.notificationTime, displayedComponents: .hourAndMinute)
+                                .labelsHidden()
+                            }
                 }
             }
         }
         
-    }
 }
+
 
 struct NotificationSettings_Previews: PreviewProvider {
     static var previews: some View {

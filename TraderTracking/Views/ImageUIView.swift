@@ -19,7 +19,7 @@ struct ImageUIView: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> ImageUI.IFBrowserViewController {
         let vc = IFBrowserViewController(images: images)
-        AppUtility.lockOrientation(.landscape)
+//        AppUtility.lockOrientation(.landscape)
         vc.configuration.actions = [.delete, .share]
         vc.configuration.prefersAspectFillZoom = true
         

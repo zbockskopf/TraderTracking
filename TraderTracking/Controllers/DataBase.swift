@@ -19,7 +19,7 @@ class RealmController: NSObject, ObservableObject {
     @Published var symbols: [Symbol] = []
     var realm: Realm!
     var myImage: MyImages!
-    private var hasLaunched = UserDefaults.standard.bool(forKey: "launchedBefore")
+    
 
     static let shared = RealmController()
     
@@ -28,13 +28,7 @@ class RealmController: NSObject, ObservableObject {
 
         realm = try! Realm()
         myImage = try! MyImages()
-        
-        if !hasLaunched {
-            UserDefaults.standard.set(true, forKey: "launchedBefore")
-            setDefaults()
-        }else{
-            	
-        }
+
         
         getWinRate()
         trades = self.getTrades()
@@ -42,7 +36,7 @@ class RealmController: NSObject, ObservableObject {
         print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last)
     }
 
-    private func setDefaults() {
+    func setDefaults() {
         let temp1 = Symbol()
         temp1.name = "MES"
         temp1.market = "Futures"
