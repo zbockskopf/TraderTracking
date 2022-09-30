@@ -43,7 +43,7 @@ struct SideMenu: View {
                 Divider()
                 VStack(alignment: .listRowSeparatorLeading){
 
-                    ForexCalendarButton(showForexCalendar: $notifications.showForexCalendar)
+                    ForexCalendarButton(showForexCalendar: $notifications.showForexCalendar, xOffset: $xOffset)
                     NotificationButton(showNotificationSettings: $showNotificationSettings, xOffset: $xOffset)
                     DeleteButton(showDeleteAlert: $showDeleteAlert)
 
