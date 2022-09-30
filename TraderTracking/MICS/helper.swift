@@ -77,6 +77,10 @@ extension View {
             
             completion(image)
         }
+    
+    func getRect() -> CGRect {
+            return UIScreen.main.bounds
+        }
 }
 
 extension UIView {

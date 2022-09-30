@@ -14,6 +14,7 @@ struct ContentView: View {
 
     @EnvironmentObject var realmController: RealmController
     @EnvironmentObject var notifications: Notifications
+    @EnvironmentObject var gestureController: GestureController
     @ObservedResults(Trade.self, filter: NSPredicate(format: "win = true AND isHindsight = false")) var wins
     @ObservedResults(Trade.self, filter: NSPredicate(format: "loss = true AND isHindsight = false")) var losses
     @ObservedResults(Symbol.self) var symbols
@@ -24,10 +25,6 @@ struct ContentView: View {
     @Binding var showNotificationSettings: Bool
     @Binding var showProfile: Bool
 
-    var screenWidth = UIScreen.main.bounds.width
-    	
-    @Binding var currentXOffset: CGFloat
-    @Binding var xOffset: CGFloat
     @Environment(\.colorScheme) var scheme
 
     var body: some View {
@@ -89,50 +86,14 @@ struct ContentView: View {
                     .padding()
                 }
                 (scheme == .light ? Color.black : Color.white).opacity(0.3)
-                    .opacity(xOffset == 0 ? 0.7 : 0)
+                    .opacity(gestureController.xOffset == 0 ? 0.7 : 0)
                     .ignoresSafeArea()
-                    .allowsHitTesting(xOffset == 0 ? true : false)
+                    .allowsHitTesting(gestureController.xOffset == 0 ? true : false)
                     .onTapGesture {
                         withAnimation {
-                            xOffset = -screenWidth * 0.8
+                            gestureController.xOffset = -gestureController.screenWidth * 0.8
                         }
                     }
-                    .gesture( !showNotificationSettings ?
-                              DragGesture()
-                        .onChanged({ value in
-                            if value.startLocation.x < CGFloat(100.0){
-                                if value.translation.width > 0 && xOffset != 0 { // left to right
-                                    withAnimation {
-                                        xOffset = currentXOffset + value.translation.width
-                                    }
-                                } else if value.translation.width < 0 && xOffset != -screenWidth * 0.8 {
-                                    withAnimation {
-                                        xOffset = currentXOffset + value.translation.width
-                                    }
-                                }
-                            }
-                        })
-                            .onEnded({ value in
-                                if value.translation.width > 0 { // left to right
-                                    withAnimation {
-                                        xOffset = 0
-                                    }
-                                } else {
-                                    withAnimation {
-                                        xOffset = -screenWidth * 0.8
-                                    }
-                                }
-                                currentXOffset = xOffset
-                            }) : nil
-                    )
-                //                NavigationLink(value: "showNotificationSettings") {
-                //                    Text("")
-                //                }
-                //                .hidden()
-                //                NavigationLink(destination: NotificationSettings(), isActive: $showNotificationSettings) {
-                //
-                //                }
-                //                .hidden()
             }
             .navigationDestination(isPresented: $showNotificationSettings, destination: {
                 NotificationSettings()
@@ -147,10 +108,10 @@ struct ContentView: View {
                 leading:
                     Button(action: {
                         withAnimation{
-                            xOffset = 0
+                            gestureController.xOffset = 0
                         }
                     }, label: {
-                        if xOffset == -screenWidth * 0.8 {
+                        if gestureController.xOffset == -gestureController.screenWidth * 0.8 {
                             Image("Profile")
                                 .resizable()
                                 .scaledToFit()

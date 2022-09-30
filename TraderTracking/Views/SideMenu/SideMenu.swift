@@ -10,10 +10,8 @@ import SwiftUI
 struct SideMenu: View {
     @EnvironmentObject var realmController: RealmController
     @EnvironmentObject var notifications: Notifications
+    @EnvironmentObject var gestureController: GestureController
     let calendarPublisher = NotificationCenter.default.publisher(for: NSNotification.Name("ForexCalendar"))
-    var screenWidth = UIScreen.main.bounds.width
-    @Binding var currentXOffset: CGFloat
-    @Binding var xOffset: CGFloat
     
     @State private var showDeleteAlert: Bool = false
     @State private var showForexCalendar: Bool = false
@@ -27,7 +25,7 @@ struct SideMenu: View {
                 HStack(alignment: .top) {
                     Button(action: {
                         withAnimation{
-                            xOffset = -screenWidth * 0.8
+                            gestureController.xOffset = -gestureController.screenWidth * 0.8
                             showProfile.toggle()
                         }
                     }, label: {
@@ -43,8 +41,8 @@ struct SideMenu: View {
                 Divider()
                 VStack(alignment: .listRowSeparatorLeading){
 
-                    ForexCalendarButton(showForexCalendar: $notifications.showForexCalendar)
-                    NotificationButton(showNotificationSettings: $showNotificationSettings, xOffset: $xOffset)
+                    ForexCalendarButton(showForexCalendar: $notifications.showForexCalendar, xOffset: $gestureController.xOffset)
+                    NotificationButton(showNotificationSettings: $showNotificationSettings, xOffset: $gestureController.xOffset)
                     DeleteButton(showDeleteAlert: $showDeleteAlert)
 
                 }
@@ -74,13 +72,13 @@ struct SideMenu: View {
             DragGesture()
                 .onChanged({ value in
                     if value.startLocation.x < CGFloat(100.0){
-                        if value.translation.width > 0 && xOffset != 0 { // left to right
+                        if value.translation.width > 0 && gestureController.xOffset != 0 { // left to right
                             withAnimation {
-                                xOffset = currentXOffset + value.translation.width
+                                gestureController.xOffset = gestureController.currentXOffset + value.translation.width
                             }
-                        } else if value.translation.width < 0 && xOffset != -screenWidth * 0.8 {
+                        } else if value.translation.width < 0 && gestureController.xOffset != -gestureController.screenWidth * 0.8 {
                             withAnimation {
-                                xOffset = currentXOffset + value.translation.width
+                                gestureController.xOffset = gestureController.currentXOffset + value.translation.width
                             }
                         }
                     }
@@ -88,14 +86,14 @@ struct SideMenu: View {
                 .onEnded({ value in
                     if value.translation.width > 0 { // left to right
                         withAnimation {
-                            xOffset = 0
+                            gestureController.xOffset = 0
                         }
                     } else {
                         withAnimation {
-                            xOffset = -screenWidth * 0.8
+                            gestureController.xOffset = -gestureController.screenWidth * 0.8
                         }
                     }
-                    currentXOffset = xOffset
+                    gestureController.currentXOffset = gestureController.xOffset
                 })
         )
     }

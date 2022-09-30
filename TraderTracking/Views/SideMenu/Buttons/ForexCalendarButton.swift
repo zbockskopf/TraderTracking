@@ -11,6 +11,9 @@ struct ForexCalendarButton: View {
     
     @Binding var showForexCalendar: Bool
     
+    @Binding var xOffset: CGFloat
+    var screenWidth = UIScreen.main.bounds.width
+    
     var body: some View {
         HStack(alignment: .center){
             Button{

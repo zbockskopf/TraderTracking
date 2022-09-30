@@ -10,13 +10,11 @@ import SwiftUI
 struct MainTabView: View {
 
     var realmController = RealmController()
+    var gestureController = GestureController()
     @EnvironmentObject var notifications: Notifications
     @StateObject var tradeListData = TradeListViewModel()
     @State private var selection = 0
 
-    var screenWidth = UIScreen.main.bounds.width
-    @State var xOffset: CGFloat = 0
-    @State var currentXOffset: CGFloat = 0
     @Environment(\.colorScheme) var scheme
     
     @State var showNotificationSettings: Bool = false
@@ -28,49 +26,46 @@ struct MainTabView: View {
                                 
             HStack(spacing: 0){
                 
-                SideMenu(currentXOffset: $currentXOffset, xOffset: $xOffset, showNotificationSettings: $showNotificationSettings, showProfile: $showProfile)
-                    .frame(width: screenWidth * 0.8)
-                    .environmentObject(realmController)
-                    .environmentObject(notifications)
+                SideMenu(showNotificationSettings: $showNotificationSettings, showProfile: $showProfile)
+                    .frame(width: gestureController.screenWidth * 0.8)
+                    
 
                 ZStack{
                     TabView(selection: $selection) {
-                        ContentView(showNotificationSettings: $showNotificationSettings, showProfile: $showProfile, currentXOffset: $currentXOffset, xOffset: $xOffset)
+                        ContentView(showNotificationSettings: $showNotificationSettings, showProfile: $showProfile)
                             .tabItem {
                                 selection == 0 ? Image("Tracker-Active") : Image("Tracker-Inactive")
                                 Text("")
                             }
-                            .environmentObject(realmController)
-                            .environmentObject(notifications)
                             .tag(0)
-                                .gesture( !showNotificationSettings ?
-                                    DragGesture()
-                                        .onChanged({ value in
-                                            if value.startLocation.x < CGFloat(100.0){
-                                                if value.translation.width > 0 && xOffset != 0 { // left to right
-                                                    withAnimation {
-                                                        xOffset = currentXOffset + value.translation.width
-                                                    }
-                                                } else if value.translation.width < 0 && xOffset != -screenWidth * 0.8 {
-                                                    withAnimation {
-                                                        xOffset = currentXOffset + value.translation.width
-                                                    }
+                            .gesture( !showNotificationSettings ?
+                                DragGesture()
+                                    .onChanged({ value in
+                                        if value.startLocation.x < CGFloat(100.0){
+                                            if value.translation.width > 0 && gestureController.xOffset != 0 { // left to right
+                                                withAnimation {
+                                                    gestureController.xOffset = gestureController.currentXOffset + value.translation.width
+                                                }
+                                            } else if value.translation.width < 0 && gestureController.xOffset != -gestureController.screenWidth * 0.8 {
+                                                withAnimation {
+                                                    gestureController.xOffset = gestureController.currentXOffset + value.translation.width
                                                 }
                                             }
-                                        })
-                                        .onEnded({ value in
-                                            if value.translation.width > 0 { // left to right
-                                                withAnimation {
-                                                    xOffset = 0
-                                                }
-                                            } else {
-                                                withAnimation {
-                                                    xOffset = -screenWidth * 0.8
-                                                }
+                                        }
+                                    })
+                                    .onEnded({ value in
+                                        if value.translation.width > 0 { // left to right
+                                            withAnimation {
+                                                gestureController.xOffset = 0
                                             }
-                                            currentXOffset = xOffset
-                                        }) : nil
-                                )
+                                        } else {
+                                            withAnimation {
+                                                gestureController.xOffset = -gestureController.screenWidth * 0.8
+                                            }
+                                        }
+                                        gestureController.currentXOffset = gestureController.xOffset
+                                    }) : nil
+                            )
                         TradesListView()
                             .tabItem {
                                 selection == 1 ? Image("List-Active") : Image("List-Inactive")
@@ -83,20 +78,28 @@ struct MainTabView: View {
 //                            .tag(2)
 
                     }
-                    .frame(width: screenWidth)
+                    .frame(width: gestureController.screenWidth)
                                         
                                             
                 }
             }
+            .environmentObject(realmController)
+            .environmentObject(notifications)
+            .environmentObject(gestureController)
         }
-        .onAppear {
-               xOffset = -screenWidth * 0.8 // hides the menu
-               currentXOffset = xOffset
-           }
-           .offset(x: xOffset)
+//        .onAppear {
+//            gestureController.xOffset = -gestureController.screenWidth * 0.8 // hides the menu
+//            gestureController.currentXOffset = gestureController.xOffset
+//           }
+        .offset(x: gestureController.xOffset)
+//        .onChange(of: gestureController.gestureOffset) { newVaule in
+//            gestureController.onChange()
+//                }
 
 
     }
+    
+    
 }
 
 struct MainTabView_Previews: PreviewProvider {
