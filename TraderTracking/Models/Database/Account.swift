@@ -8,8 +8,10 @@
 import Foundation
 import RealmSwift
 
-//class Account: Object , ObjectKeyIdentifiable {
-//    @Persisted (primaryKey: true) var name: String
-//    @Persisted var balance: Double
-//    @Persisted var tickValue: Double
-//}
+class Account: Object , ObjectKeyIdentifiable {
+    @Persisted (primaryKey: true) var name: String
+    @Persisted var balance: Decimal
+    @Persisted var profitAndLoss: Decimal
+		@Persisted var fees: Decimal
+	
+}
