@@ -14,6 +14,7 @@ struct ForexCalendarButton: View {
     var body: some View {
         HStack(alignment: .center){
             Button{
+                xOffset = -screenWidth * 0.8
                 showForexCalendar.toggle()
             } label: {
                 Image(systemName: "calendar")
