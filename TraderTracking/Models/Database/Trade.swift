@@ -31,8 +31,8 @@ class Trade: Object , ObjectKeyIdentifiable {
 
 
 enum PositionType: String, Equatable, CaseIterable, PersistableEnum  {
-    case short = "Short"
     case long = "Long"
+    case short = "Short"
 
     var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
 }
