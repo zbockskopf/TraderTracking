@@ -10,7 +10,7 @@ import SwiftUI
 struct SideMenu: View {
     @EnvironmentObject var realmController: RealmController
     @EnvironmentObject var notifications: Notifications
-		@EnviromentObject var menuController: MenuController
+	@EnviromentObject var menuController: MenuController
  
     var screenWidth = UIScreen.main.bounds.width
     @Binding var currentXOffset: CGFloat
@@ -42,6 +42,7 @@ struct SideMenu: View {
 
                     ForexCalendarButton(showForexCalendar: $notifications.showForexCalendar, xOffset: $xOffset)
                     NotificationButton(showNotificationSettings: $menuController.showNotificationSettings, xOffset: $xOffset)
+					SettingButton(showSettings: $menuController.showSettings)
                     DeleteButton(showDeleteAlert: $menuController.showDeleteAlert)
 
                 }
@@ -49,7 +50,6 @@ struct SideMenu: View {
                 Spacer()
             }
             .padding(.horizontal)
-            
             .alert(isPresented: $menuController.showDeleteAlert){
                 Alert(title: Text("Are you sure you want to delete everything?"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete")){
                     realmController.deleteAll()
@@ -64,9 +64,6 @@ struct SideMenu: View {
               alignment: .topLeading
             )
         .background(Color(UIColor.systemBackground))
-        .onChange(of: notifications.showForexCalendar) { _ in
-
-        }
         .gesture(
             DragGesture()
                 .onChanged({ value in

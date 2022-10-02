@@ -10,8 +10,9 @@ import SwiftUI
 struct MainTabView: View {
 
     var realmController = RealmController()
-		var menuController = MenuController()
+	var menuController = MenuController()
     @EnvironmentObject var notifications: Notifications
+	
     @StateObject var tradeListData = TradeListViewModel()
     @State private var selection = 0
 
@@ -29,7 +30,7 @@ struct MainTabView: View {
                     .frame(width: screenWidth * 0.8)
                     .environmentObject(realmController)
                     .environmentObject(notifications)
-										.environmentObject(menuController)
+					.environmentObject(menuController)
 
                 ZStack{
                     TabView(selection: $selection) {
@@ -40,7 +41,7 @@ struct MainTabView: View {
                             }
                             .environmentObject(realmController)
                             .environmentObject(notifications)
-														.environmentObject(menuController)
+							.environmentObject(menuController)
                             .tag(0)
                                 .gesture( !showNotificationSettings ?
                                     DragGesture()
@@ -78,13 +79,8 @@ struct MainTabView: View {
                             .environmentObject(realmController)
                             .environmentObject(tradeListData)
                             .tag(1)
-//                        ImageUIView()
-//                            .tag(2)
-
                     }
-                    .frame(width: screenWidth)
-                                        
-                                            
+                    .frame(width: screenWidth)                                                                                 
                 }
             }
         }
@@ -92,9 +88,7 @@ struct MainTabView: View {
                xOffset = -screenWidth * 0.8 // hides the menu
                currentXOffset = xOffset
            }
-           .offset(x: xOffset)
-
-
+        .offset(x: xOffset)
     }
 }
 
