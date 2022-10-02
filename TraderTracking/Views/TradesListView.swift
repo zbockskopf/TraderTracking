@@ -28,7 +28,7 @@ struct TradesListView: View {
             List {
                 ForEach(0..<7){ i in
 
-                    Section(header: Text(calendar.date(byAdding: .day, value: -i, to: Date())!, style: .date)){
+                    Section(header: headerDate(i: i)) {
                         
                         ForEach(trades.filter("dateEntered BETWEEN {%@, %@}", dateChanger(date: Date(), i:i, isPrevDay: false), dateChanger(date: Date(), i:i, isPrevDay: true))) { t in
                             TradeRow(trade: t, selectedTrade: $selectedTrade, imageIsShown: $imageIsShown)
@@ -191,6 +191,15 @@ struct TradesListView: View {
         images.removeFirst()
         return images
     }
+		
+		@ViewBuilder
+		func headerDate(i: Int) -> some View {
+				if i == 0 {
+						Text("Today")
+				}else{
+					Text(calendar.date(byAdding: .day, value: -i, to: Date())!, style: .date)
+				}
+		}
     
     func dateChanger(date: Date, i: Int, isPrevDay: Bool) -> Date {
         let calendar = Calendar.current

@@ -10,15 +10,12 @@ import SwiftUI
 struct SideMenu: View {
     @EnvironmentObject var realmController: RealmController
     @EnvironmentObject var notifications: Notifications
-    let calendarPublisher = NotificationCenter.default.publisher(for: NSNotification.Name("ForexCalendar"))
+		@EnviromentObject var menuController: MenuController
+ 
     var screenWidth = UIScreen.main.bounds.width
     @Binding var currentXOffset: CGFloat
     @Binding var xOffset: CGFloat
     
-    @State private var showDeleteAlert: Bool = false
-    @State private var showForexCalendar: Bool = false
-    @Binding var showNotificationSettings: Bool
-    @Binding var showProfile: Bool
     
     var body: some View {
         ZStack{
@@ -44,8 +41,8 @@ struct SideMenu: View {
                 VStack(alignment: .listRowSeparatorLeading){
 
                     ForexCalendarButton(showForexCalendar: $notifications.showForexCalendar, xOffset: $xOffset)
-                    NotificationButton(showNotificationSettings: $showNotificationSettings, xOffset: $xOffset)
-                    DeleteButton(showDeleteAlert: $showDeleteAlert)
+                    NotificationButton(showNotificationSettings: $menuController.showNotificationSettings, xOffset: $xOffset)
+                    DeleteButton(showDeleteAlert: $menuController.showDeleteAlert)
 
                 }
                 .fixedSize()
@@ -53,7 +50,7 @@ struct SideMenu: View {
             }
             .padding(.horizontal)
             
-            .alert(isPresented: $showDeleteAlert){
+            .alert(isPresented: $menuController.showDeleteAlert){
                 Alert(title: Text("Are you sure you want to delete everything?"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete")){
                     realmController.deleteAll()
                 })

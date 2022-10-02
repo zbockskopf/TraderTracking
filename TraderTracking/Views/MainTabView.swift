@@ -10,6 +10,7 @@ import SwiftUI
 struct MainTabView: View {
 
     var realmController = RealmController()
+		var menuController = MenuController()
     @EnvironmentObject var notifications: Notifications
     @StateObject var tradeListData = TradeListViewModel()
     @State private var selection = 0
@@ -17,31 +18,29 @@ struct MainTabView: View {
     var screenWidth = UIScreen.main.bounds.width
     @State var xOffset: CGFloat = 0
     @State var currentXOffset: CGFloat = 0
-    @Environment(\.colorScheme) var scheme
-    
-    @State var showNotificationSettings: Bool = false
-    @State var showProfile: Bool = false
-    
+    @Environment(\.colorScheme) var scheme 
 
     var body: some View {
         GeometryReader { reader in
                                 
             HStack(spacing: 0){
                 
-                SideMenu(currentXOffset: $currentXOffset, xOffset: $xOffset, showNotificationSettings: $showNotificationSettings, showProfile: $showProfile)
+                SideMenu(currentXOffset: $currentXOffset, xOffset: $xOffset)
                     .frame(width: screenWidth * 0.8)
                     .environmentObject(realmController)
                     .environmentObject(notifications)
+										.environmentObject(menuController)
 
                 ZStack{
                     TabView(selection: $selection) {
-                        ContentView(showNotificationSettings: $showNotificationSettings, showProfile: $showProfile, currentXOffset: $currentXOffset, xOffset: $xOffset)
+                        ContentView(currentXOffset: $currentXOffset, xOffset: $xOffset)
                             .tabItem {
                                 selection == 0 ? Image("Tracker-Active") : Image("Tracker-Inactive")
                                 Text("")
                             }
                             .environmentObject(realmController)
                             .environmentObject(notifications)
+														.environmentObject(menuController)
                             .tag(0)
                                 .gesture( !showNotificationSettings ?
                                     DragGesture()
