@@ -10,7 +10,7 @@ import SwiftUI
 struct SideMenu: View {
     @EnvironmentObject var realmController: RealmController
     @EnvironmentObject var notifications: Notifications
-	@EnviromentObject var menuController: MenuController
+	@EnvironmentObject var menuController: MenuController
  
     var screenWidth = UIScreen.main.bounds.width
     @Binding var currentXOffset: CGFloat
@@ -25,7 +25,7 @@ struct SideMenu: View {
                     Button(action: {
                         withAnimation{
                             xOffset = -screenWidth * 0.8
-                            showProfile.toggle()
+                            menuController.showProfile.toggle()
                         }
                     }, label: {
                             Image("Profile")
@@ -42,7 +42,7 @@ struct SideMenu: View {
 
                     ForexCalendarButton(showForexCalendar: $notifications.showForexCalendar, xOffset: $xOffset)
                     NotificationButton(showNotificationSettings: $menuController.showNotificationSettings, xOffset: $xOffset)
-					SettingButton(showSettings: $menuController.showSettings)
+//					SettingButton(showSettings: $menuController.showSettings)
                     DeleteButton(showDeleteAlert: $menuController.showDeleteAlert)
 
                 }
@@ -62,7 +62,7 @@ struct SideMenu: View {
               minHeight: 0,
               maxHeight: .infinity,
               alignment: .topLeading
-            )
+        )
         .background(Color(UIColor.systemBackground))
         .gesture(
             DragGesture()

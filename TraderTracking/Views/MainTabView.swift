@@ -43,7 +43,7 @@ struct MainTabView: View {
                             .environmentObject(notifications)
 							.environmentObject(menuController)
                             .tag(0)
-                                .gesture( !showNotificationSettings ?
+                            .gesture( !menuController.showNotificationSettings ?
                                     DragGesture()
                                         .onChanged({ value in
                                             if value.startLocation.x < CGFloat(100.0){

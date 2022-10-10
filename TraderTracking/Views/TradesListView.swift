@@ -38,11 +38,17 @@ struct TradesListView: View {
                                 }
                         }
                         .onDelete(perform: { t in
-                            t.forEach { i in
-                                realmController.myImage.deleteImage(fileName: trades[i].photoDirectory!)
-                                $trades.remove(trades[i])
+                            for i in stride(from: t.count - 1, to: -1, by: -1){
+                                if i != -1{
+                                    if trades[i].photoDirectory != nil {
+                                        realmController.myImage.deleteImage(fileName: trades[i].photoDirectory!)
+                                    }
+                                    
+                                    $trades.remove(trades[i])
+                                    realmController.getWinRate()
+                                }
+                                
                             }
-                            
                         })
                         .swipeActions(edge: .leading, content: {
                             Button {
