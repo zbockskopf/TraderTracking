@@ -261,7 +261,7 @@ struct TradeRow: View {
                   
                   Text("Entry:")
                       .bold()
-                  Text("$" + String(myFormatter.numFormat(num: trade.entry)) + " @")
+                  Text(myFormatter.numFormat(num: trade.entry) + " @")
                   Text(trade.dateEntered, style: .time)
 
               }
@@ -269,7 +269,7 @@ struct TradeRow: View {
               HStack{
                   Text("Exit:")
                       .bold()
-                  Text("$" + String(myFormatter.numFormat(num: trade.exit)) + " @")
+                  Text(myFormatter.numFormat(num: trade.exit) + " @")
                   Text(trade.dateExited, style: .time)
               }
               
