@@ -14,6 +14,7 @@ struct ContentView: View {
 
     @EnvironmentObject var realmController: RealmController
     @EnvironmentObject var notifications: Notifications
+    @EnvironmentObject var menuController: MenuController
     @ObservedResults(Trade.self, filter: NSPredicate(format: "win = true AND isHindsight = false")) var wins
     @ObservedResults(Trade.self, filter: NSPredicate(format: "loss = true AND isHindsight = false")) var losses
     @ObservedResults(Symbol.self) var symbols
@@ -21,8 +22,7 @@ struct ContentView: View {
     @State private var confettiCounter: Int = 0
     @State private var showNewTrade = false
     @State private var sheetAction: SheetAction = SheetAction.nothing
-    @Binding var showNotificationSettings: Bool
-    @Binding var showProfile: Bool
+
 
     var screenWidth = UIScreen.main.bounds.width
     	
@@ -97,7 +97,7 @@ struct ContentView: View {
                             xOffset = -screenWidth * 0.8
                         }
                     }
-                    .gesture( !showNotificationSettings ?
+                    .gesture( !menuController.showNotificationSettings ?
                               DragGesture()
                         .onChanged({ value in
                             if value.startLocation.x < CGFloat(100.0){
@@ -134,12 +134,12 @@ struct ContentView: View {
                 //                }
                 //                .hidden()
             }
-            .navigationDestination(isPresented: $showNotificationSettings, destination: {
+            .navigationDestination(isPresented: $menuController.showNotificationSettings, destination: {
                 NotificationSettings()
                     .navigationBarTitle("Notifications")
                     .environmentObject(notifications)
             })
-            .navigationDestination(isPresented: $showProfile, destination: {
+            .navigationDestination(isPresented: $menuController.showProfile, destination: {
                 ProfileView()
             })
             .navigationBarTitle("")

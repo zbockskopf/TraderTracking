@@ -23,7 +23,6 @@
 		9268E24F28D3CA4400D63337 /* TraderTrackingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9268E24E28D3CA4400D63337 /* TraderTrackingUITestsLaunchTests.swift */; };
 		926CEB9328D3D29F00540365 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 926CEB9228D3D29F00540365 /* ConfettiSwiftUI */; };
 		929DFC4528D3E2B700A7268E /* SwiftPieChart in Frameworks */ = {isa = PBXBuildFile; productRef = 929DFC4428D3E2B700A7268E /* SwiftPieChart */; };
-		92E5B40D28D4F59F006FA51A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E5B40C28D4F59F006FA51A /* SettingsView.swift */; };
 		92E5B40F28D4FBBE006FA51A /* NewTradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E5B40E28D4FBBE006FA51A /* NewTradeView.swift */; };
 		92FEC2B928D4E12200AAF81E /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FEC2B828D4E12200AAF81E /* SideMenu.swift */; };
 		92FEC2BB28D4E58000AAF81E /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FEC2BA28D4E58000AAF81E /* MainTabView.swift */; };
@@ -38,6 +37,7 @@
 		F23A79BF28E5FF2F0045D9AB /* NotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A79BE28E5FF2F0045D9AB /* NotificationButton.swift */; };
 		F23A79C228E603B90045D9AB /* NotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A79C128E603B90045D9AB /* NotificationSettings.swift */; };
 		F23A79B528E4A75F0045D9AB /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A79B428E4A75F0045D9AB /* Account.swift */; };
+		F261AECE28F3A7A600CCBC8F /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F261AECD28F3A7A600CCBC8F /* MenuController.swift */; };
 		F28AEB1F28DAA5B200B7CE13 /* ImageUI in Frameworks */ = {isa = PBXBuildFile; productRef = F28AEB1E28DAA5B200B7CE13 /* ImageUI */; };
 		F29EBD3E28E6109300D6229B /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29EBD3D28E6109300D6229B /* Notifications.swift */; };
 		F29FF89428D97C3100F58F24 /* helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FF89328D97C3100F58F24 /* helper.swift */; };
@@ -84,7 +84,6 @@
 		9268E24828D3CA4400D63337 /* TraderTrackingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TraderTrackingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9268E24C28D3CA4400D63337 /* TraderTrackingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraderTrackingUITests.swift; sourceTree = "<group>"; };
 		9268E24E28D3CA4400D63337 /* TraderTrackingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraderTrackingUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		92E5B40C28D4F59F006FA51A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		92E5B40E28D4FBBE006FA51A /* NewTradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTradeView.swift; sourceTree = "<group>"; };
 		92FEC2B828D4E12200AAF81E /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		92FEC2BA28D4E58000AAF81E /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -99,6 +98,7 @@
 		F23A79BC28E5FE2B0045D9AB /* DeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButton.swift; sourceTree = "<group>"; };
 		F23A79BE28E5FF2F0045D9AB /* NotificationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationButton.swift; sourceTree = "<group>"; };
 		F23A79C128E603B90045D9AB /* NotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettings.swift; sourceTree = "<group>"; };
+		F261AECD28F3A7A600CCBC8F /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		F29EBD3D28E6109300D6229B /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		F23A79B428E4A75F0045D9AB /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		F29FF89328D97C3100F58F24 /* helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helper.swift; sourceTree = "<group>"; };
@@ -190,7 +190,6 @@
 				9268E23328D3CA4100D63337 /* ContentView.swift */,
 				92332B8E28D41EB3007020FC /* TradesListView.swift */,
 				92FEC2BA28D4E58000AAF81E /* MainTabView.swift */,
-				92E5B40C28D4F59F006FA51A /* SettingsView.swift */,
 				92E5B40E28D4FBBE006FA51A /* NewTradeView.swift */,
 				F2206E0428DA147C0041B8CB /* ImageView.swift */,
 				F21809ED28DA628A00E4AFD6 /* ImageUIView.swift */,
@@ -264,6 +263,7 @@
 		929DFC4628D3E66F00A7268E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F261AECD28F3A7A600CCBC8F /* MenuController.swift */,
 				9220CBC228D3E83300494F39 /* DataBase.swift */,
 				F2206E0628DA27AB0041B8CB /* TradeListViewModel.swift */,
 				F29EBD3D28E6109300D6229B /* Notifications.swift */,
@@ -530,11 +530,11 @@
 				F23A79C228E603B90045D9AB /* NotificationSettings.swift in Sources */,
 				9268E23428D3CA4100D63337 /* ContentView.swift in Sources */,
 				F2262F2D28D96721005F85B2 /* Symbol.swift in Sources */,
-				92E5B40D28D4F59F006FA51A /* SettingsView.swift in Sources */,
 				F2206E0528DA147C0041B8CB /* ImageView.swift in Sources */,
 				92332B8F28D41EB3007020FC /* TradesListView.swift in Sources */,
 				F23A79BD28E5FE2B0045D9AB /* DeleteButton.swift in Sources */,
 				92E5B40F28D4FBBE006FA51A /* NewTradeView.swift in Sources */,
+				F261AECE28F3A7A600CCBC8F /* MenuController.swift in Sources */,
 				F23A79BB28E5FD5D0045D9AB /* ForexCalendarButton.swift in Sources */,
 				F2B1C53628DAB293005C6B12 /* AppDelegate.swift in Sources */,
 				9220CBC328D3E83300494F39 /* DataBase.swift in Sources */,
