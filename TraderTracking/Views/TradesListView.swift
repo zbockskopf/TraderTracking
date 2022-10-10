@@ -15,6 +15,7 @@ struct TradesListView: View {
     @EnvironmentObject var realmController: RealmController
     @EnvironmentObject var tradeListData: TradeListViewModel
     @ObservedResults(Trade.self) var trades
+    @ObservedResults(Account.self) var accounts
     @State var imageIsShown: Bool = false
     @State var tappedImageShown: Bool = false
     
@@ -43,7 +44,7 @@ struct TradesListView: View {
                                     if trades[i].photoDirectory != nil {
                                         realmController.myImage.deleteImage(fileName: trades[i].photoDirectory!)
                                     }
-                                    
+                                    realmController.updateAccountAfterTradeDelete(trade: trades[i])
                                     $trades.remove(trades[i])
                                     realmController.getWinRate()
                                 }

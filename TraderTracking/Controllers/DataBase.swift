@@ -46,10 +46,15 @@ class RealmController: NSObject, ObservableObject {
         temp2.name = "MNQ"
         temp2.market = "Futures"
         temp2.tickValue = 0.50
+        
+        let account = Account()
+        account.name = "Main"
+        account.balance = 3000.00
 
         try! realm.write{
-          realm.add(temp1)
-          realm.add(temp2)
+            realm.add(temp1)
+            realm.add(temp2)
+            realm.add(account)
         }
     }
 
@@ -95,10 +100,35 @@ class RealmController: NSObject, ObservableObject {
         if trade.photoDirectory != nil{
             myImage.saveImages(directory: trade.photoDirectory!, images: images!)
         }
+        
         try! realm.write{
             realm.add(trade)
+            let account = realm.object(ofType: Account.self, forPrimaryKey: "Main")
+            account!.trades.append(trade)
+            account!.profitAndLoss += trade.p_l
+            account!.balance += trade.p_l
+            account!.fees += trade.fees
         }
         getWinRate()
+    }
+    
+    func resetAccount(newVal: String) {
+        try! realm.write { [self] in
+            let account = realm.object(ofType: Account.self, forPrimaryKey: "Main")
+            account!.trades.removeAll()
+            account!.profitAndLoss = 0
+            account!.balance = try! Decimal128(string: newVal)
+            account!.fees = 0
+        }
+    }
+    
+    func updateAccountAfterTradeDelete(trade: Trade){
+        try! realm.write { [self] in
+            let account = realm.object(ofType: Account.self, forPrimaryKey: "Main")
+            account!.profitAndLoss -= trade.p_l
+            account!.balance -= trade.p_l
+            account!.fees -= trade.fees
+        }
     }
 
 
@@ -130,6 +160,7 @@ class RealmController: NSObject, ObservableObject {
             }
         }
         myImage.deleteAllImages(directories: tempDirectoires)
+        resetAccount(newVal: "3000.00")
         try! realm.write {
             realm.deleteAll()
         }

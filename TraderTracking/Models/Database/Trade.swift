@@ -28,6 +28,7 @@ class Trade: Object , ObjectKeyIdentifiable {
     @Persisted var fees: Decimal128
     @Persisted var win: Bool?
     @Persisted var loss: Bool?
+    @Persisted var p_l: Decimal128
 }
 
 

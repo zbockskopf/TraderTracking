@@ -158,6 +158,17 @@ struct ContentView: View {
                                 .clipShape(Circle())
                         }
                     })
+                , trailing:
+                    Button {
+                        menuController.showProfile.toggle()
+                        
+                    } label: {
+                        Image(systemName: "chart.bar.fill")
+                        
+                    }
+                    .foregroundColor(.green)
+                    
+                    
             )
 
         }

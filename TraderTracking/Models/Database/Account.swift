@@ -10,8 +10,9 @@ import RealmSwift
 
 class Account: Object , ObjectKeyIdentifiable {
     @Persisted (primaryKey: true) var name: String
-    @Persisted var balance: Decimal
-    @Persisted var profitAndLoss: Decimal
-		@Persisted var fees: Decimal
+    @Persisted var trades: List<Trade>
+    @Persisted var balance: Decimal128 = 0.0
+    @Persisted var profitAndLoss: Decimal128 = 0.0
+    @Persisted var fees: Decimal128 = 0.0
 	
 }
