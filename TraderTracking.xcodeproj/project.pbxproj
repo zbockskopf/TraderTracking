@@ -37,6 +37,7 @@
 		F23A79BD28E5FE2B0045D9AB /* DeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A79BC28E5FE2B0045D9AB /* DeleteButton.swift */; };
 		F23A79BF28E5FF2F0045D9AB /* NotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A79BE28E5FF2F0045D9AB /* NotificationButton.swift */; };
 		F23A79C228E603B90045D9AB /* NotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A79C128E603B90045D9AB /* NotificationSettings.swift */; };
+		F23A79B528E4A75F0045D9AB /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A79B428E4A75F0045D9AB /* Account.swift */; };
 		F28AEB1F28DAA5B200B7CE13 /* ImageUI in Frameworks */ = {isa = PBXBuildFile; productRef = F28AEB1E28DAA5B200B7CE13 /* ImageUI */; };
 		F29EBD3E28E6109300D6229B /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29EBD3D28E6109300D6229B /* Notifications.swift */; };
 		F29FF89428D97C3100F58F24 /* helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FF89328D97C3100F58F24 /* helper.swift */; };
@@ -99,6 +100,7 @@
 		F23A79BE28E5FF2F0045D9AB /* NotificationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationButton.swift; sourceTree = "<group>"; };
 		F23A79C128E603B90045D9AB /* NotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettings.swift; sourceTree = "<group>"; };
 		F29EBD3D28E6109300D6229B /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		F23A79B428E4A75F0045D9AB /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		F29FF89328D97C3100F58F24 /* helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helper.swift; sourceTree = "<group>"; };
 		F2A7524428E656E500B99ABB /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		F2B1C53528DAB293005C6B12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			children = (
 				9220CBC628D3E8E400494F39 /* Trade.swift */,
 				F2262F2C28D96721005F85B2 /* Symbol.swift */,
+				F23A79B428E4A75F0045D9AB /* Account.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				F23A79BF28E5FF2F0045D9AB /* NotificationButton.swift in Sources */,
 				F23A79B728E5EAB50045D9AB /* WebView.swift in Sources */,
 				F2A7524528E656E500B99ABB /* ProfileView.swift in Sources */,
+				F23A79B528E4A75F0045D9AB /* Account.swift in Sources */,
 				92FEC2BB28D4E58000AAF81E /* MainTabView.swift in Sources */,
 				9220CBC728D3E8E400494F39 /* Trade.swift in Sources */,
 				9268E23228D3CA4100D63337 /* TraderTrackingApp.swift in Sources */,

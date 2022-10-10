@@ -203,9 +203,9 @@ struct NewTradeView: View {
         temp.positionSize = Double(positionSize)!
         temp.positionType = selectedPositionType
         temp.session = selectedSession
-        temp.stopLoss = Double(stopLoss)!
-        temp.takeProfit = Double(takeProfit)!
-        temp.photoDirectory = formatDate() + symbol
+        temp.stopLoss = stopLoss == "" ? nil : Double(stopLoss)!
+        temp.takeProfit = takeProfit == "" nil : Double(takeProfit)!
+        temp.photoDirectory = selectedImages.count == 0 ? nil: formatDate() + symbol
         temp.isHindsight = isHindsight
         if selectedPositionType == .long {
           if (Double(exit)! - Double(entry)!).sign == .minus {
