@@ -1,0 +1,1 @@
+import SwiftUIclass MenuController: NSObject, ObservableObject{	@Published var showDeleteAlert: Bool = false	@Published var showForexCalendar: Bool = false    @Published var showNotificationSettings: Bool = false    @Published var showProfile: Bool = false	@Published var showSettings: Bool = false}

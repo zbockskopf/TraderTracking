@@ -15,16 +15,17 @@ class Trade: Object , ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var symbol: Symbol?
     @Persisted var dateEntered: Date
-    @Persisted var entry: Double
+    @Persisted var entry: Decimal128
     @Persisted var dateExited: Date
-    @Persisted var exit: Double
+    @Persisted var exit: Decimal128
     @Persisted var positionSize: Double
     @Persisted var positionType: PositionType
     @Persisted var session: Session
-    @Persisted var stopLoss: Double?
-    @Persisted var takeProfit: Double?
+    @Persisted var stopLoss: Decimal128?
+    @Persisted var takeProfit: Decimal128?
     @Persisted var photoDirectory: String?
     @Persisted var isHindsight: Bool = false
+    @Persisted var fees: Decimal128
     @Persisted var win: Bool?
     @Persisted var loss: Bool?
 }

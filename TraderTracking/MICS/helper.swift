@@ -7,15 +7,23 @@
 
 import Foundation
 import SwiftUI
+import RealmSwift
 
 
 struct MyFormatter {
     
     
     func numFormat(num: Double) -> String {
+    func numFormat(num: Decimal128) -> String {
         let numberFormatter = NumberFormatter()
+<<<<<<< HEAD
         numberFormatter.numberStyle = .currency
         return numberFormatter.string(from: NSNumber(value:num))!
+=======
+        numberFormatter.numberStyle = .decimal
+        
+        return numberFormatter.string(from: NSNumber(value: Double(num.stringValue)!))!
+>>>>>>> iphone-branch
     }
 }
 

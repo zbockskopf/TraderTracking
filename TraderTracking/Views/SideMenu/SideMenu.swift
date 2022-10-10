@@ -10,15 +10,12 @@ import SwiftUI
 struct SideMenu: View {
     @EnvironmentObject var realmController: RealmController
     @EnvironmentObject var notifications: Notifications
-    let calendarPublisher = NotificationCenter.default.publisher(for: NSNotification.Name("ForexCalendar"))
+	@EnvironmentObject var menuController: MenuController
+ 
     var screenWidth = UIScreen.main.bounds.width
     @Binding var currentXOffset: CGFloat
     @Binding var xOffset: CGFloat
     
-    @State private var showDeleteAlert: Bool = false
-    @State private var showForexCalendar: Bool = false
-    @Binding var showNotificationSettings: Bool
-    @Binding var showProfile: Bool
     
     var body: some View {
         ZStack{
@@ -28,7 +25,7 @@ struct SideMenu: View {
                     Button(action: {
                         withAnimation{
                             xOffset = -screenWidth * 0.8
-                            showProfile.toggle()
+                            menuController.showProfile.toggle()
                         }
                     }, label: {
                             Image("Profile")
@@ -44,16 +41,16 @@ struct SideMenu: View {
                 VStack(alignment: .listRowSeparatorLeading){
 
                     ForexCalendarButton(showForexCalendar: $notifications.showForexCalendar, xOffset: $xOffset)
-                    NotificationButton(showNotificationSettings: $showNotificationSettings, xOffset: $xOffset)
-                    DeleteButton(showDeleteAlert: $showDeleteAlert)
+                    NotificationButton(showNotificationSettings: $menuController.showNotificationSettings, xOffset: $xOffset)
+//					SettingButton(showSettings: $menuController.showSettings)
+                    DeleteButton(showDeleteAlert: $menuController.showDeleteAlert)
 
                 }
                 .fixedSize()
                 Spacer()
             }
             .padding(.horizontal)
-            
-            .alert(isPresented: $showDeleteAlert){
+            .alert(isPresented: $menuController.showDeleteAlert){
                 Alert(title: Text("Are you sure you want to delete everything?"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete")){
                     realmController.deleteAll()
                 })
@@ -65,11 +62,8 @@ struct SideMenu: View {
               minHeight: 0,
               maxHeight: .infinity,
               alignment: .topLeading
-            )
+        )
         .background(Color(UIColor.systemBackground))
-        .onChange(of: notifications.showForexCalendar) { _ in
-
-        }
         .gesture(
             DragGesture()
                 .onChanged({ value in

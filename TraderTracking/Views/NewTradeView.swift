@@ -20,14 +20,14 @@ struct NewTradeView: View {
 
     @State var symbol: String = "MES"
     @State private var dateEntered: Date = Date()
-    @State private var entry: String = ""
+    @State private var entry: String = "3000"
     @State private var dateExited: Date = Date()
-    @State private var exit: String = ""
-    @State private var positionSize: String = ""
+    @State private var exit: String = "3000"
+    @State private var positionSize: String = "2"
     @State private var selectedPositionType: PositionType = .long
     @State private var selectedSession: Session = .ny
-    @State private var stopLoss: String = ""
-    @State private var takeProfit: String = ""
+    @State private var stopLoss: String = "1"
+    @State private var takeProfit: String = "1"
     @State private var isHindsight = false
     
     @State private var selectedItems: [PhotosPickerItem] = []
@@ -197,15 +197,15 @@ struct NewTradeView: View {
         let temp = Trade()
         temp.symbol = realmController.realm.object(ofType: Symbol.self, forPrimaryKey: symbol)
         temp.dateEntered = dateEntered
-        temp.entry = Double(entry)!
+        temp.entry = formatDecimal(str: entry)
         temp.dateExited = dateExited
-        temp.exit = Double(exit)!
+        temp.exit = formatDecimal(str: exit)
         temp.positionSize = Double(positionSize)!
         temp.positionType = selectedPositionType
         temp.session = selectedSession
-        temp.stopLoss = Double(stopLoss)!
-        temp.takeProfit = Double(takeProfit)!
-        temp.photoDirectory = formatDate() + symbol
+        temp.stopLoss = stopLoss.isEmpty ? nil : formatDecimal(str: stopLoss)
+        temp.takeProfit = takeProfit.isEmpty ? nil : formatDecimal(str: takeProfit)
+        temp.photoDirectory = selectedImages.isEmpty ? nil : formatDate() + symbol
         temp.isHindsight = isHindsight
         if selectedPositionType == .long {
           if (Double(exit)! - Double(entry)!).sign == .minus {
@@ -247,6 +247,14 @@ struct NewTradeView: View {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE - MMMM d, yyyy"
         return formatter.string(from: dateEntered)
+    }
+    
+    private func formatDecimal(str: String) -> Decimal128 {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale(identifier: "en_US")
+        formatter.numberStyle = .decimal
+        
+        return Decimal128(value: formatter.number(from: str)!.decimalValue)
     }
 }
 

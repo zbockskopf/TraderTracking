@@ -28,7 +28,7 @@ struct TradesListView: View {
             List {
                 ForEach(0..<7){ i in
 
-                    Section(header: Text(calendar.date(byAdding: .day, value: -i, to: Date())!, style: .date)){
+                    Section(header: headerDate(i: i)) {
                         
                         ForEach(trades.filter("dateEntered BETWEEN {%@, %@}", dateChanger(date: Date(), i:i, isPrevDay: false), dateChanger(date: Date(), i:i, isPrevDay: true))) { t in
                             TradeRow(trade: t, selectedTrade: $selectedTrade, imageIsShown: $imageIsShown)
@@ -38,11 +38,17 @@ struct TradesListView: View {
                                 }
                         }
                         .onDelete(perform: { t in
-                            t.forEach { i in
-                                realmController.myImage.deleteImage(fileName: trades[i].photoDirectory!)
-                                $trades.remove(trades[i])
+                            for i in stride(from: t.count - 1, to: -1, by: -1){
+                                if i != -1{
+                                    if trades[i].photoDirectory != nil {
+                                        realmController.myImage.deleteImage(fileName: trades[i].photoDirectory!)
+                                    }
+                                    
+                                    $trades.remove(trades[i])
+                                    realmController.getWinRate()
+                                }
+                                
                             }
-                            
                         })
                         .swipeActions(edge: .leading, content: {
                             Button {
@@ -191,6 +197,15 @@ struct TradesListView: View {
         images.removeFirst()
         return images
     }
+		
+		@ViewBuilder
+		func headerDate(i: Int) -> some View {
+				if i == 0 {
+						Text("Today")
+				}else{
+					Text(calendar.date(byAdding: .day, value: -i, to: Date())!, style: .date)
+				}
+		}
     
     func dateChanger(date: Date, i: Int, isPrevDay: Bool) -> Date {
         let calendar = Calendar.current
