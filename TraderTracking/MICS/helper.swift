@@ -15,7 +15,7 @@ struct MyFormatter {
     
     func numFormat(num: Decimal128) -> String {
         let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .currency
+        numberFormatter.numberStyle = .currencyAccounting
         
         return numberFormatter.string(from: NSNumber(value: Double(num.stringValue)!))!
     }

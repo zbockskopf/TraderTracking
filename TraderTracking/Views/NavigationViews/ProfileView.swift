@@ -10,6 +10,7 @@ import RealmSwift
 
 struct ProfileView: View {
     @EnvironmentObject var realmController: RealmController
+    @ObservedResults(Trade.self, filter: NSPredicate(format: "dateEntered > %@", Calendar.current.startOfDay(for: Date()) as CVarArg)) var trades
     @ObservedResults(Account.self) var account
     @State private var newAccountvalue: String = ""
     @State private var resetAccountAlert: Bool = false
@@ -29,7 +30,7 @@ struct ProfileView: View {
                     ProfileAccountItemView(name: "Balance", value: account[0].balance)
                     ProfileAccountItemView(name: "P/L", value: account[0].profitAndLoss)
                     ProfileAccountItemView(name: "Fees", value: account[0].fees)
-                    ProfileAccountItemView(name: "P/L + Fees", value: (account[0].profitAndLoss + account[0].fees))
+                    ProfileAccountItemView(name: "P/L + Fees", value: (account[0].profitAndLoss - account[0].fees))
                     Button {
                         resetAccountAlert.toggle()
                     } label: {
@@ -48,6 +49,17 @@ struct ProfileView: View {
                         Text("add new value")
                     })
 
+                }
+                Section(header: Text("Today Stats")){
+                    ProfileAccountItemView(name: "P/L Day", value: {
+                        var temp: Decimal128 = 0.0
+                        for i in trades {
+                            temp += i.p_l
+                            temp -= i.fees
+                        }
+                        return temp
+                    }())
+                    ProfileAccountItemView(name: "# of Trades", value: Decimal128(value: trades.count))
                 }
             }
             
