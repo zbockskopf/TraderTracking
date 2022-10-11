@@ -14,6 +14,7 @@ struct NewTradeView: View {
     @ObservedObject var realmController: RealmController
     @Environment(\.presentationMode) var presentationMode
     @Binding var sheetAction: SheetAction
+    var isEditing: Bool
     @State private var presentImporter = false
     @ObservedResults(Trade.self) var trades
     @ObservedResults(Symbol.self) var symbols
@@ -35,6 +36,8 @@ struct NewTradeView: View {
     @State private var selectedImages: [UIImage] = []
 
     @State private var openFile: Bool = false
+    
+    
 
     var body: some View {
         NavigationView{

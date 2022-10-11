@@ -82,7 +82,7 @@ struct ContentView: View {
                         .sheet(isPresented: $showNewTrade, onDismiss: {
                             delayConfetti(sheetAction: sheetAction, realmController: realmController)
                         }){
-                            NewTradeView(realmController: realmController, sheetAction: $sheetAction)
+                            NewTradeView(realmController: realmController, sheetAction: $sheetAction, isEditing: false)
                         }
                         
                     }

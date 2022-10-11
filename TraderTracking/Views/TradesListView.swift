@@ -32,9 +32,9 @@ struct TradesListView: View {
                         ForEach(trades.filter("dateEntered BETWEEN {%@, %@}", dateChanger(date: Date(), i:i, isPrevDay: false), dateChanger(date: Date(), i:i, isPrevDay: true))){ t in
                             TradeRow(trade: t, selectedTrade: $selectedTrade, imageIsShown: $imageIsShown)
                                 .onTapGesture {
-                                    if t.photoDirectory != nil {
+//                                    if t.photoDirectory != nil {
                                         selectedTrade = t
-                                    }
+//                                    }
                                 }
                         }
                         .onDelete(perform: { t in
@@ -61,26 +61,27 @@ struct TradesListView: View {
                 }
                 
             }
-            .fullScreenCover(item: $selectedTrade) { s in
-                NavigationStack{
-                    ZStack{
-                        ImageUIView(isPresented: $tappedImageShown, images: getTappedImages(trade: s))
-                            .environmentObject(tradeListData)
-                            .edgesIgnoringSafeArea(.all)
-
-                    }
-                    .navigationBarItems(
-                        leading:
-                            Button(action: {
-                                selectedTrade = nil
-                            }, label: {
-                                Text("Cancel")
-                                    .foregroundColor(Color(UIColor.label))
-                                
-                            })
-                    )
-                    .toolbarBackground(Color(UIColor.secondarySystemBackground), for: .navigationBar)
-                }
+            .sheet(item: $selectedTrade) { t in
+                NewTradeView(sheetAction: <#T##SheetAction#>, isEditing: true, presentImporter: <#T##arg#>, trades: <#T##arg#>, symbols: <#T##arg#>, symbol: <#T##String#>, dateEntered: <#T##Date#>, entry: <#T##String#>, dateExited: <#T##Date#>, exit: <#T##String#>, positionSize: <#T##String#>, selectedPositionType: <#T##PositionType#>, selectedSession: <#T##Session#>, stopLoss: <#T##String#>, takeProfit: <#T##String#>, isHindsight: <#T##arg#>, fees: <#T##String#>, selectedItems: <#T##[PhotosPickerItem]#>, selectedImages: <#T##[UIImage]#>, openFile: <#T##Bool#>)
+//                NavigationStack{
+//                    ZStack{
+//                        ImageUIView(isPresented: $tappedImageShown, images: getTappedImages(trade: s))
+//                            .environmentObject(tradeListData)
+//                            .edgesIgnoringSafeArea(.all)
+//
+//                    }
+//                    .navigationBarItems(
+//                        leading:
+//                            Button(action: {
+//                                selectedTrade = nil
+//                            }, label: {
+//                                Text("Cancel")
+//                                    .foregroundColor(Color(UIColor.label))
+//
+//                            })
+//                    )
+//                    .toolbarBackground(Color(UIColor.secondarySystemBackground), for: .navigationBar)
+//                }
 
             }
             .navigationBarTitle("")
