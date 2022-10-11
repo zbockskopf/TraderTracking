@@ -29,6 +29,7 @@ struct ProfileView: View {
                     ProfileAccountItemView(name: "Balance", value: account[0].balance)
                     ProfileAccountItemView(name: "P/L", value: account[0].profitAndLoss)
                     ProfileAccountItemView(name: "Fees", value: account[0].fees)
+                    ProfileAccountItemView(name: "P/L + Fees", value: (account[0].profitAndLoss + account[0].fees))
                     Button {
                         resetAccountAlert.toggle()
                     } label: {

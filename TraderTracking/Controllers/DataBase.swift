@@ -106,7 +106,7 @@ class RealmController: NSObject, ObservableObject {
             let account = realm.object(ofType: Account.self, forPrimaryKey: "Main")
             account!.trades.append(trade)
             account!.profitAndLoss += trade.p_l
-            account!.balance += trade.p_l
+            account!.balance += (trade.p_l - trade.fees)
             account!.fees += trade.fees
         }
         getWinRate()
@@ -127,6 +127,7 @@ class RealmController: NSObject, ObservableObject {
             let account = realm.object(ofType: Account.self, forPrimaryKey: "Main")
             account!.profitAndLoss -= trade.p_l
             account!.balance -= trade.p_l
+            account!.balance += trade.fees
             account!.fees -= trade.fees
         }
     }

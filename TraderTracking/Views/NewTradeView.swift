@@ -20,16 +20,16 @@ struct NewTradeView: View {
 
     @State var symbol: String = "MES"
     @State private var dateEntered: Date = Date()
-    @State private var entry: String = ""
+    @State private var entry: String = "3000"
     @State private var dateExited: Date = Date()
-    @State private var exit: String = ""
-    @State private var positionSize: String = ""
+    @State private var exit: String = "3008"
+    @State private var positionSize: String = "1"
     @State private var selectedPositionType: PositionType = .long
     @State private var selectedSession: Session = .ny
     @State private var stopLoss: String = ""
     @State private var takeProfit: String = ""
     @State private var isHindsight = false
-    @State private var fees: String = ""
+    @State private var fees: String = "5.14"
 
     @State private var selectedItems: [PhotosPickerItem] = []
     @State private var selectedImages: [UIImage] = []
@@ -47,6 +47,19 @@ struct NewTradeView: View {
                             ForEach(realmController.symbols){ sy in
                                 Text(sy.name)
                                     .tag(sy.name)
+                            }
+                        }
+                        
+                        Picker("Session", selection: $selectedSession){
+                            ForEach(Session.allCases, id: \.self){ val in
+                                Text(val.localizedName)
+                                    .tag(val)
+                            }
+                        }
+                        Picker("Type", selection: $selectedPositionType){
+                            ForEach(PositionType.allCases, id: \.self){ val in
+                                Text(val.localizedName)
+                                    .tag(val)
                             }
                         }
                     }
@@ -68,26 +81,9 @@ struct NewTradeView: View {
                         TextField("Take Profit", text: $takeProfit)
                             .padding()
                             .keyboardType(.decimalPad)
-                    }
-                    Section{
                         TextField("Size", text: $positionSize)
                             .padding()
                             .keyboardType(.decimalPad)
-
-                        Picker("Type", selection: $selectedPositionType){
-                            ForEach(PositionType.allCases, id: \.self){ val in
-                                Text(val.localizedName)
-                                    .tag(val)
-                            }
-                        }
-                            .padding()
-                        Picker("Session", selection: $selectedSession){
-                            ForEach(Session.allCases, id: \.self){ val in
-                                Text(val.localizedName)
-                                    .tag(val)
-                            }
-                        }
-                            .padding()
                         TextField("Fees", text: $fees)
                             .padding()
                             .keyboardType(.decimalPad)
@@ -213,6 +209,7 @@ struct NewTradeView: View {
         temp.isHindsight = isHindsight
         temp.fees = formatDecimal(str: fees)
         temp.p_l = getProfitLoss(entry: temp.entry, exit: temp.exit, positionType: temp.positionType, tickValue: temp.symbol!.tickValue, positionSize: temp.positionSize)
+
         if selectedPositionType == .long {
           if (Double(exit)! - Double(entry)!).sign == .minus {
               sheetAction = .loss
@@ -237,7 +234,7 @@ struct NewTradeView: View {
         }
         
 
-        if isHindsight {
+        if isHindsight || temp.entry == temp.exit {
             sheetAction = .nothing
         }
 
@@ -245,12 +242,16 @@ struct NewTradeView: View {
     }
     
     private func getProfitLoss(entry: Decimal128, exit: Decimal128, positionType: PositionType, tickValue: Decimal128, positionSize: Double) -> Decimal128 {
-        print((((exit - entry) * 4) * tickValue) * Decimal128(floatLiteral: positionSize))
-        if positionType == .long {
-            return (((exit - entry) * 4) * tickValue) * Decimal128(floatLiteral: positionSize)
+        if exit != entry{
+            if positionType == .long {
+                return (((exit - entry) * 4) * tickValue) * Decimal128(floatLiteral: positionSize)
+            }else{
+                return (((entry - exit) * 4) * tickValue) * Decimal128(floatLiteral: positionSize)
+            }
         }else{
-            return (((entry - exit) * 4) * tickValue) * Decimal128(floatLiteral: positionSize)
+            return 0.0
         }
+
     }
 
     private func formatDate() -> String {
