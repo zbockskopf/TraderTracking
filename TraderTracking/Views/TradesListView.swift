@@ -11,21 +11,23 @@ import ImageUI
 
 
 struct TradesListView: View {
-    
+
     @EnvironmentObject var realmController: RealmController
     @EnvironmentObject var tradeListData: TradeListViewModel
     @ObservedResults(Trade.self, filter: NSPredicate(format: "dateEntered BETWEEN {%@, %@}", Calendar.current.date(byAdding: .day, value: -7, to: Date())! as CVarArg, Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: Date())! as CVarArg), sortDescriptor: SortDescriptor(keyPath: "dateEntered", ascending: false)) var trades
     @ObservedResults(Account.self) var accounts
     @State var imageIsShown: Bool = false
     @State var tappedImageShown: Bool = false
-    
+
     @State private var all: Bool?
     @State private var selectedTrade: Trade? = nil
-    
+    @State private var editSheet: Bool = false
+
     var calendar = Calendar.current
     var tradesPL: Decimal128 = 0.0
     var myFormatter = MyFormatter()
-    
+    var myImages = MyImages()
+
     var body: some View {
         NavigationStack{
             List {
@@ -34,10 +36,18 @@ struct TradesListView: View {
                         ForEach(trades.filter("dateEntered BETWEEN {%@, %@}", dateChanger(date: Date(), i:i, isPrevDay: false), dateChanger(date: Date(), i:i, isPrevDay: true))){ t in
                             TradeRow(trade: t, selectedTrade: $selectedTrade, imageIsShown: $imageIsShown)
                                 .onTapGesture {
-                                    if t.photoDirectory != nil {
-                                        selectedTrade = t
-                                    }
+//                                    if t.photoDirectory != nil {
+//                                        selectedTrade = t
+//                                    }
                                 }
+                                .swipeActions(edge: .leading, content: {
+                                    Button {
+                                        selectedTrade = t
+                                    } label: {
+                                        Label("", systemImage: "pencil")
+                                    }
+                                    .tint(.green)
+                                })
                         }
                         .onDelete(perform: { t in
                             t.forEach{i in
@@ -49,42 +59,39 @@ struct TradesListView: View {
                                 realmController.getWinRate()
                             }
                         })
-                        .swipeActions(edge: .leading, content: {
-                            Button {
-//                                editSheet.toggle()
-                            } label: {
-                                Label("", systemImage: "pencil")
-                            }
-                            .tint(.green)
 
-                        })
-                        
-                    }
-                }
-                
-            }
-            .fullScreenCover(item: $selectedTrade) { s in
-                NavigationStack{
-                    ZStack{
-                        ImageUIView(isPresented: $tappedImageShown, images: getTappedImages(trade: s))
-                            .environmentObject(tradeListData)
-                            .edgesIgnoringSafeArea(.all)
 
                     }
-                    .navigationBarItems(
-                        leading:
-                            Button(action: {
-                                selectedTrade = nil
-                            }, label: {
-                                Text("Cancel")
-                                    .foregroundColor(Color(UIColor.label))
-                                
-                            })
-                    )
-                    .toolbarBackground(Color(UIColor.secondarySystemBackground), for: .navigationBar)
                 }
 
             }
+            .fullScreenCover(item: $selectedTrade){ t in
+                NewTradeView(realmController: realmController, sheetAction: Binding.constant(nil), isEditing: true, trade: t, tradeID: t._id,
+                             symbol: t.symbol!.name, dateEntered: t.dateEntered, entry: t.entry.stringValue, dateExited: t.dateExited, exit: t.exit.stringValue, positionSize: String(t.positionSize), selectedPositionType: t.positionType, selectedSession: t.session, stopLoss: t.stopLoss?.stringValue ?? "", takeProfit: t.takeProfit?.stringValue ?? "", isHindsight: t.isHindsight, fees: t.fees.stringValue, selectedImages: myImages.loadImageFromDiskWith(directory: t.photoDirectory ?? "") ?? []
+                )
+            }
+//            .sheet(item: $selectedTrade) { t in
+////                NavigationStack{
+////                    ZStack{
+////                        ImageUIView(isPresented: $tappedImageShown, images: getTappedImages(trade: s))
+////                            .environmentObject(tradeListData)
+////                            .edgesIgnoringSafeArea(.all)
+////
+////                    }
+////                    .navigationBarItems(
+////                        leading:
+////                            Button(action: {
+////                                selectedTrade = nil
+////                            }, label: {
+////                                Text("Cancel")
+////                                    .foregroundColor(Color(UIColor.label))
+////
+////                            })
+////                    )
+////                    .toolbarBackground(Color(UIColor.secondarySystemBackground), for: .navigationBar)
+////                }
+//
+//            }
             .navigationBarTitle("")
             .navigationBarItems(
 //                leading:
@@ -141,7 +148,7 @@ struct TradesListView: View {
 
         }
     }
-    
+
     func getTradesPL() -> String {
         var temp: Decimal128 = 0.0
         for i in trades {
@@ -150,18 +157,18 @@ struct TradesListView: View {
         }
         return myFormatter.numFormat(num: temp)
     }
-                
-                
-    
+
+
+
     func getImages(all: Bool, trade: Trade?) -> [IFImage] {
         var temp: Results<Trade>
-        
+
         if all {
             temp = trades.filter("dateEntered BETWEEN {%@, %@}",Calendar.current.date(byAdding: .day, value: -7, to: Date())!, Date())
         }else{
             temp = trades.filter("dateEntered BETWEEN {%@, %@}",calendar.startOfDay(for: trade!.dateEntered), calendar.date(bySettingHour: 23, minute: 59, second: 59, of: trade!.dateEntered)!)
         }
-        
+
         var images: [IFImage] = []
         for i in temp {
             if i.photoDirectory != nil{
@@ -171,10 +178,10 @@ struct TradesListView: View {
                 }
             }
         }
-        
+
         return images
     }
-    
+
     func getTappedImages(trade: Trade) -> [IFImage] {
         var images: [IFImage] = []
 
@@ -187,7 +194,7 @@ struct TradesListView: View {
         images.removeFirst()
         return images
     }
-		
+
 		@ViewBuilder
 		func headerDate(i: Int) -> some View {
 				if i == 0 {
@@ -196,7 +203,7 @@ struct TradesListView: View {
 					Text(calendar.date(byAdding: .day, value: -i, to: Date())!, style: .date)
 				}
 		}
-    
+
     func dateChanger(date: Date, i: Int, isPrevDay: Bool) -> Date {
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: calendar.date(byAdding: .day, value: -i, to: date)!)
@@ -213,7 +220,7 @@ struct TradeRow: View {
     var trade: Trade
     @Binding var selectedTrade: Trade?
     @Binding var imageIsShown: Bool
-    
+
     var myFormatter = MyFormatter()
 
     var body: some View {
@@ -287,7 +294,7 @@ struct TradeRow_Preview: PreviewProvider {
                         test1()
                         test1()
                     }
-                    
+
                     Section(header: Text(Date(), style: .date)){
                         test1()
                         test1()
@@ -301,7 +308,7 @@ struct TradeRow_Preview: PreviewProvider {
 
 
 struct test1: View {
-    
+
     var body: some View {
         VStack(alignment: .leading){
             HStack{
@@ -317,7 +324,7 @@ struct test1: View {
                             .frame(width: 20, height: 20)
                             .padding(.top)
                     }
-                    
+
                     if false{
                         Circle()
                             .fill(.red)
@@ -331,7 +338,7 @@ struct test1: View {
             }
             Spacer()
             VStack(alignment: .leading){
-                
+
               HStack{
                 Text("Entry:")
                       .bold()
@@ -353,7 +360,7 @@ struct test1: View {
             Spacer()
         HStack{
             HStack{
-                
+
             }
 
         }

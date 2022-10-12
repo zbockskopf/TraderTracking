@@ -63,7 +63,9 @@ class MyImages {
             let fileURLs = try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: nil)
             for file in fileURLs {
                 let image = UIImage(contentsOfFile: file.path)
-                temp.append(image!)
+                if image != nil {
+                    temp.append(image!)
+                }
             }
             return temp
         } catch {

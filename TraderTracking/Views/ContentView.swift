@@ -21,7 +21,7 @@ struct ContentView: View {
 
     @State private var confettiCounter: Int = 0
     @State private var showNewTrade = false
-    @State private var sheetAction: SheetAction = SheetAction.nothing
+    @State private var sheetAction: SheetAction? = SheetAction.nothing
 
 
     var screenWidth = UIScreen.main.bounds.width
@@ -80,9 +80,9 @@ struct ContentView: View {
                         .cornerRadius(25)
                         .confettiCannon(counter: $confettiCounter)
                         .sheet(isPresented: $showNewTrade, onDismiss: {
-                            delayConfetti(sheetAction: sheetAction, realmController: realmController)
+                            delayConfetti(sheetAction: sheetAction!, realmController: realmController)
                         }){
-                            NewTradeView(realmController: realmController, sheetAction: $sheetAction)
+                            NewTradeView(realmController: realmController, sheetAction: $sheetAction, isEditing: false)
                         }
                         
                     }
