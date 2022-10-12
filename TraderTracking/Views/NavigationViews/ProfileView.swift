@@ -59,7 +59,7 @@ struct ProfileView: View {
                         }
                         return temp
                     }())
-                    ProfileAccountItemView(name: "# of Trades", value: Decimal128(value: trades.count))
+                    ProfileAccountItemView(name: "# of Trades", value: Decimal128(value: trades.count), isInt: true)
                 }
             }
             
@@ -74,6 +74,7 @@ struct ProfileAccountItemView: View{
 	
 	var name: String
 	var value: Decimal128
+    var isInt: Bool = false
     @State var showEditAccount: Bool = false
 	
 	var body: some View{
@@ -81,7 +82,12 @@ struct ProfileAccountItemView: View{
                 Text(name)
                     .bold()
                 Spacer()
-            Text(myFormatter.numFormat(num: value))
+            if !isInt{
+                Text(myFormatter.numFormat(num: value))
+            }else{
+                Text(value.stringValue)
+            }
+            
 
 			}
         .onTapGesture(perform: {

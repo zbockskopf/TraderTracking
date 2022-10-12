@@ -143,7 +143,7 @@ struct TradesListView: View {
 //                    .foregroundColor(Color.black)
                 trailing:
                     Text(getTradesPL())
-//                        .foregroundColor(tradesPL == 0.0 ? .black : tradesPL > 0.0 ? .green : .red)
+                    .foregroundColor(.primary)
             )
 
         }
@@ -253,7 +253,7 @@ struct TradeRow: View {
 //                    .padding([.top, .leading])
                 Spacer()
                 Text(myFormatter.numFormat(num: trade.p_l))
-                    .foregroundColor(trade.isHindsight ? .blue : trade.p_l == 0.0 ? .black : trade.p_l > 0.0 ? .green : .red)
+                    .foregroundColor(trade.isHindsight ? .blue : trade.p_l == 0.0 ? .primary : trade.p_l > 0.0 ? .green : .red)
             }
             .padding([.top], 2)
 //            Spacer()
