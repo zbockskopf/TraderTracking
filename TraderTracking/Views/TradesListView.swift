@@ -21,8 +21,10 @@ struct TradesListView: View {
     
     @State private var all: Bool?
     @State private var selectedTrade: Trade? = nil
+    @State private var editSheet: Bool = false
     
     var calendar = Calendar.current
+    var myImages = MyImages()
     
     var body: some View {
         NavigationStack{
@@ -33,9 +35,17 @@ struct TradesListView: View {
                             TradeRow(trade: t, selectedTrade: $selectedTrade, imageIsShown: $imageIsShown)
                                 .onTapGesture {
 //                                    if t.photoDirectory != nil {
-                                        selectedTrade = t
+//                                        selectedTrade = t
 //                                    }
                                 }
+                                .swipeActions(edge: .leading, content: {
+                                    Button {
+                                        selectedTrade = t
+                                    } label: {
+                                        Label("", systemImage: "pencil")
+                                    }
+                                    .tint(.green)
+                                })
                         }
                         .onDelete(perform: { t in
                             t.forEach{i in
@@ -47,43 +57,39 @@ struct TradesListView: View {
                                 realmController.getWinRate()
                             }
                         })
-                        .swipeActions(edge: .leading, content: {
-                            Button {
-//                                editSheet.toggle()
-                            } label: {
-                                Label("", systemImage: "pencil")
-                            }
-                            .tint(.green)
-
-                        })
+                        
                         
                     }
                 }
                 
             }
-            .sheet(item: $selectedTrade) { t in
-                NewTradeView(sheetAction: <#T##SheetAction#>, isEditing: true, presentImporter: <#T##arg#>, trades: <#T##arg#>, symbols: <#T##arg#>, symbol: <#T##String#>, dateEntered: <#T##Date#>, entry: <#T##String#>, dateExited: <#T##Date#>, exit: <#T##String#>, positionSize: <#T##String#>, selectedPositionType: <#T##PositionType#>, selectedSession: <#T##Session#>, stopLoss: <#T##String#>, takeProfit: <#T##String#>, isHindsight: <#T##arg#>, fees: <#T##String#>, selectedItems: <#T##[PhotosPickerItem]#>, selectedImages: <#T##[UIImage]#>, openFile: <#T##Bool#>)
-//                NavigationStack{
-//                    ZStack{
-//                        ImageUIView(isPresented: $tappedImageShown, images: getTappedImages(trade: s))
-//                            .environmentObject(tradeListData)
-//                            .edgesIgnoringSafeArea(.all)
-//
-//                    }
-//                    .navigationBarItems(
-//                        leading:
-//                            Button(action: {
-//                                selectedTrade = nil
-//                            }, label: {
-//                                Text("Cancel")
-//                                    .foregroundColor(Color(UIColor.label))
-//
-//                            })
-//                    )
-//                    .toolbarBackground(Color(UIColor.secondarySystemBackground), for: .navigationBar)
-//                }
-
+            .fullScreenCover(item: $selectedTrade){ t in
+                NewTradeView(realmController: realmController, sheetAction: Binding.constant(nil), isEditing: true, trade: t, tradeID: t._id,
+                             symbol: t.symbol!.name, dateEntered: t.dateEntered, entry: t.entry.stringValue, dateExited: t.dateExited, exit: t.exit.stringValue, positionSize: String(t.positionSize), selectedPositionType: t.positionType, selectedSession: t.session, stopLoss: t.stopLoss?.stringValue ?? "", takeProfit: t.takeProfit?.stringValue ?? "", isHindsight: t.isHindsight, fees: t.fees.stringValue, selectedImages: myImages.loadImageFromDiskWith(directory: t.photoDirectory ?? "") ?? []
+                )
             }
+//            .sheet(item: $selectedTrade) { t in
+////                NavigationStack{
+////                    ZStack{
+////                        ImageUIView(isPresented: $tappedImageShown, images: getTappedImages(trade: s))
+////                            .environmentObject(tradeListData)
+////                            .edgesIgnoringSafeArea(.all)
+////
+////                    }
+////                    .navigationBarItems(
+////                        leading:
+////                            Button(action: {
+////                                selectedTrade = nil
+////                            }, label: {
+////                                Text("Cancel")
+////                                    .foregroundColor(Color(UIColor.label))
+////
+////                            })
+////                    )
+////                    .toolbarBackground(Color(UIColor.secondarySystemBackground), for: .navigationBar)
+////                }
+//
+//            }
             .navigationBarTitle("")
 //            .navigationBarItems(
 //                trailing:

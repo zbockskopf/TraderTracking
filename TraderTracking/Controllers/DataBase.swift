@@ -96,19 +96,38 @@ class RealmController: NSObject, ObservableObject {
         
     }
 
-    func addTrade(trade: Trade, images: [UIImage]?){
-        if trade.photoDirectory != nil{
-            myImage.saveImages(directory: trade.photoDirectory!, images: images!)
+    func addTrade(trade: Trade, images: [UIImage]?, edited: Bool){
+        if edited {
+            try! realm.write{ [self] in
+                realm.add(trade, update: .all)
+                if trade.photoDirectory != nil{
+                    myImage.saveImages(directory: trade.photoDirectory!, images: images!)
+                }
+                
+                let account = realm.object(ofType: Account.self, forPrimaryKey: "Main")
+                account!.trades.append(trade)
+                account!.profitAndLoss += trade.p_l
+                account!.balance += (trade.p_l - trade.fees)
+                account!.fees += trade.fees
+            
+            }
+        }else{
+            try! realm.write{ [self] in
+
+                realm.add(trade)
+                if trade.photoDirectory != nil{
+                    myImage.saveImages(directory: trade.photoDirectory!, images: images!)
+                }
+                
+                let account = realm.object(ofType: Account.self, forPrimaryKey: "Main")
+                account!.trades.append(trade)
+                account!.profitAndLoss += trade.p_l
+                account!.balance += (trade.p_l - trade.fees)
+                account!.fees += trade.fees
+            }
         }
         
-        try! realm.write{
-            realm.add(trade)
-            let account = realm.object(ofType: Account.self, forPrimaryKey: "Main")
-            account!.trades.append(trade)
-            account!.profitAndLoss += trade.p_l
-            account!.balance += (trade.p_l - trade.fees)
-            account!.fees += trade.fees
-        }
+        
         getWinRate()
     }
     
@@ -125,6 +144,7 @@ class RealmController: NSObject, ObservableObject {
     func updateAccountAfterTradeDelete(trade: Trade){
         try! realm.write { [self] in
             let account = realm.object(ofType: Account.self, forPrimaryKey: "Main")
+//            account!.trades.remove(at: trades.firstIndex(of: trade)!)
             account!.profitAndLoss -= trade.p_l
             account!.balance -= trade.p_l
             account!.balance += trade.fees

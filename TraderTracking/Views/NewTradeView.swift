@@ -13,32 +13,32 @@ struct NewTradeView: View {
 
     @ObservedObject var realmController: RealmController
     @Environment(\.presentationMode) var presentationMode
-    @Binding var sheetAction: SheetAction
+    @Binding var sheetAction: SheetAction?
     var isEditing: Bool
+    var trade: Trade? = nil
     @State private var presentImporter = false
     @ObservedResults(Trade.self) var trades
     @ObservedResults(Symbol.self) var symbols
-
+    @State var tradeID: ObjectId? = nil
     @State var symbol: String = "MES"
-    @State private var dateEntered: Date = Date()
-    @State private var entry: String = ""
-    @State private var dateExited: Date = Date()
-    @State private var exit: String = ""
-    @State private var positionSize: String = ""
-    @State private var selectedPositionType: PositionType = .long
-    @State private var selectedSession: Session = .ny
-    @State private var stopLoss: String = ""
-    @State private var takeProfit: String = ""
-    @State private var isHindsight = false
-    @State private var fees: String = ""
+    @State var dateEntered: Date = Date()
+    @State var entry: String = ""
+    @State var dateExited: Date = Date()
+    @State var exit: String = ""
+    @State var positionSize: String = ""
+    @State var selectedPositionType: PositionType = .long
+    @State var selectedSession: Session = .ny
+    @State var stopLoss: String = ""
+    @State var takeProfit: String = ""
+    @State var isHindsight = false
+    @State var fees: String = ""
 
-    @State private var selectedItems: [PhotosPickerItem] = []
-    @State private var selectedImages: [UIImage] = []
+    @State var selectedItems: [PhotosPickerItem] = []
+    @State var selectedImages: [UIImage] = []
 
     @State private var openFile: Bool = false
     
     
-
     var body: some View {
         NavigationView{
                 Form{
@@ -140,7 +140,7 @@ struct NewTradeView: View {
                     }
                 }
                 .fileImporter(isPresented: $openFile, allowedContentTypes: [.image], allowsMultipleSelection: true, onCompletion: importImage)
-                .navigationBarTitle("New Trade")
+                .navigationBarTitle(isEditing ? "Edit Trade" : "New Trade")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(
                     leading:
@@ -198,6 +198,10 @@ struct NewTradeView: View {
     private func addTrade() {
 
         let temp = Trade()
+        if isEditing{
+            realmController.updateAccountAfterTradeDelete(trade: trade!)
+            temp._id = tradeID!
+        }
         temp.symbol = realmController.realm.object(ofType: Symbol.self, forPrimaryKey: symbol)
         temp.dateEntered = dateEntered
         temp.entry = formatDecimal(str: entry)
@@ -241,7 +245,7 @@ struct NewTradeView: View {
             sheetAction = .nothing
         }
 
-        realmController.addTrade(trade: temp, images: selectedImages)
+        realmController.addTrade(trade: temp, images: selectedImages, edited: isEditing)
     }
     
     private func getProfitLoss(entry: Decimal128, exit: Decimal128, positionType: PositionType, tickValue: Decimal128, positionSize: Double) -> Decimal128 {
