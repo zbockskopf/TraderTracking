@@ -21,6 +21,7 @@ struct TradesListView: View {
 
     @State private var all: Bool?
     @State private var selectedTrade: Trade? = nil
+    @State private var editTrade: Trade? = nil
     @State private var editSheet: Bool = false
 
     var calendar = Calendar.current
@@ -36,13 +37,13 @@ struct TradesListView: View {
                         ForEach(trades.filter("dateEntered BETWEEN {%@, %@}", dateChanger(date: Date(), i:i, isPrevDay: false), dateChanger(date: Date(), i:i, isPrevDay: true))){ t in
                             TradeRow(trade: t, selectedTrade: $selectedTrade, imageIsShown: $imageIsShown)
                                 .onTapGesture {
-//                                    if t.photoDirectory != nil {
-//                                        selectedTrade = t
-//                                    }
+                                    if t.photoDirectory != nil {
+                                        selectedTrade = t
+                                    }
                                 }
                                 .swipeActions(edge: .leading, content: {
                                     Button {
-                                        selectedTrade = t
+                                        editTrade = t
                                     } label: {
                                         Label("", systemImage: "pencil")
                                     }
@@ -65,33 +66,33 @@ struct TradesListView: View {
                 }
 
             }
-            .fullScreenCover(item: $selectedTrade){ t in
+            .fullScreenCover(item: $editTrade){ t in
                 NewTradeView(realmController: realmController, sheetAction: Binding.constant(nil), isEditing: true, trade: t, tradeID: t._id,
-                             symbol: t.symbol!.name, dateEntered: t.dateEntered, entry: t.entry.stringValue, dateExited: t.dateExited, exit: t.exit.stringValue, positionSize: String(t.positionSize), selectedPositionType: t.positionType, selectedSession: t.session, stopLoss: t.stopLoss?.stringValue ?? "", takeProfit: t.takeProfit?.stringValue ?? "", isHindsight: t.isHindsight, fees: t.fees.stringValue, selectedImages: myImages.loadImageFromDiskWith(directory: t.photoDirectory ?? "") ?? []
+                             symbol: t.symbol!.name, dateEntered: t.dateEntered, entry: t.entry.stringValue, dateExited: t.dateExited, exit: t.exit.stringValue, positionSize: String(t.positionSize), selectedPositionType: t.positionType, selectedSession: t.session, stopLoss: t.stopLoss?.stringValue ?? "", takeProfit: t.takeProfit?.stringValue ?? "", isHindsight: t.isHindsight, fees: t.fees.stringValue, photoDirectory: t.photoDirectory ?? "", selectedImages: myImages.loadImageFromDiskWith(directory: t.photoDirectory ?? "") ?? []
                 )
             }
-//            .sheet(item: $selectedTrade) { t in
-////                NavigationStack{
-////                    ZStack{
-////                        ImageUIView(isPresented: $tappedImageShown, images: getTappedImages(trade: s))
-////                            .environmentObject(tradeListData)
-////                            .edgesIgnoringSafeArea(.all)
-////
-////                    }
-////                    .navigationBarItems(
-////                        leading:
-////                            Button(action: {
-////                                selectedTrade = nil
-////                            }, label: {
-////                                Text("Cancel")
-////                                    .foregroundColor(Color(UIColor.label))
-////
-////                            })
-////                    )
-////                    .toolbarBackground(Color(UIColor.secondarySystemBackground), for: .navigationBar)
-////                }
-//
-//            }
+            .fullScreenCover(item: $selectedTrade) { t in
+                NavigationView{
+                    ZStack{
+                        ImageUIView(isPresented: $tappedImageShown, images: getTappedImages(trade: t))
+                            .environmentObject(tradeListData)
+                            .edgesIgnoringSafeArea(.all)
+
+                    }
+                    .navigationBarItems(
+                        leading:
+                            Button(action: {
+                                selectedTrade = nil
+                            }, label: {
+                                Text("Cancel")
+                                    .foregroundColor(Color(UIColor.label))
+
+                            })
+                    )
+                    .toolbarBackground(Color(UIColor.secondarySystemBackground), for: .navigationBar)
+                }
+
+            }
             .navigationBarTitle("")
             .navigationBarItems(
 //                leading:
@@ -225,9 +226,16 @@ struct TradeRow: View {
 
     var body: some View {
         VStack(alignment: .leading){
-            Text(trade.dateEntered, style: .time)
-                .font(.footnote)
-                .opacity(0.5)
+            HStack{
+                Text(trade.dateEntered, style: .time)
+                    .font(.footnote)
+                    .opacity(0.5)
+                Spacer()
+                if trade.photoDirectory != nil {
+                    Image(systemName: "photo")
+                        .fixedSize()
+                }
+            }
             HStack{
 //                if trade.isHindsight {
 //                    Circle()

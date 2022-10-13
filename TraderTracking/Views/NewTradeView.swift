@@ -32,11 +32,12 @@ struct NewTradeView: View {
     @State var takeProfit: String = ""
     @State var isHindsight = false
     @State var fees: String = ""
-
+    @State var photoDirectory: String = ""
     @State var selectedItems: [PhotosPickerItem] = []
     @State var selectedImages: [UIImage] = []
-
     @State private var openFile: Bool = false
+    
+    @State private var showPhotoDeleteAlert: Bool = false
     
     
     var body: some View {
@@ -104,6 +105,7 @@ struct NewTradeView: View {
                                     }
                                     .onChange(of: selectedItems) { newItem in
                                         Task {
+                                            photoDirectory = formatDate() + symbol
                                             selectedImages.append(screenShotView.asUiImage())
                                             for item in newItem {
                                                 if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data){
@@ -123,18 +125,31 @@ struct NewTradeView: View {
                         })
 
                         if selectedImages.count > 0{
-                            HStack {
+                            HStack(alignment: .center) {
                                 Image(uiImage: selectedImages[0])
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 50, height: 50)
+                                    .frame(width: 100, height: 100)
+                                    
                             }
+                            
+                            .alert(isPresented: $showPhotoDeleteAlert, content: {
+                                Alert(title: Text("Do you want to delete all photos?"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete")){
+                                    realmController.myImage.deleteImage(fileName: photoDirectory)
+                                    selectedImages.removeAll()
+                                    photoDirectory = ""
+                                })
+                            })
+                            
                                 .overlay(
                                     ZStack{
                                         Color.black
                                             .opacity(0.3)
                                         Text(String(selectedImages.count - 1) + "+")
                                     }
+                                        .onTapGesture( perform: {
+                                            showPhotoDeleteAlert.toggle()
+                                        })
                             )
                         }
                     }
@@ -177,7 +192,7 @@ struct NewTradeView: View {
        do{
 
            var urls: [URL] = try res.get()
-
+           photoDirectory = formatDate() + symbol
            selectedImages.append(screenShotView.asUiImage())
            for i in urls{
                guard i.startAccessingSecurityScopedResource() else { return }
@@ -212,7 +227,7 @@ struct NewTradeView: View {
         temp.session = selectedSession
         temp.stopLoss = stopLoss.isEmpty ? nil : formatDecimal(str: stopLoss)
         temp.takeProfit = takeProfit.isEmpty ? nil : formatDecimal(str: takeProfit)
-        temp.photoDirectory = selectedImages.isEmpty ? nil : formatDate() + symbol
+        temp.photoDirectory = photoDirectory == "" ? nil : photoDirectory //selectedImages.isEmpty ? nil : formatDate() + symbol
         temp.isHindsight = isHindsight
         temp.fees = formatDecimal(str: fees)
         temp.p_l = getProfitLoss(entry: temp.entry, exit: temp.exit, positionType: temp.positionType, tickValue: temp.symbol!.tickValue, positionSize: temp.positionSize)

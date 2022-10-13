@@ -18,6 +18,7 @@ struct ImageUIView: UIViewControllerRepresentable {
     
     
     func makeUIViewController(context: Context) -> ImageUI.IFBrowserViewController {
+        
         let vc = IFBrowserViewController(images: images)
 //        AppUtility.lockOrientation(.landscape)
         vc.configuration.actions = [.delete, .share]
@@ -37,9 +38,9 @@ struct ImageUIView: UIViewControllerRepresentable {
             let vc = IFBrowserViewController(images: images)
         
             vc.configuration.actions = [.delete, .share]
-            vc.delegate = context.coordinator as? any IFBrowserViewControllerDelegate
-            
-//            uiViewController.present(vc, animated: true)
+            vc.delegate = context.coordinator as any IFBrowserViewControllerDelegate
+            let nc = UINavigationController(rootViewController: vc)
+            nc.pushViewController(vc, animated: true)
             vc.presentationController?.delegate = context.coordinator
             }
     }
