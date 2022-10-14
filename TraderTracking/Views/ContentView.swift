@@ -64,6 +64,7 @@ struct ContentView: View {
                     
                     VStack{
                         Button(action: {
+//                            confettiCounter += 1
                             showNewTrade.toggle()
                         }) {
                             Text("New Trade")
@@ -78,7 +79,7 @@ struct ContentView: View {
                         }
                         .background(Color.green)
                         .cornerRadius(25)
-                        .confettiCannon(counter: $confettiCounter)
+                        .confettiCannon(counter: $confettiCounter, num: 250, confettis: [.shape(.slimRectangle), .shape(.square)], colors: [.green], rainHeight: 700, openingAngle: Angle.degrees(35), closingAngle: Angle.degrees(145), radius: 400)
                         .sheet(isPresented: $showNewTrade, onDismiss: {
                             delayConfetti(sheetAction: sheetAction!, realmController: realmController)
                         }){
@@ -160,7 +161,7 @@ struct ContentView: View {
 
 
     private func delayConfetti(sheetAction: SheetAction, realmController: RealmController) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
 //          add swtich here for sheetAction
             switch sheetAction {
             case .nothing, .loss, .cancel:
