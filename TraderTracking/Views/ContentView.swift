@@ -114,6 +114,11 @@ struct ContentView: View {
             .navigationDestination(isPresented: $menuController.showProfile, destination: {
                 ProfileView()
             })
+            .navigationDestination(isPresented: $menuController.showSettings, destination: {
+                Settings()
+                    .environmentObject(menuController)
+                    .environmentObject(realmController)
+            })
             .navigationBarTitle("")
             .navigationBarItems(
                 leading:

@@ -131,6 +131,23 @@ class RealmController: NSObject, ObservableObject {
         getWinRate()
     }
     
+    func reAddTrades(trades: [Trade]){
+        let account = realm.object(ofType: Account.self, forPrimaryKey: "Main")
+        realm.beginWrite()
+       
+        
+        for i in trades{
+            let temp = realm.create(Trade.self, value: i, update: .modified)
+            account!.trades.append(temp)
+            account!.profitAndLoss += temp.p_l
+            account!.balance += (temp.p_l - temp.fees)
+            account!.fees += temp.fees
+        }
+        try! realm.commitWrite()
+        getWinRate()
+        
+    }
+    
     func resetAccount(newVal: String) {
         try! realm.write { [self] in
             let account = realm.object(ofType: Account.self, forPrimaryKey: "Main")

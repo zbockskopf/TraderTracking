@@ -43,18 +43,28 @@ struct SideMenu: View {
                     ForexCalendarButton(showForexCalendar: $notifications.showForexCalendar, xOffset: $xOffset)
                     NotificationButton(showNotificationSettings: $menuController.showNotificationSettings, xOffset: $xOffset)
 //					SettingButton(showSettings: $menuController.showSettings)
-                    DeleteButton(showDeleteAlert: $menuController.showDeleteAlert)
+                    
 
                 }
                 .fixedSize()
                 Spacer()
+                HStack{
+                    Button {
+                        withAnimation{
+                            xOffset = -screenWidth * 0.8
+                            menuController.showSettings.toggle()
+                        }
+                    } label: {
+                        Image(systemName: "gear")
+                            .font(.title3)
+                            .foregroundColor(.primary)
+                    }
+                }
+                .padding()
+                .frame(height: 40, alignment: .leading)
             }
             .padding(.horizontal)
-            .alert(isPresented: $menuController.showDeleteAlert){
-                Alert(title: Text("Are you sure you want to delete everything?"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete")){
-                    realmController.deleteAll()
-                })
-            }
+            
         }
         .frame(
               minWidth: 0,

@@ -23,13 +23,16 @@ struct TradesListView: View {
     @State private var selectedTrade: Trade? = nil
     @State private var editTrade: Trade? = nil
     @State private var editSheet: Bool = false
-
+    @StateObject var progressBar: DynamicProgress = .init()
+    @State var sampleProgress: CGFloat = 0
+    
     var calendar = Calendar.current
     var tradesPL: Decimal128 = 0.0
     var myFormatter = MyFormatter()
     var myImages = MyImages()
 
     var body: some View {
+        ZStack{
         NavigationStack{
             List {
                 ForEach(0..<7){ i in
@@ -52,21 +55,23 @@ struct TradesListView: View {
                         }
                         .onDelete(perform: { t in
                             t.forEach{i in
-                                if trades[i].photoDirectory != nil {
-                                    realmController.myImage.deleteImage(fileName: trades[i].photoDirectory!)
-                                }
+                                sampleProgress = 0
                                 realmController.updateAccountAfterTradeDelete(trade: trades[i])
+                                progressBar.deletedTrades.append(trades[i])
                                 $trades.remove(trades[i])
                                 realmController.getWinRate()
+                                
+                            }
+                            if !progressBar.isAdded{
+                                progressBar.undo = false
+                                progressBar.isAdded.toggle()
                             }
                         })
-
-
                     }
                 }
-
+                
             }
-            .fullScreenCover(item: $editTrade){ t in
+            .sheet(item: $editTrade){ t in
                 NewTradeView(realmController: realmController, sheetAction: Binding.constant(nil), isEditing: true, trade: t, tradeID: t._id,
                              symbol: t.symbol!.name, dateEntered: t.dateEntered, entry: t.entry.stringValue, dateExited: t.dateExited, exit: t.exit.stringValue, positionSize: String(t.positionSize), selectedPositionType: t.positionType, selectedSession: t.session, stopLoss: t.stopLoss?.stringValue ?? "", takeProfit: t.takeProfit?.stringValue ?? "", isHindsight: t.isHindsight, fees: t.fees.stringValue, photoDirectory: t.photoDirectory ?? "", selectedImages: myImages.loadImageFromDiskWith(directory: t.photoDirectory ?? "") ?? []
                 )
@@ -77,7 +82,7 @@ struct TradesListView: View {
                         ImageUIView(isPresented: $tappedImageShown, images: getTappedImages(trade: t))
                             .environmentObject(tradeListData)
                             .edgesIgnoringSafeArea(.all)
-
+                        
                     }
                     .navigationBarItems(
                         leading:
@@ -86,12 +91,12 @@ struct TradesListView: View {
                             }, label: {
                                 Text("Cancel")
                                     .foregroundColor(Color(UIColor.label))
-
+                                
                             })
                     )
                     .toolbarBackground(Color(UIColor.secondarySystemBackground), for: .navigationBar)
                 }
-
+                
             }
             .navigationBarTitle("")
             .navigationBarItems(
@@ -146,8 +151,24 @@ struct TradesListView: View {
                     Text(getTradesPL())
                     .foregroundColor(.primary)
             )
-
         }
+            
+            if progressBar.isAdded{
+                DynamicProgressView(config: ProgressConfig(title: "iJustine Image", progressImage: "arrow.clockwise", expandedImage: "clock.badge.checkmark.fill", tint: .green,rotationEnabled: true))
+                        .environmentObject(progressBar)
+                        .environmentObject(realmController)
+            }
+        }
+        .onReceive(Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()) { _ in
+            if progressBar.isAdded{
+                // Converting to 100 then dividing by 100
+                sampleProgress += 0.1
+                progressBar.updateProgressView(to: sampleProgress / 100)
+            }else{
+                sampleProgress = 0
+            }
+        }
+        
     }
 
     func getTradesPL() -> String {
