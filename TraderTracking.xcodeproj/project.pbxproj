@@ -46,6 +46,8 @@
 		F2D8B64028F9C2C300A70149 /* UndoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D8B63F28F9C2C300A70149 /* UndoButton.swift */; };
 		F2D8B64528F9C33100A70149 /* ProgressConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D8B64428F9C33100A70149 /* ProgressConfig.swift */; };
 		F2D8B64728FA12D700A70149 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D8B64628FA12D700A70149 /* Settings.swift */; };
+		F2D8B64828FA1DA000A70149 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FEC2BA28D4E58000AAF81E /* MainTabView.swift */; };
+		F2D8B64A28FA1E0500A70149 /* GestureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D8B64928FA1E0500A70149 /* GestureController.swift */; };
 		F2FB3DB628D9F82100B7757A /* ImageHandeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FB3DB528D9F82100B7757A /* ImageHandeling.swift */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +113,7 @@
 		F2D8B63F28F9C2C300A70149 /* UndoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoButton.swift; sourceTree = "<group>"; };
 		F2D8B64428F9C33100A70149 /* ProgressConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressConfig.swift; sourceTree = "<group>"; };
 		F2D8B64628FA12D700A70149 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		F2D8B64928FA1E0500A70149 /* GestureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureController.swift; sourceTree = "<group>"; };
 		F2FB3DB528D9F82100B7757A /* ImageHandeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHandeling.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -275,6 +278,7 @@
 				9220CBC228D3E83300494F39 /* DataBase.swift */,
 				F2206E0628DA27AB0041B8CB /* TradeListViewModel.swift */,
 				F29EBD3D28E6109300D6229B /* Notifications.swift */,
+				F2D8B64928FA1E0500A70149 /* GestureController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -574,6 +578,7 @@
 				9220CBC728D3E8E400494F39 /* Trade.swift in Sources */,
 				9268E23228D3CA4100D63337 /* TraderTrackingApp.swift in Sources */,
 				F2D8B64728FA12D700A70149 /* Settings.swift in Sources */,
+				F2D8B64A28FA1E0500A70149 /* GestureController.swift in Sources */,
 				F21809EE28DA628A00E4AFD6 /* ImageUIView.swift in Sources */,
 				F29FF89428D97C3100F58F24 /* helper.swift in Sources */,
 			);
@@ -584,6 +589,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9268E24328D3CA4400D63337 /* TraderTrackingTests.swift in Sources */,
+				F2D8B64828FA1DA000A70149 /* MainTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,6 +745,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TraderTracking/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Trader;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Use for saving photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -772,6 +779,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TraderTracking/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Trader;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Use for saving photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

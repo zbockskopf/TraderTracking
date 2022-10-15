@@ -13,9 +13,7 @@ struct SideMenu: View {
 	@EnvironmentObject var menuController: MenuController
  
     var screenWidth = UIScreen.main.bounds.width
-    @Binding var currentXOffset: CGFloat
-    @Binding var xOffset: CGFloat
-    
+
     
     var body: some View {
         ZStack{
@@ -24,7 +22,7 @@ struct SideMenu: View {
                 HStack(alignment: .top) {
                     Button(action: {
                         withAnimation{
-                            xOffset = -screenWidth * 0.8
+//                            xOffset = -screenWidth * 0.8
                             menuController.showProfile.toggle()
                         }
                     }, label: {
@@ -40,8 +38,8 @@ struct SideMenu: View {
                 Divider()
                 VStack(alignment: .listRowSeparatorLeading){
 
-                    ForexCalendarButton(showForexCalendar: $notifications.showForexCalendar, xOffset: $xOffset)
-                    NotificationButton(showNotificationSettings: $menuController.showNotificationSettings, xOffset: $xOffset)
+                    ForexCalendarButton(showForexCalendar: $notifications.showForexCalendar)
+                    NotificationButton(showNotificationSettings: $menuController.showNotificationSettings)
 //					SettingButton(showSettings: $menuController.showSettings)
                     
 
@@ -51,7 +49,7 @@ struct SideMenu: View {
                 HStack{
                     Button {
                         withAnimation{
-                            xOffset = -screenWidth * 0.8
+//                            xOffset = -screenWidth * 0.8
                             menuController.showSettings.toggle()
                         }
                     } label: {
@@ -74,34 +72,34 @@ struct SideMenu: View {
               alignment: .topLeading
         )
         .background(Color(UIColor.systemBackground))
-        .gesture(
-            DragGesture()
-                .onChanged({ value in
-                    if value.startLocation.x < CGFloat(100.0){
-                        if value.translation.width > 0 && xOffset != 0 { // left to right
-                            withAnimation {
-                                xOffset = currentXOffset + value.translation.width
-                            }
-                        } else if value.translation.width < 0 && xOffset != -screenWidth * 0.8 {
-                            withAnimation {
-                                xOffset = currentXOffset + value.translation.width
-                            }
-                        }
-                    }
-                })
-                .onEnded({ value in
-                    if value.translation.width > 0 { // left to right
-                        withAnimation {
-                            xOffset = 0
-                        }
-                    } else {
-                        withAnimation {
-                            xOffset = -screenWidth * 0.8
-                        }
-                    }
-                    currentXOffset = xOffset
-                })
-        )
+//        .gesture(
+//            DragGesture()
+//                .onChanged({ value in
+//                    if value.startLocation.x < CGFloat(100.0){
+//                        if value.translation.width > 0 && xOffset != 0 { // left to right
+//                            withAnimation {
+//                                xOffset = currentXOffset + value.translation.width
+//                            }
+//                        } else if value.translation.width < 0 && xOffset != -screenWidth * 0.8 {
+//                            withAnimation {
+//                                xOffset = currentXOffset + value.translation.width
+//                            }
+//                        }
+//                    }
+//                })
+//                .onEnded({ value in
+//                    if value.translation.width > 0 { // left to right
+//                        withAnimation {
+//                            xOffset = 0
+//                        }
+//                    } else {
+//                        withAnimation {
+//                            xOffset = -screenWidth * 0.8
+//                        }
+//                    }
+//                    currentXOffset = xOffset
+//                })
+//        )
     }
     
 }

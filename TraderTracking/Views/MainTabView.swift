@@ -11,66 +11,48 @@ struct MainTabView: View {
 
     var realmController = RealmController()
 	var menuController = MenuController()
+    var gestureController = GestureController()
+    
     @EnvironmentObject var notifications: Notifications
 	
     @StateObject var tradeListData = TradeListViewModel()
     @State private var selection = 0
-
+    @State var showMenu: Bool = false
+    @State var offSet: CGFloat = 0
+    @State var lastStoredOffset: CGFloat = 0
+    @State var showListView: Bool = false
     var screenWidth = UIScreen.main.bounds.width
-    @State var xOffset: CGFloat = 0
-    @State var currentXOffset: CGFloat = 0
-    @Environment(\.colorScheme) var scheme 
+    @Environment(\.colorScheme) var scheme
+    @GestureState var gestureOffset: CGFloat = 0
 
     var body: some View {
-        GeometryReader { reader in
-                                
+        let sideBarWidth = getRect().width - 90
+        ZStack{
             HStack(spacing: 0){
                 
-                SideMenu(currentXOffset: $currentXOffset, xOffset: $xOffset)
-                    .frame(width: screenWidth * 0.8)
+                SideMenu()
+                    .frame(maxWidth: .infinity,alignment: .leading)
+                            // Max Width...
+                            .frame(width: getRect().width - 90)
+                            .frame(maxHeight: .infinity)
                     .environmentObject(realmController)
                     .environmentObject(notifications)
-					.environmentObject(menuController)
-
+                    .environmentObject(menuController)
+                    .frame(maxWidth: .infinity,alignment: .leading)
+                
                 ZStack{
                     TabView(selection: $selection) {
-                        ContentView(currentXOffset: $currentXOffset, xOffset: $xOffset)
+                        ContentView(showMenu: $showMenu, offSet: $offSet)
                             .tabItem {
                                 selection == 0 ? Image("Tracker-Active") : Image("Tracker-Inactive")
                                 Text("")
                             }
                             .environmentObject(realmController)
                             .environmentObject(notifications)
-							.environmentObject(menuController)
+                            .environmentObject(menuController)
                             .tag(0)
-//                            .gesture( !menuController.showNotificationSettings ?
-//                                    DragGesture()
-//                                        .onChanged({ value in
-//                                            if value.startLocation.x < CGFloat(100.0){
-//                                                if value.translation.width > 0 && xOffset != 0 { // left to right
-//                                                    withAnimation {
-//                                                        xOffset = currentXOffset + value.translation.width
-//                                                    }
-//                                                } else if value.translation.width < 0 && xOffset != -screenWidth * 0.8 {
-//                                                    withAnimation {
-//                                                        xOffset = currentXOffset + value.translation.width
-//                                                    }
-//                                                }
-//                                            }
-//                                        })
-//                                        .onEnded({ value in
-//                                            if value.translation.width > 0 { // left to right
-//                                                withAnimation {
-//                                                    xOffset = 0
-//                                                }
-//                                            } else {
-//                                                withAnimation {
-//                                                    xOffset = -screenWidth * 0.8
-//                                                }
-//                                            }
-//                                            currentXOffset = xOffset
-//                                        }) : nil
-//                                )
+                            
+                        
                         TradesListView()
                             .tabItem {
                                 selection == 1 ? Image("List-Active") : Image("List-Inactive")
@@ -80,15 +62,101 @@ struct MainTabView: View {
                             .environmentObject(tradeListData)
                             .tag(1)
                     }
-                    .frame(width: screenWidth)                                                                                 
+                    .frame(width: getRect() .width)
+                    .onChange(of: selection) { val in
+                        if val == 1{
+                            showListView = true
+                        }else{
+                            showListView = false
+                        }
+                    }
+                }
+            }
+            .frame(width: getRect().width + sideBarWidth)
+            .offset(x: -sideBarWidth / 2)
+            .offset(x: offSet > 0 ? offSet : 0)
+            .gesture( !showListView ?
+
+                    DragGesture()
+                        .updating($gestureOffset, body: { value, out, _ in
+                            out = value.translation.width
+                        })
+                        .onEnded(onEnd(value:))
+                      : nil
+            )
+        }
+        .animation(.easeOut, value: offSet == 0)
+        .onChange(of: showMenu) { newValue in
+            
+            // Preview issues...
+            
+            if showMenu && offSet == 0{
+                offSet = sideBarWidth
+                lastStoredOffset = offSet
+            }
+            
+            if !showMenu && offSet == sideBarWidth{
+                offSet = 0
+                lastStoredOffset = 0
+            }
+        }
+        .onChange(of: gestureOffset) { newValue in
+            onChange()
+        }
+
+    }
+    
+    func onChange(){
+        let sideBarWidth = getRect().width - 90
+        offSet = (gestureOffset != 0) ? ((gestureOffset + lastStoredOffset) < sideBarWidth ? (gestureOffset + lastStoredOffset) : offSet) : offSet
+        
+        offSet = (gestureOffset + lastStoredOffset) > 0 ? offSet : 0
+    }
+    
+    func onEnd(value: DragGesture.Value){
+        let sideBarWidth = getRect().width - 90
+        
+        let translation = value.translation.width
+        
+        withAnimation{
+            // Checking...
+            if translation > 0{
+                
+                if translation > (sideBarWidth / 2){
+                    // showing menu...
+                    offSet = sideBarWidth
+                    showMenu = true
+                }
+                else{
+                    
+                    // Extra cases...
+                    if offSet == sideBarWidth || showMenu{
+                        return
+                    }
+                    offSet = 0
+                    showMenu = false
+                }
+            }
+            else{
+                
+                if -translation > (sideBarWidth / 2){
+                    offSet = 0
+                    showMenu = false
+                }
+                else{
+                    
+                    if offSet == 0 || !showMenu{
+                        return
+                    }
+                    
+                    offSet = sideBarWidth
+                    showMenu = true
                 }
             }
         }
-        .onAppear {
-               xOffset = -screenWidth * 0.8 // hides the menu
-               currentXOffset = xOffset
-           }
-        .offset(x: xOffset)
+        
+        // storing last offset...
+        lastStoredOffset = offSet
     }
 }
 

@@ -22,12 +22,11 @@ struct ContentView: View {
     @State private var confettiCounter: Int = 0
     @State private var showNewTrade = false
     @State private var sheetAction: SheetAction? = SheetAction.nothing
-
+    @Binding var showMenu: Bool
+    @Binding var offSet: CGFloat
 
     var screenWidth = UIScreen.main.bounds.width
     	
-    @Binding var currentXOffset: CGFloat
-    @Binding var xOffset: CGFloat
     @Environment(\.colorScheme) var scheme
 
     var body: some View {
@@ -90,12 +89,12 @@ struct ContentView: View {
                     .padding()
                 }
                 (scheme == .light ? Color.black : Color.white).opacity(0.3)
-                    .opacity(xOffset == 0 ? 0.7 : 0)
+                    .opacity(offSet > 0 ? 0.5 : 0)
                     .ignoresSafeArea()
-                    .allowsHitTesting(xOffset == 0 ? true : false)
+                    .allowsHitTesting(offSet > 0 ? true : false)
                     .onTapGesture {
                         withAnimation {
-                            xOffset = -screenWidth * 0.8
+                            showMenu.toggle()
                         }
                     }
                 //                NavigationLink(value: "showNotificationSettings") {
@@ -125,10 +124,10 @@ struct ContentView: View {
                 leading:
                     Button(action: {
                         withAnimation{
-                            xOffset = 0
+                            showMenu.toggle()
                         }
                     }, label: {
-                        if xOffset == -screenWidth * 0.8 {
+                        if !showMenu{
                             Image("Profile")
                                 .resizable()
                                 .scaledToFit()
