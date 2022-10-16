@@ -80,6 +80,7 @@ struct MainTabView: View {
                     DragGesture()
                         .updating($gestureOffset, body: { value, out, _ in
                             out = value.translation.width
+                            print(offSet)
                         })
                         .onEnded(onEnd(value:))
                       : nil

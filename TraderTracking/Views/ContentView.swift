@@ -89,7 +89,7 @@ struct ContentView: View {
                     .padding()
                 }
                 (scheme == .light ? Color.black : Color.white).opacity(0.3)
-                    .opacity(offSet > 0 ? 0.5 : 0)
+                    .opacity(offSet > 0 ? ((offSet+90)/screenWidth) : 0)
                     .ignoresSafeArea()
                     .allowsHitTesting(offSet > 0 ? true : false)
                     .onTapGesture {
@@ -127,13 +127,16 @@ struct ContentView: View {
                             showMenu.toggle()
                         }
                     }, label: {
-                        if !showMenu{
-                            Image("Profile")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 40, height: 40)
-                                .clipShape(Circle())
-                        }
+//                        withAnimation(.fade,{
+                            if offSet + 90 > 0{
+                                Image("Profile")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 40, height: 40)
+                                    .clipShape(Circle())
+                            }
+//                        })
+                        
                     })
                 , trailing:
                     Button {

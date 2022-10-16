@@ -44,6 +44,7 @@ struct TradesListView: View {
                                         selectedTrade = t
                                     }
                                 }
+                            
                                 .swipeActions(edge: .leading, content: {
                                     Button {
                                         editTrade = t
@@ -52,21 +53,28 @@ struct TradesListView: View {
                                     }
                                     .tint(.green)
                                 })
-                        }
-                        .onDelete(perform: { t in
-                            t.forEach{i in
-                                sampleProgress = 0
-                                realmController.updateAccountAfterTradeDelete(trade: trades[i])
-                                progressBar.deletedTrades.append(trades[i])
-                                $trades.remove(trades[i])
-                                realmController.getWinRate()
+                                .swipeActions(edge: .trailing) {
+                                    Button{
+                                        sampleProgress = 0
+                                        realmController.updateAccountAfterTradeDelete(trade: t)
+                                        progressBar.deletedTrades.append(t)
+                                        withAnimation{
+                                            $trades.remove(t)
+                                        }
+                                        realmController.getWinRate()
+                                        if !progressBar.isAdded{
+                                            progressBar.undo = false
+                                            progressBar.isAdded.toggle()
+                                        }
+                                    } label: {
+                                        Text("Delete")
+                                            .foregroundColor(.white)
+                                    }
+                                    .tint(.red)
+                                }
                                 
-                            }
-                            if !progressBar.isAdded{
-                                progressBar.undo = false
-                                progressBar.isAdded.toggle()
-                            }
-                        })
+                        }
+                        
                     }
                 }
                 
