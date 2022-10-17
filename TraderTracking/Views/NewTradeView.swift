@@ -48,7 +48,7 @@ struct NewTradeView: View {
                             Text("Hindsight")
                         })
                         Picker("Symbol", selection: $symbol) {
-                            ForEach(realmController.symbols){ sy in
+                            ForEach(symbols){ sy in
                                 Text(sy.name)
                                     .tag(sy.name)
                             }
@@ -88,9 +88,9 @@ struct NewTradeView: View {
                         TextField("Size", text: $positionSize)
                             .padding()
                             .keyboardType(.decimalPad)
-                        TextField("Fees", text: $fees)
-                            .padding()
-                            .keyboardType(.decimalPad)
+//                        TextField("Fees", text: $fees)
+//                            .padding()
+//                            .keyboardType(.decimalPad)
                     }
                     Section{
                         PhotosPicker(
@@ -130,9 +130,9 @@ struct NewTradeView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 100, height: 100)
-                                    
+
                             }
-                            
+
                             .alert(isPresented: $showPhotoDeleteAlert, content: {
                                 Alert(title: Text("Do you want to delete all photos?"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete")){
                                     realmController.myImage.deleteImage(fileName: photoDirectory)
@@ -140,7 +140,7 @@ struct NewTradeView: View {
                                     photoDirectory = ""
                                 })
                             })
-                            
+
                                 .overlay(
                                     ZStack{
                                         Color.black

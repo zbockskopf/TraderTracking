@@ -15,8 +15,12 @@ class RealmController: NSObject, ObservableObject {
     @Published var winRate: String = ""
     @Published var numWins: String = ""
     @Published var numLosses: String = ""
-    @Published var trades: [Trade] = []
-    @Published var symbols: [Symbol] = []
+    @ObservedResults(Trade.self, filter: NSPredicate(format: "win = true AND isHindsight = false")) var wins
+    @ObservedResults(Trade.self, filter: NSPredicate(format: "loss = true AND isHindsight = false")) var losses
+    @ObservedResults(Trade.self, filter: NSPredicate(format: "dateEntered BETWEEN {%@, %@}", Calendar.current.date(byAdding: .day, value: -7, to: Date())! as CVarArg, Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: Date())! as CVarArg), sortDescriptor: SortDescriptor(keyPath: "dateEntered", ascending: false)) var trades
+    @ObservedResults(Account.self) var accounts
+//    @Published var trades: [Trade] = []
+//    @Published var symbols: [Symbol] = []
     var realm: Realm!
     var myImage: MyImages!
     
@@ -31,8 +35,6 @@ class RealmController: NSObject, ObservableObject {
 
         
         getWinRate()
-        trades = self.getTrades()
-        symbols = self.getSymbols()
         print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last)
     }
 

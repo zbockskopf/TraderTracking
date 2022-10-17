@@ -14,8 +14,9 @@ struct TradesListView: View {
 
     @EnvironmentObject var realmController: RealmController
     @EnvironmentObject var tradeListData: TradeListViewModel
-    @ObservedResults(Trade.self, filter: NSPredicate(format: "dateEntered BETWEEN {%@, %@}", Calendar.current.date(byAdding: .day, value: -7, to: Date())! as CVarArg, Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: Date())! as CVarArg), sortDescriptor: SortDescriptor(keyPath: "dateEntered", ascending: false)) var trades
-    @ObservedResults(Account.self) var accounts
+
+//    @State var trades: [Trade] = []
+//    @State var account: [Account] = []
     @State var imageIsShown: Bool = false
     @State var tappedImageShown: Bool = false
 
@@ -37,47 +38,46 @@ struct TradesListView: View {
             List {
                 ForEach(0..<7){ i in
                     Section(header: headerDate(i: i)) {
-                        ForEach(trades.filter("dateEntered BETWEEN {%@, %@}", dateChanger(date: Date(), i:i, isPrevDay: false), dateChanger(date: Date(), i:i, isPrevDay: true))){ t in
-                            TradeRow(trade: t, selectedTrade: $selectedTrade, imageIsShown: $imageIsShown)
-                                .onTapGesture {
-                                    if t.photoDirectory != nil {
-                                        selectedTrade = t
-                                    }
-                                }
-                            
-                                .swipeActions(edge: .leading, content: {
-                                    Button {
-                                        editTrade = t
-                                    } label: {
-                                        Label("", systemImage: "pencil")
-                                    }
-                                    .tint(.green)
-                                })
-                                .swipeActions(edge: .trailing) {
-                                    Button{
-                                        sampleProgress = 0
-                                        realmController.updateAccountAfterTradeDelete(trade: t)
-                                        progressBar.deletedTrades.append(t)
-                                        withAnimation{
-                                            $trades.remove(t)
-                                        }
-                                        realmController.getWinRate()
-                                        if !progressBar.isAdded{
-                                            progressBar.undo = false
-                                            progressBar.isAdded.toggle()
-                                        }
-                                    } label: {
-                                        Text("Delete")
-                                            .foregroundColor(.white)
-                                    }
-                                    .tint(.red)
-                                }
-                                
-                        }
-                        
+//                        ForEach(realmController.trades.filter("dateEntered BETWEEN {%@, %@}", dateChanger(date: Date(), i:i, isPrevDay: false), dateChanger(date: Date(), i:i, isPrevDay: true))){ t in
+//                            TradeRow(trade: t, selectedTrade: $selectedTrade, imageIsShown: $imageIsShown)
+//                                .onTapGesture {
+//                                    if t.photoDirectory != nil {
+//                                        selectedTrade = t
+//                                    }
+//                                }
+//                                .swipeActions(edge: .leading, content: {
+//                                    Button {
+//                                        editTrade = t
+//                                    } label: {
+//                                        Label("", systemImage: "pencil")
+//                                    }
+//                                    .tint(.green)
+//                                })
+//                                .swipeActions(edge: .trailing) {
+//                                    Button{
+//                                        sampleProgress = 0
+//                                        realmController.updateAccountAfterTradeDelete(trade: t)
+//                                        progressBar.deletedTrades.append(t)
+//                                        withAnimation{
+//                                            realmController.$trades.remove(t)
+//                                        }
+//                                        realmController.getWinRate()
+//                                        if !progressBar.isAdded{
+//                                            progressBar.undo = false
+//                                            progressBar.isAdded.toggle()
+//                                        }
+//                                    } label: {
+//                                        Text("Delete")
+//                                            .foregroundColor(.white)
+//                                    }
+//                                    .tint(.red)
+//                                }
+//
+//                        }
+
                     }
                 }
-                
+
             }
             .sheet(item: $editTrade){ t in
                 NewTradeView(realmController: realmController, sheetAction: Binding.constant(nil), isEditing: true, trade: t, tradeID: t._id,
@@ -90,7 +90,7 @@ struct TradesListView: View {
                         ImageUIView(isPresented: $tappedImageShown, images: getTappedImages(trade: t))
                             .environmentObject(tradeListData)
                             .edgesIgnoringSafeArea(.all)
-                        
+
                     }
                     .navigationBarItems(
                         leading:
@@ -99,12 +99,12 @@ struct TradesListView: View {
                             }, label: {
                                 Text("Cancel")
                                     .foregroundColor(Color(UIColor.label))
-                                
+
                             })
                     )
                     .toolbarBackground(Color(UIColor.secondarySystemBackground), for: .navigationBar)
                 }
-                
+
             }
             .navigationBarTitle("")
             .navigationBarItems(
@@ -156,7 +156,7 @@ struct TradesListView: View {
 //                    }),
 //                    .foregroundColor(Color.black)
                 trailing:
-                    Text(getTradesPL())
+                    Text("")//getTradesPL())
                     .foregroundColor(.primary)
             )
         }
@@ -181,7 +181,7 @@ struct TradesListView: View {
 
     func getTradesPL() -> String {
         var temp: Decimal128 = 0.0
-        for i in trades {
+        for i in realmController.trades {
             temp += i.p_l
             temp -= i.fees
         }
@@ -194,9 +194,9 @@ struct TradesListView: View {
         var temp: Results<Trade>
 
         if all {
-            temp = trades.filter("dateEntered BETWEEN {%@, %@}",Calendar.current.date(byAdding: .day, value: -7, to: Date())!, Date())
+            temp = realmController.trades.filter("dateEntered BETWEEN {%@, %@}",Calendar.current.date(byAdding: .day, value: -7, to: Date())!, Date())
         }else{
-            temp = trades.filter("dateEntered BETWEEN {%@, %@}",calendar.startOfDay(for: trade!.dateEntered), calendar.date(bySettingHour: 23, minute: 59, second: 59, of: trade!.dateEntered)!)
+            temp = realmController.trades.filter("dateEntered BETWEEN {%@, %@}",calendar.startOfDay(for: trade!.dateEntered), calendar.date(bySettingHour: 23, minute: 59, second: 59, of: trade!.dateEntered)!)
         }
 
         var images: [IFImage] = []
@@ -225,14 +225,14 @@ struct TradesListView: View {
         return images
     }
 
-		@ViewBuilder
-		func headerDate(i: Int) -> some View {
-				if i == 0 {
-						Text("Today")
-				}else{
-					Text(calendar.date(byAdding: .day, value: -i, to: Date())!, style: .date)
-				}
-		}
+    @ViewBuilder
+    func headerDate(i: Int) -> some View {
+            if i == 0 {
+                Text("Today")
+            }else{
+                Text(calendar.date(byAdding: .day, value: -i, to: Date())!, style: .date)
+            }
+    }
 
     func dateChanger(date: Date, i: Int, isPrevDay: Bool) -> Date {
         let calendar = Calendar.current

@@ -15,9 +15,7 @@ struct ContentView: View {
     @EnvironmentObject var realmController: RealmController
     @EnvironmentObject var notifications: Notifications
     @EnvironmentObject var menuController: MenuController
-    @ObservedResults(Trade.self, filter: NSPredicate(format: "win = true AND isHindsight = false")) var wins
-    @ObservedResults(Trade.self, filter: NSPredicate(format: "loss = true AND isHindsight = false")) var losses
-    @ObservedResults(Symbol.self) var symbols
+
 
     @State private var confettiCounter: Int = 0
     @State private var showNewTrade = false
@@ -43,7 +41,7 @@ struct ContentView: View {
                         
                         VStack{
                             Text("Wins")
-                            Text(String(wins.count))
+                            Text(String(realmController.wins.count))
                         }
                         .foregroundColor(Color(UIColor.label))
                         
@@ -51,7 +49,7 @@ struct ContentView: View {
                         
                         VStack{
                             Text("Losses")
-                            Text(String(losses.count))
+                            Text(String(realmController.losses.count))
                         }
                         .foregroundColor(Color(UIColor.label))
                         
