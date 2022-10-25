@@ -8,6 +8,7 @@
 import SwiftUI
 import PhotosUI
 import RealmSwift
+import MarkdownView
 
 struct NewTradeView: View {
 
@@ -31,11 +32,12 @@ struct NewTradeView: View {
     @State var stopLoss: String = ""
     @State var takeProfit: String = ""
     @State var isHindsight = false
-    @State var fees: String = ""
+    @State var fees: String = "5.14"
     @State var photoDirectory: String = ""
     @State var selectedItems: [PhotosPickerItem] = []
     @State var selectedImages: [UIImage] = []
     @State private var openFile: Bool = false
+    @State var notes: String = ""
     
     @State private var showPhotoDeleteAlert: Bool = false
     
@@ -91,6 +93,10 @@ struct NewTradeView: View {
                         TextField("Fees", text: $fees)
                             .padding()
                             .keyboardType(.decimalPad)
+                    }
+                    Section(header: Text("Notes")){
+                        TextEditor(text: $notes)
+                            .frame(height: 200)
                     }
                     Section{
                         PhotosPicker(
@@ -153,6 +159,8 @@ struct NewTradeView: View {
                             )
                         }
                     }
+                   
+                    
                 }
                 .fileImporter(isPresented: $openFile, allowedContentTypes: [.image], allowsMultipleSelection: true, onCompletion: importImage)
                 .navigationBarTitle(isEditing ? "Edit Trade" : "New Trade")
@@ -186,6 +194,15 @@ struct NewTradeView: View {
         }
         .background(.white)
         .frame(minWidth: UIScreen.main.bounds.width, minHeight: UIScreen.main.bounds.height)
+    }
+    func getAttributedString(_ markdown: String) -> AttributedString {
+        do {
+            let attributedString = try AttributedString(markdown: markdown, options: AttributedString.MarkdownParsingOptions(interpretedSyntax: .inlineOnlyPreservingWhitespace))
+            return attributedString
+        } catch {
+            print("Couldn't parse: \(error)")
+        }
+        return AttributedString("Error parsing markdown")
     }
 
    func importImage(_ res: Result<[URL], Error>) {
@@ -231,7 +248,7 @@ struct NewTradeView: View {
         temp.isHindsight = isHindsight
         temp.fees = formatDecimal(str: fees)
         temp.p_l = getProfitLoss(entry: temp.entry, exit: temp.exit, positionType: temp.positionType, tickValue: temp.symbol!.tickValue, positionSize: temp.positionSize)
-
+        temp.notes = notes
         if selectedPositionType == .long {
           if (Double(exit)! - Double(entry)!).sign == .minus {
               sheetAction = .loss

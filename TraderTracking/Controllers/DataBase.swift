@@ -31,6 +31,18 @@ class RealmController: NSObject, ObservableObject {
     
     override init() {
         super.init()
+        let config = Realm.Configuration(schemaVersion: 2,
+                                                 migrationBlock: { migration, oldSchemaVersion in
+
+                                                    if (oldSchemaVersion <= 1){
+                                                        migration.enumerateObjects(ofType: Trade.className()) { (old, new) in
+                                                            new!["notes"] = nil
+                                                        }
+                                                    }
+                                                    
+                                                 })
+                
+                Realm.Configuration.defaultConfiguration = config
 
         realm = try! Realm()
         myImage = try! MyImages()

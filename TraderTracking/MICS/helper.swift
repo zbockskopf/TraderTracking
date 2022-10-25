@@ -19,6 +19,35 @@ struct MyFormatter {
         
         return numberFormatter.string(from: NSNumber(value: Double(num.stringValue)!))!
     }
+    
+    @ViewBuilder
+    func titleDate(date: Date) -> some View {
+        if Calendar.current.startOfDay(for: date) == Calendar.current.startOfDay(for: Date()) {
+            Text("Today")
+                .font(.title)
+        }else{
+            HStack{
+                Text(date, style: .date)
+                    .font(.title)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func headerDate(i: Int) -> some View {
+        if i == 0 {
+            Text("Today")
+        }else{
+            HStack{
+                Text(Calendar.current.date(byAdding: .day, value: -i, to: Date())!, style: .date)
+                Spacer()
+                //
+                //                    Image(systemName: "photo")
+                //                        .fixedSize()
+            }
+            
+        }
+    }
 }
 
 extension Color {

@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "cocoalumberjack",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CocoaLumberjack/CocoaLumberjack.git",
+      "state" : {
+        "revision" : "80ada1f753b0d53d9b57c465936a7c4169375002",
+        "version" : "3.7.4"
+      }
+    },
+    {
       "identity" : "confettiswiftui",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/simibac/ConfettiSwiftUI.git",
@@ -10,12 +19,29 @@
       }
     },
     {
+      "identity" : "highlightr",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/raspu/Highlightr.git",
+      "state" : {
+        "revision" : "93199b9e434f04bda956a613af8f571933f9f037",
+        "version" : "2.1.2"
+      }
+    },
+    {
       "identity" : "imageui",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/alberto093/ImageUI.git",
       "state" : {
         "branch" : "develop",
         "revision" : "ebaef3d67002a8d5de792ef7f3591ec3f163b4b8"
+      }
+    },
+    {
+      "identity" : "markdownview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LiYanan2004/MarkdownView.git",
+      "state" : {
+        "revision" : "69cc2046df3b588df1e07366b698322663bffec5"
       }
     },
     {
@@ -43,6 +69,42 @@
       "state" : {
         "revision" : "28c488974f544c9affc4eacdd5b9dfc6785ebbc0",
         "version" : "10.29.0"
+      }
+    },
+    {
+      "identity" : "svgkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SVGKit/SVGKit.git",
+      "state" : {
+        "branch" : "3.0.0",
+        "revision" : "58152b9f7c85eab239160b36ffdfd364aa43d666"
+      }
+    },
+    {
+      "identity" : "swift-cmark",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-cmark.git",
+      "state" : {
+        "branch" : "gfm",
+        "revision" : "bfdc057b5a02fc65af20771a7ba08f9c944eb117"
+      }
+    },
+    {
+      "identity" : "swift-log",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-log.git",
+      "state" : {
+        "revision" : "6fe203dc33195667ce1759bf0182975e4653ba1c",
+        "version" : "1.4.4"
+      }
+    },
+    {
+      "identity" : "swift-markdown",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-markdown.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "d491147940587dbadfb3472354f4d0c6e063e061"
       }
     },
     {

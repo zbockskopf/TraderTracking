@@ -60,6 +60,7 @@ struct MainTabView: View {
                             }
                             .environmentObject(realmController)
                             .environmentObject(tradeListData)
+                            .environmentObject(menuController)
                             .tag(1)
                     }
                     .frame(width: getRect() .width)
