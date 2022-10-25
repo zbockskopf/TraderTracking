@@ -22,16 +22,16 @@ struct NewTradeView: View {
     @State var tradeID: ObjectId? = nil
     @State var symbol: String = "MES"
     @State var dateEntered: Date = Date()
-    @State var entry: String = "1"
+    @State var entry: String = ""
     @State var dateExited: Date = Date()
-    @State var exit: String = "2"
-    @State var positionSize: String = "1"
+    @State var exit: String = ""
+    @State var positionSize: String = ""
     @State var selectedPositionType: PositionType = .long
     @State var selectedSession: Session = .ny
     @State var stopLoss: String = ""
     @State var takeProfit: String = ""
     @State var isHindsight = false
-    @State var fees: String = "1"
+    @State var fees: String = ""
     @State var photoDirectory: String = ""
     @State var selectedItems: [PhotosPickerItem] = []
     @State var selectedImages: [UIImage] = []
@@ -88,9 +88,9 @@ struct NewTradeView: View {
                         TextField("Size", text: $positionSize)
                             .padding()
                             .keyboardType(.decimalPad)
-//                        TextField("Fees", text: $fees)
-//                            .padding()
-//                            .keyboardType(.decimalPad)
+                        TextField("Fees", text: $fees)
+                            .padding()
+                            .keyboardType(.decimalPad)
                     }
                     Section{
                         PhotosPicker(

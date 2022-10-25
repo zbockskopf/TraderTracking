@@ -15,6 +15,7 @@ struct TradesListView: View {
     @EnvironmentObject var realmController: RealmController
     @EnvironmentObject var tradeListData: TradeListViewModel
 
+
 //    @State var trades: [Trade] = []
 //    @State var account: [Account] = []
     @State var imageIsShown: Bool = false
@@ -38,42 +39,42 @@ struct TradesListView: View {
             List {
                 ForEach(0..<7){ i in
                     Section(header: headerDate(i: i)) {
-//                        ForEach(realmController.trades.filter("dateEntered BETWEEN {%@, %@}", dateChanger(date: Date(), i:i, isPrevDay: false), dateChanger(date: Date(), i:i, isPrevDay: true))){ t in
-//                            TradeRow(trade: t, selectedTrade: $selectedTrade, imageIsShown: $imageIsShown)
-//                                .onTapGesture {
-//                                    if t.photoDirectory != nil {
-//                                        selectedTrade = t
-//                                    }
-//                                }
-//                                .swipeActions(edge: .leading, content: {
-//                                    Button {
-//                                        editTrade = t
-//                                    } label: {
-//                                        Label("", systemImage: "pencil")
-//                                    }
-//                                    .tint(.green)
-//                                })
-//                                .swipeActions(edge: .trailing) {
-//                                    Button{
-//                                        sampleProgress = 0
-//                                        realmController.updateAccountAfterTradeDelete(trade: t)
-//                                        progressBar.deletedTrades.append(t)
-//                                        withAnimation{
-//                                            realmController.$trades.remove(t)
-//                                        }
-//                                        realmController.getWinRate()
-//                                        if !progressBar.isAdded{
-//                                            progressBar.undo = false
-//                                            progressBar.isAdded.toggle()
-//                                        }
-//                                    } label: {
-//                                        Text("Delete")
-//                                            .foregroundColor(.white)
-//                                    }
-//                                    .tint(.red)
-//                                }
-//
-//                        }
+                        ForEach(realmController.trades.filter("dateEntered BETWEEN {%@, %@}", dateChanger(date: Date(), i:i, isPrevDay: false), dateChanger(date: Date(), i:i, isPrevDay: true))){ t in
+                            TradeRow(trade: t, selectedTrade: $selectedTrade, imageIsShown: $imageIsShown)
+                                .onTapGesture {
+                                    if t.photoDirectory != nil {
+                                        selectedTrade = t
+                                    }
+                                }
+                                .swipeActions(edge: .leading, content: {
+                                    Button {
+                                        editTrade = t
+                                    } label: {
+                                        Label("", systemImage: "pencil")
+                                    }
+                                    .tint(.green)
+                                })
+                                .swipeActions(edge: .trailing) {
+                                    Button{
+                                        sampleProgress = 0
+                                        realmController.updateAccountAfterTradeDelete(trade: t)
+                                        progressBar.deletedTrades.append(t)
+                                        withAnimation{
+                                            realmController.$trades.remove(t)
+                                        }
+                                        realmController.getWinRate()
+                                        if !progressBar.isAdded{
+                                            progressBar.undo = false
+                                            progressBar.isAdded.toggle()
+                                        }
+                                    } label: {
+                                        Text("Delete")
+                                            .foregroundColor(.white)
+                                    }
+                                    .tint(.red)
+                                }
+
+                        }
 
                     }
                 }
@@ -86,23 +87,23 @@ struct TradesListView: View {
             }
             .fullScreenCover(item: $selectedTrade) { t in
                 NavigationView{
-                    ZStack{
+//                    ZStack{
                         ImageUIView(isPresented: $tappedImageShown, images: getTappedImages(trade: t))
                             .environmentObject(tradeListData)
                             .edgesIgnoringSafeArea(.all)
 
-                    }
+//                    }
                     .navigationBarItems(
                         leading:
                             Button(action: {
                                 selectedTrade = nil
                             }, label: {
                                 Text("Cancel")
-                                    .foregroundColor(Color(UIColor.label))
+                                    .foregroundColor(.primary)
 
                             })
                     )
-                    .toolbarBackground(Color(UIColor.secondarySystemBackground), for: .navigationBar)
+                    .toolbarBackground(Color(UIColor.green), for: .navigationBar)
                 }
 
             }
@@ -156,7 +157,7 @@ struct TradesListView: View {
 //                    }),
 //                    .foregroundColor(Color.black)
                 trailing:
-                    Text("")//getTradesPL())
+                    Text(realmController.pAndL)
                     .foregroundColor(.primary)
             )
         }
@@ -177,15 +178,6 @@ struct TradesListView: View {
             }
         }
         
-    }
-
-    func getTradesPL() -> String {
-        var temp: Decimal128 = 0.0
-        for i in realmController.trades {
-            temp += i.p_l
-            temp -= i.fees
-        }
-        return myFormatter.numFormat(num: temp)
     }
 
 
@@ -230,7 +222,14 @@ struct TradesListView: View {
             if i == 0 {
                 Text("Today")
             }else{
-                Text(calendar.date(byAdding: .day, value: -i, to: Date())!, style: .date)
+                HStack{
+                    Text(calendar.date(byAdding: .day, value: -i, to: Date())!, style: .date)
+                        Spacer()
+//                        
+//                    Image(systemName: "photo")
+//                        .fixedSize()
+                }
+                
             }
     }
 

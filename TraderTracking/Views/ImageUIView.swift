@@ -10,38 +10,43 @@ import ImageUI
 import RealmSwift
 
 struct ImageUIView: UIViewControllerRepresentable {
-    
+
+
     @Binding var isPresented: Bool
     
-    typealias UIViewControllerType = IFBrowserViewController
+    typealias UIViewControllerType = UINavigationController
     var images: [IFImage]
     
     
-    func makeUIViewController(context: Context) -> ImageUI.IFBrowserViewController {
+    func makeUIViewController(context: Context) -> UINavigationController { //ImageUI.IFBrowserViewController {
         
         let vc = IFBrowserViewController(images: images)
 //        AppUtility.lockOrientation(.landscape)
         vc.configuration.actions = [.delete, .share]
         vc.configuration.prefersAspectFillZoom = true
-        
-//        browserViewController.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(temp))
+        let nc = UINavigationController(rootViewController: vc)
+//        nc.navigationBar.backgroundColor = .label
 
-        return vc
+//        nc.pushViewController(vc, animated: true)
+//        navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+//        nc.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(temp))
+
+        return nc
     }
     
 
-    func updateUIViewController(_ uiViewController: ImageUI.IFBrowserViewController, context: Context) {
+    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
 
         if isPresented && uiViewController.presentedViewController == nil {
             
                     
-            let vc = IFBrowserViewController(images: images)
-        
-            vc.configuration.actions = [.delete, .share]
-            vc.delegate = context.coordinator as any IFBrowserViewControllerDelegate
-            let nc = UINavigationController(rootViewController: vc)
-            nc.pushViewController(vc, animated: true)
-            vc.presentationController?.delegate = context.coordinator
+//            let vc = IFBrowserViewController(images: images)
+//
+//            vc.configuration.actions = [.delete, .share]
+//            vc.delegate = context.coordinator as any UINavigationControllerDelegate
+//            let nc = UINavigationController(rootViewController: vc)
+            uiViewController.delegate = context.coordinator as any UINavigationControllerDelegate
+            uiViewController.presentationController?.delegate = context.coordinator
             }
     }
     
@@ -50,22 +55,22 @@ struct ImageUIView: UIViewControllerRepresentable {
     }
     
     
-    class Coordinator: NSObject, IFBrowserViewControllerDelegate, UIAdaptivePresentationControllerDelegate {
+    class Coordinator: NSObject, UINavigationControllerDelegate, UIAdaptivePresentationControllerDelegate {
         let owner: ImageUIView
         init(_ owner: ImageUIView) {
             self.owner = owner
         }
 
-        func imageUI(_ vc: IFBrowserViewController) {
+        func imageUI(_ vc: UINavigationController) {
 
             // picked image handling code here
-            AppUtility.lockOrientation(.all)
+//            AppUtility.lockOrientation(.all)
             vc.presentingViewController?.dismiss(animated: true)
             owner.isPresented = false    // << reset on action !!
         }
         
         func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-            AppUtility.lockOrientation(.all)
+//            AppUtility.lockOrientation(.all)
             owner.isPresented = false    // << reset on swipe !!
         }
     }

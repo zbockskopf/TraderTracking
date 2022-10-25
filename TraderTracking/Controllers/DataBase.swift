@@ -15,9 +15,10 @@ class RealmController: NSObject, ObservableObject {
     @Published var winRate: String = ""
     @Published var numWins: String = ""
     @Published var numLosses: String = ""
+    @Published var pAndL: String = ""
     @ObservedResults(Trade.self, filter: NSPredicate(format: "win = true AND isHindsight = false")) var wins
     @ObservedResults(Trade.self, filter: NSPredicate(format: "loss = true AND isHindsight = false")) var losses
-    @ObservedResults(Trade.self, filter: NSPredicate(format: "dateEntered BETWEEN {%@, %@}", Calendar.current.date(byAdding: .day, value: -7, to: Date())! as CVarArg, Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: Date())! as CVarArg), sortDescriptor: SortDescriptor(keyPath: "dateEntered", ascending: false)) var trades
+    @ObservedResults(Trade.self, filter: NSPredicate(format: "dateEntered BETWEEN {%@, %@}", Calendar.current.date(byAdding: .day, value: -6, to: Date())! as CVarArg, Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: Date())! as CVarArg), sortDescriptor: SortDescriptor(keyPath: "dateEntered", ascending: false)) var trades
     @ObservedResults(Account.self) var accounts
 //    @Published var trades: [Trade] = []
 //    @Published var symbols: [Symbol] = []
@@ -26,6 +27,7 @@ class RealmController: NSObject, ObservableObject {
     
 
     static let shared = RealmController()
+    let myFormatter = MyFormatter()
     
     override init() {
         super.init()
@@ -35,6 +37,7 @@ class RealmController: NSObject, ObservableObject {
 
         
         getWinRate()
+        getTradesPL()
         print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last)
     }
 
@@ -95,7 +98,19 @@ class RealmController: NSObject, ObservableObject {
         }else{
             winRate = percentFormatter.string(for: temp)!
         }
+        getTradesPL()
         
+    }
+    
+    func getTradesPL() {
+        var temp: Decimal128 = 0.0
+        for i in trades {
+            if !i.isHindsight{
+                temp += i.p_l
+                temp -= i.fees
+            }
+        }
+        pAndL = myFormatter.numFormat(num: temp)
     }
 
     func addTrade(trade: Trade, images: [UIImage]?, edited: Bool){
@@ -105,12 +120,14 @@ class RealmController: NSObject, ObservableObject {
                 if trade.photoDirectory != nil{
                     myImage.saveImages(directory: trade.photoDirectory!, images: images!)
                 }
+                if !trade.isHindsight{
+                    let account = realm.object(ofType: Account.self, forPrimaryKey: "Main")
+                    account!.trades.append(trade)
+                    account!.profitAndLoss += trade.p_l
+                    account!.balance += (trade.p_l - trade.fees)
+                    account!.fees += trade.fees
+                }
                 
-                let account = realm.object(ofType: Account.self, forPrimaryKey: "Main")
-                account!.trades.append(trade)
-                account!.profitAndLoss += trade.p_l
-                account!.balance += (trade.p_l - trade.fees)
-                account!.fees += trade.fees
             
             }
         }else{
@@ -121,11 +138,13 @@ class RealmController: NSObject, ObservableObject {
                     myImage.saveImages(directory: trade.photoDirectory!, images: images!)
                 }
                 
-                let account = realm.object(ofType: Account.self, forPrimaryKey: "Main")
-                account!.trades.append(trade)
-                account!.profitAndLoss += trade.p_l
-                account!.balance += (trade.p_l - trade.fees)
-                account!.fees += trade.fees
+                if !trade.isHindsight{
+                    let account = realm.object(ofType: Account.self, forPrimaryKey: "Main")
+                    account!.trades.append(trade)
+                    account!.profitAndLoss += trade.p_l
+                    account!.balance += (trade.p_l - trade.fees)
+                    account!.fees += trade.fees
+                }
             }
         }
         
@@ -157,6 +176,13 @@ class RealmController: NSObject, ObservableObject {
             account!.profitAndLoss = 0
             account!.balance = try! Decimal128(string: newVal)
             account!.fees = 0
+        }
+    }
+    
+    func resetBalance(newVal: String) {
+        try! realm.write { [self] in
+            let account = realm.object(ofType: Account.self, forPrimaryKey: "Main")
+            account!.balance = try! Decimal128(string: newVal)
         }
     }
     

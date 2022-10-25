@@ -30,6 +30,12 @@ struct ContentView: View {
     var body: some View {
 
         NavigationStack{
+//            HStack {
+//                Text("Monthly")
+//                    .frame(alignment: .leading)
+//            }
+//            .frame(maxWidth: .infinity, alignment: .topLeading)
+//            .padding()
             ZStack{
                 VStack{
                     Text(realmController.winRate)

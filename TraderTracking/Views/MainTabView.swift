@@ -80,7 +80,7 @@ struct MainTabView: View {
                     DragGesture()
                         .updating($gestureOffset, body: { value, out, _ in
                             out = value.translation.width
-                            print(offSet)
+                            
                         })
                         .onEnded(onEnd(value:))
                       : nil
@@ -108,10 +108,13 @@ struct MainTabView: View {
     }
     
     func onChange(){
-        let sideBarWidth = getRect().width - 90
-        offSet = (gestureOffset != 0) ? ((gestureOffset + lastStoredOffset) < sideBarWidth ? (gestureOffset + lastStoredOffset) : offSet) : offSet
+        withAnimation(.linear) {
+            let sideBarWidth = getRect().width - 90
+            offSet = (gestureOffset != 0) ? ((gestureOffset + lastStoredOffset) < sideBarWidth ? (gestureOffset + lastStoredOffset) : offSet) : offSet
+            
+            offSet = (gestureOffset + lastStoredOffset) > 0 ? offSet : 0
+        }
         
-        offSet = (gestureOffset + lastStoredOffset) > 0 ? offSet : 0
     }
     
     func onEnd(value: DragGesture.Value){

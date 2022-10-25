@@ -11,9 +11,10 @@ import RealmSwift
 struct ProfileView: View {
     @EnvironmentObject var realmController: RealmController
     @ObservedResults(Trade.self, filter: NSPredicate(format: "dateEntered > %@", Calendar.current.startOfDay(for: Date()) as CVarArg)) var trades
-    @ObservedResults(Account.self) var account
     @State private var newAccountvalue: String = ""
     @State private var resetAccountAlert: Bool = false
+    @State private var newBalanceValue: String = ""
+    @State private var resetBalanceAlert: Bool = false
     var body: some View {
 		// Top Profile Banner
         VStack(alignment: .leading){
@@ -27,31 +28,47 @@ struct ProfileView: View {
         //Account Summary
             List{
                 Section(header: Text("Account Summary")) {
-                    ProfileAccountItemView(name: "Balance", value: account[0].balance)
-                    ProfileAccountItemView(name: "P/L", value: account[0].profitAndLoss)
-                    ProfileAccountItemView(name: "Fees", value: account[0].fees)
-                    ProfileAccountItemView(name: "P/L + Fees", value: (account[0].profitAndLoss - account[0].fees))
-                    Button {
-                        resetAccountAlert.toggle()
-                    } label: {
-                        Text("Reset")
-                    }
-                    .alert("Reset Account", isPresented: $resetAccountAlert, actions: {
-                        TextField("New Value", text: $newAccountvalue)
-                            .keyboardType(.decimalPad)
-                        
-                        Button("Reset", role: .destructive ,action: {
-                            realmController.resetAccount(newVal: newAccountvalue)
+                    ProfileAccountItemView(name: "Balance", value: realmController.accounts[0].balance)
+                        .onTapGesture {
+                            resetBalanceAlert.toggle()
+                        }
+                        .alert("Reset Account", isPresented: $resetBalanceAlert, actions: {
+                            TextField("New Value", text: $newBalanceValue)
+                                .keyboardType(.decimalPad)
+                            
+                            Button("Reset", role: .destructive ,action: {
+                                realmController.resetBalance(newVal: newBalanceValue)
+                            })
+                                .foregroundColor(.red)
+                            Button("Cancel", role: .cancel, action:{})
+                        }, message: {
+                            Text("add new value")
                         })
-                            .foregroundColor(.red)
-                        Button("Cancel", role: .cancel, action:{})
-                    }, message: {
-                        Text("add new value")
-                    })
+
+                    ProfileAccountItemView(name: "P/L", value: realmController.accounts[0].profitAndLoss)
+                    ProfileAccountItemView(name: "Fees", value: realmController.accounts[0].fees)
+                    ProfileAccountItemView(name: "P/L + Fees", value: (realmController.accounts[0].profitAndLoss - realmController.accounts[0].fees))
+//                    Button {
+//                        resetAccountAlert.toggle()
+//                    } label: {
+//                        Text("Reset")
+//                    }
+//                    .alert("Reset Account", isPresented: $resetAccountAlert, actions: {
+//                        TextField("New Value", text: $newAccountvalue)
+//                            .keyboardType(.decimalPad)
+//
+//                        Button("Reset", role: .destructive ,action: {
+//                            realmController.resetAccount(newVal: newAccountvalue)
+//                        })
+//                            .foregroundColor(.red)
+//                        Button("Cancel", role: .cancel, action:{})
+//                    }, message: {
+//                        Text("add new value")
+//                    })
 
                 }
                 Section(header: Text("Today Stats")){
-                    ProfileAccountItemView(name: "P/L Day", value: {
+                    ProfileAccountItemView(name: "P/L", value: {
                         var temp: Decimal128 = 0.0
                         for i in trades {
                             temp += i.p_l
@@ -61,6 +78,21 @@ struct ProfileView: View {
                     }())
                     ProfileAccountItemView(name: "# of Trades", value: Decimal128(value: trades.count), isInt: true)
                 }
+                Section(header: Text("Weekly Stats")){
+                    ProfileAccountItemView(name: "P/L", value: {
+                        var temp: Decimal128 = 0.0
+                        for i in realmController.trades {
+                            if !i.isHindsight{
+                                temp += i.p_l
+                                temp -= i.fees
+                            }
+                        }
+                        return temp
+                    }())
+                    ProfileAccountItemView(name: "# of Trades", value: Decimal128(value: realmController.trades.count), isInt: true)
+                }
+                
+
             }
             
         }
@@ -75,7 +107,9 @@ struct ProfileAccountItemView: View{
 	var name: String
 	var value: Decimal128
     var isInt: Bool = false
+    var allowTap: Bool = true
     @State var showEditAccount: Bool = false
+    
 	
 	var body: some View{
         HStack(alignment: .center){
@@ -90,9 +124,9 @@ struct ProfileAccountItemView: View{
             
 
 			}
-        .onTapGesture(perform: {
-            showEditAccount.toggle()
-        })
+//        .onTapGesture(perform: {
+//            showEditAccount.toggle()
+//        })
         .sheet(isPresented: $showEditAccount){
             EditAccount()
                 .presentationDetents([.height(UIScreen.main.bounds.height / 2)])
