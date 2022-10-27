@@ -16,7 +16,7 @@ struct MainTabView: View {
     @EnvironmentObject var notifications: Notifications
 	
     @StateObject var tradeListData = TradeListViewModel()
-    @State private var selection = 0
+    @State private var selection = 1
     @State var showMenu: Bool = false
     @State var offSet: CGFloat = 0
     @State var lastStoredOffset: CGFloat = 0
@@ -30,7 +30,7 @@ struct MainTabView: View {
         ZStack{
             HStack(spacing: 0){
                 
-                SideMenu()
+                SideMenu(showMenu: $showMenu)
                     .frame(maxWidth: .infinity,alignment: .leading)
                             // Max Width...
                             .frame(width: getRect().width - 90)
@@ -62,6 +62,13 @@ struct MainTabView: View {
                             .environmentObject(tradeListData)
                             .environmentObject(menuController)
                             .tag(1)
+                        
+//                        WebView(url: URL(string: "https://www.forexfactory.com")!)
+//                            .tabItem {
+//                                Image(systemName: "calendar")
+//                            }
+//                            .tag(2)
+                        
                     }
                     .frame(width: getRect() .width)
                     .onChange(of: selection) { val in
@@ -87,6 +94,9 @@ struct MainTabView: View {
                       : nil
             )
         }
+        .onAppear(perform: {
+            selection = UserDefaults.standard.integer(forKey: "defaultTab")
+        })
         .animation(.easeOut, value: offSet == 0)
         .onChange(of: showMenu) { newValue in
             

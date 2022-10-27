@@ -16,7 +16,20 @@ struct ImageUIView: UIViewControllerRepresentable {
     
     typealias UIViewControllerType = UINavigationController
     var images: [IFImage]
-    
+
+    var browserHostingViewController: UIHostingController<IFBrowserView> {
+            let images = images
+            let configuration = IFBrowserViewController.Configuration(actions: [.share, .delete])
+            let contentView = IFBrowserView(
+                images: images,
+                selectedIndex: .constant(.random(in: images.indices)),
+                configuration: configuration,
+                action: { identifier in
+                    print(identifier)
+                })
+            
+            return UIHostingController(rootView: contentView)
+        }
     
     func makeUIViewController(context: Context) -> UINavigationController { //ImageUI.IFBrowserViewController {
         
@@ -25,14 +38,14 @@ struct ImageUIView: UIViewControllerRepresentable {
         vc.configuration.actions = [.delete, .share]
         vc.configuration.prefersAspectFillZoom = true
         let nc = UINavigationController(rootViewController: vc)
-//        nc.navigationBar.backgroundColor = .label
 
 //        nc.pushViewController(vc, animated: true)
-//        navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
-//        nc.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(temp))
+        nc.navigationBar.scrollEdgeAppearance = nc.navigationBar.standardAppearance
+        nc.navigationItem.leftBarButtonItem =  UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(context.coordinator.exitView))
 
         return nc
     }
+    
     
 
     func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
@@ -59,6 +72,10 @@ struct ImageUIView: UIViewControllerRepresentable {
         let owner: ImageUIView
         init(_ owner: ImageUIView) {
             self.owner = owner
+        }
+        
+        @objc func exitView(){
+            owner.isPresented = false
         }
 
         func imageUI(_ vc: UINavigationController) {

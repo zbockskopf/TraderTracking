@@ -15,14 +15,10 @@ struct DeleteButton: View {
         HStack(alignment: .center){
             Button {
                 showDeleteAlert.toggle()
-                
             } label: {
-                Image(systemName: "trash")
-                Text("Delete")
-                    
+                Label("Delete", systemImage: "trash")
             }
         }
-        .padding()
         .foregroundColor(.red)
         .scaledToFit()
     }

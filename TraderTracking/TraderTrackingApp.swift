@@ -23,9 +23,10 @@ struct TraderTrackingApp: App {
         if !hasLaunched {
             UserDefaults.standard.set(true, forKey: "launchedBefore")
             UserDefaults.standard.set(Date(), forKey: "notificationTime")
+            UserDefaults.standard.setValue(0, forKey: "defaultTab")
             realmController.setDefaults()
         }else{
-            
+
         }
         notifications = Notifications()
         UNUserNotificationCenter.current().delegate = notifications

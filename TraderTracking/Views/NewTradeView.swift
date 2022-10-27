@@ -112,7 +112,7 @@ struct NewTradeView: View {
                                     .onChange(of: selectedItems) { newItem in
                                         Task {
                                             photoDirectory = formatDate() + symbol
-                                            selectedImages.append(screenShotView.asUiImage())
+//                                            selectedImages.append(screenShotView.asUiImage())
                                             for item in newItem {
                                                 if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data){
                                                     selectedImages.append(image)
@@ -162,9 +162,9 @@ struct NewTradeView: View {
                    
                     
                 }
-                .onTapGesture {
-                    self.hideKeyboard()
-                }
+//                .onTapGesture {
+//                    self.hideKeyboard()
+//                }
                 .fileImporter(isPresented: $openFile, allowedContentTypes: [.image], allowsMultipleSelection: true, onCompletion: importImage)
                 .navigationBarTitle(isEditing ? "Edit Trade" : "New Trade")
                 .navigationBarTitleDisplayMode(.inline)
@@ -213,7 +213,7 @@ struct NewTradeView: View {
 
            var urls: [URL] = try res.get()
            photoDirectory = formatDate() + symbol
-           selectedImages.append(screenShotView.asUiImage())
+//           selectedImages.append(screenShotView.asUiImage())
            for i in urls{
                guard i.startAccessingSecurityScopedResource() else { return }
                if let imageData = try? Data(contentsOf: i),

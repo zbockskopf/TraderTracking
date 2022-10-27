@@ -208,6 +208,12 @@ class RealmController: NSObject, ObservableObject {
             account!.fees -= trade.fees
         }
     }
+    
+    func updateTradeNotes(trade: Trade, notes: String){
+        try! realm.write{
+            trade.notes = notes
+        }
+    }
 
 
     func addWin() {

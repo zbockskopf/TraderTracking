@@ -13,6 +13,7 @@ struct Settings: View {
     var body: some View {
         List{
             DeleteButton(showDeleteAlert: $menuController.showDeleteAlert)
+            DefaultTab()
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Settings")

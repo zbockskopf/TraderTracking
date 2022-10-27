@@ -11,7 +11,7 @@ struct SideMenu: View {
     @EnvironmentObject var realmController: RealmController
     @EnvironmentObject var notifications: Notifications
 	@EnvironmentObject var menuController: MenuController
- 
+    @Binding var showMenu: Bool
     var screenWidth = UIScreen.main.bounds.width
 
     
@@ -23,6 +23,7 @@ struct SideMenu: View {
                     Button(action: {
                         withAnimation{
 //                            xOffset = -screenWidth * 0.8
+                            showMenu.toggle()
                             menuController.showProfile.toggle()
                         }
                     }, label: {
@@ -50,6 +51,7 @@ struct SideMenu: View {
                     Button {
                         withAnimation{
 //                            xOffset = -screenWidth * 0.8
+                            showMenu.toggle()
                             menuController.showSettings.toggle()
                         }
                     } label: {
