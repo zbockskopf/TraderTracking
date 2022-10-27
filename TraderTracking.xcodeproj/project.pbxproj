@@ -112,6 +112,7 @@
 		F2A7524428E656E500B99ABB /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		F2B1C53528DAB293005C6B12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2C0406528E384F30012CA83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F2D4407D29099D8B00776A7C /* TraderTracking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TraderTracking.entitlements; sourceTree = "<group>"; };
 		F2D8B63F28F9C2C300A70149 /* UndoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoButton.swift; sourceTree = "<group>"; };
 		F2D8B64428F9C33100A70149 /* ProgressConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressConfig.swift; sourceTree = "<group>"; };
 		F2D8B64628FA12D700A70149 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -238,6 +239,7 @@
 		9268E23028D3CA4100D63337 /* TraderTracking */ = {
 			isa = PBXGroup;
 			children = (
+				F2D4407D29099D8B00776A7C /* TraderTracking.entitlements */,
 				F2C0406528E384F30012CA83 /* Info.plist */,
 				F29FF89228D97C0C00F58F24 /* MICS */,
 				92332B8B28D41E31007020FC /* Views */,
@@ -748,6 +750,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TraderTracking/TraderTracking.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TraderTracking/Preview Content\"";
@@ -785,6 +788,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TraderTracking/TraderTracking.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TraderTracking/Preview Content\"";

@@ -33,7 +33,7 @@
       "location" : "https://github.com/alberto093/ImageUI.git",
       "state" : {
         "branch" : "develop",
-        "revision" : "ebaef3d67002a8d5de792ef7f3591ec3f163b4b8"
+        "revision" : "460b217d712aabf22687dcbe26d87ffca821e2a8"
       }
     },
     {
@@ -49,8 +49,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kean/Nuke.git",
       "state" : {
-        "revision" : "9df754fe4ca4c5abdf3376e4e9ec33b3485bf180",
-        "version" : "11.2.1"
+        "revision" : "0d8a0dc3cca7432a6772ec546a7e5e1b20103bda",
+        "version" : "11.3.0"
       }
     },
     {
@@ -58,8 +58,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-core",
       "state" : {
-        "revision" : "5da7744b4056ad185c025bccf0924f17f73f7a91",
-        "version" : "12.6.0"
+        "revision" : "3c4b86da569368c4ee5ccca2a112d511cc6fa936",
+        "version" : "12.11.0"
       }
     },
     {
@@ -67,8 +67,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-swift.git",
       "state" : {
-        "revision" : "28c488974f544c9affc4eacdd5b9dfc6785ebbc0",
-        "version" : "10.29.0"
+        "revision" : "dc1672b3011eb992ce95db4feec83cd897626a16",
+        "version" : "10.32.1"
       }
     },
     {

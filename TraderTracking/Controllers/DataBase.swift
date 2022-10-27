@@ -31,12 +31,12 @@ class RealmController: NSObject, ObservableObject {
     
     override init() {
         super.init()
-        let config = Realm.Configuration(schemaVersion: 2,
+        let config = Realm.Configuration(schemaVersion: 3,
                                                  migrationBlock: { migration, oldSchemaVersion in
 
-                                                    if (oldSchemaVersion <= 1){
+                                                    if (oldSchemaVersion <= 2){
                                                         migration.enumerateObjects(ofType: Trade.className()) { (old, new) in
-                                                            new!["notes"] = nil
+                                                            new!["notes"] = ""
                                                         }
                                                     }
                                                     

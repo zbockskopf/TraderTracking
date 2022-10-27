@@ -162,6 +162,9 @@ struct NewTradeView: View {
                    
                     
                 }
+                .onTapGesture {
+                    self.hideKeyboard()
+                }
                 .fileImporter(isPresented: $openFile, allowedContentTypes: [.image], allowsMultipleSelection: true, onCompletion: importImage)
                 .navigationBarTitle(isEditing ? "Edit Trade" : "New Trade")
                 .navigationBarTitleDisplayMode(.inline)
