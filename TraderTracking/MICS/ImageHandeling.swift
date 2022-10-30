@@ -57,16 +57,19 @@ class MyImages {
     
     func loadImageFromDiskWith(directory: String) -> [UIImage]? {
         var temp: [UIImage] = []
+
         guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
         let directoryURL = documentsDirectory.appendingPathComponent(directory)
         do {
             let fileURLs = try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: nil)
-            for file in fileURLs {
+            let newArr = fileURLs.sorted { ($0.pathComponents.last?.components(separatedBy: ".").first)! < ($1.pathComponents.last?.components(separatedBy: ".").first)!}
+            for file in newArr {
                 let image = UIImage(contentsOfFile: file.path)
                 if image != nil {
                     temp.append(image!)
                 }
             }
+            
             return temp
         } catch {
             print("Error while enumerating files \(directoryURL.path): \(error.localizedDescription)")

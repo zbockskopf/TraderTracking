@@ -8,6 +8,7 @@
 import SwiftUI
 import MarkdownView
 import ImageUI
+import PhotosUI
 
 struct TradeView: View {
     @EnvironmentObject var realmController: RealmController
@@ -15,7 +16,7 @@ struct TradeView: View {
     
     @Environment(\.colorScheme) var scheme
     @State var trade: Trade?
-    var images: [UIImage] = []
+    @State var images: [UIImage] = []
     var myImages = MyImages()
     var myFormatter = MyFormatter()
     @State var imageIsShown: Bool = false
@@ -24,6 +25,7 @@ struct TradeView: View {
     @State var editText: Bool = false
     @State var notes: String = ""
     @State var selectedPhoto: Int = 0
+    @State var draggedItem : UIImage?
     
     var body: some View {
         ScrollView{
@@ -62,17 +64,29 @@ struct TradeView: View {
                     .padding([.bottom])
             }
             if images.count != 0 {
-                ForEach(0...images.count - 1, id: \.self) { i in
-                    Image(uiImage: images[i])
-                        .resizable()
-                        .scaledToFit()
-                        .onTapGesture {
-                            selectedPhoto = i
-                            imageIsShown.toggle()
-                        }
-                        .padding([.bottom])
-                        
+                LazyVStack(spacing : 15) {
+                    ForEach(0...images.count - 1, id: \.self) { i in
+                        Image(uiImage: images[i])
+                            .resizable()
+                            .scaledToFit()
+                            .onTapGesture {
+                                selectedPhoto = i
+                                imageIsShown.toggle()
+                            }
+                            .onDrag({
+                                self.draggedItem = images[i]
+                                return NSItemProvider()
+                            }) .onDrop(of: [UTType.image], delegate: MyDropDelegate(item: images[i], items: $images, draggedItem: $draggedItem))
+                    }
                 }
+//                ForEach(0...images.count - 1, id: \.self) { i in
+//                    Image(uiImage: images[i])
+//                        .resizable()
+//                        .scaledToFit()
+
+//                        .padding([.bottom])
+//
+//                }
             }
         }
         .edgesIgnoringSafeArea(.all)
