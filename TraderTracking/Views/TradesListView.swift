@@ -38,49 +38,93 @@ struct TradesListView: View {
         ZStack{
         NavigationStack{
             List {
-                ForEach(0..<7){ i in
-                    Section(header: myFormatter.headerDate(i: i)) {
-                        ForEach(realmController.trades.filter("dateEntered BETWEEN {%@, %@}", dateChanger(date: Date(), i:i, isPrevDay: false), dateChanger(date: Date(), i:i, isPrevDay: true))){ t in
-                            TradeRow(trade: t, selectedTrade: $selectedTrade, imageIsShown: $imageIsShown)
-                                .onTapGesture {
-                                    selectedTrade = t
-//                                    if t.photoDirectory != nil {
-                                        
-//                                    }
+                if menuController.showAllTrades{
+                    ForEach(realmController.allTrades){ t in
+                        TradeRow(trade: t, selectedTrade: $selectedTrade, imageIsShown: $imageIsShown, isAll: menuController.showAllTrades)
+                            .onTapGesture {
+                                selectedTrade = t
+                                //                                    if t.photoDirectory != nil {
+                                
+                                //                                    }
+                            }
+                            .swipeActions(edge: .leading, content: {
+                                Button {
+                                    editTrade = t
+                                } label: {
+                                    Label("", systemImage: "pencil")
                                 }
-                                .swipeActions(edge: .leading, content: {
-                                    Button {
-                                        editTrade = t
-                                    } label: {
-                                        Label("", systemImage: "pencil")
+                                .tint(.green)
+                            })
+                            .swipeActions(edge: .trailing) {
+                                Button{
+                                    sampleProgress = 0
+                                    realmController.updateAccountAfterTradeDelete(trade: t)
+                                    progressBar.deletedTrades.append(t)
+                                    withAnimation{
+                                        realmController.$trades.remove(t)
                                     }
-                                    .tint(.green)
-                                })
-                                .swipeActions(edge: .trailing) {
-                                    Button{
-                                        sampleProgress = 0
-                                        realmController.updateAccountAfterTradeDelete(trade: t)
-                                        progressBar.deletedTrades.append(t)
-                                        withAnimation{
-                                            realmController.$trades.remove(t)
-                                        }
-                                        realmController.getWinRate()
-                                        if !progressBar.isAdded{
-                                            progressBar.undo = false
-                                            progressBar.isAdded.toggle()
-                                        }
-                                    } label: {
-                                        Text("Delete")
-                                            .foregroundColor(.white)
+                                    realmController.getWinRate()
+                                    if !progressBar.isAdded{
+                                        progressBar.undo = false
+                                        progressBar.isAdded.toggle()
                                     }
-                                    .tint(.red)
+                                } label: {
+                                    Text("Delete")
+                                        .foregroundColor(.white)
                                 }
-
-                        }
-
+                                .tint(.red)
+                            }
                     }
-                }
+                }else{
+                    ForEach(weekDates().reversed(), id: \.self){ date in
+//                        myFormatter.headerDate(date: date)
+                        Section(header: myFormatter.headerDate(date: date)){
+                            ForEach(realmController.trades.filter("dateEntered BETWEEN {%@, %@}", startOfDay(date: date), endOfDay(date: date))){ t in
+                                TradeRow(trade: t, selectedTrade: $selectedTrade, imageIsShown: $imageIsShown, isAll: menuController.showAllTrades)
+                                    .onTapGesture {
+                                        selectedTrade = t
+                                        //                                    if t.photoDirectory != nil {
 
+                                        //                                    }
+                                    }
+                                    .swipeActions(edge: .leading, content: {
+                                        Button {
+                                            editTrade = t
+                                        } label: {
+                                            Label("", systemImage: "pencil")
+                                        }
+                                        .tint(.green)
+                                    })
+                                    .swipeActions(edge: .trailing) {
+                                        Button{
+                                            sampleProgress = 0
+                                            realmController.updateAccountAfterTradeDelete(trade: t)
+                                            progressBar.deletedTrades.append(t)
+                                            withAnimation{
+                                                realmController.$trades.remove(t)
+                                            }
+                                            realmController.getWinRate()
+                                            if !progressBar.isAdded{
+                                                progressBar.undo = false
+                                                progressBar.isAdded.toggle()
+                                            }
+                                        } label: {
+                                            Text("Delete")
+                                                .foregroundColor(.white)
+                                        }
+                                        .tint(.red)
+                                    }
+
+                            }
+                        }
+                    }
+//                    ForEach(0..<7){ i in
+//                        Section(header: myFormatter.headerDate(i: i)) {
+//                            ForEach(realmController.trades.filter("dateEntered BETWEEN {%@, %@}", dateChanger(date: Date(), i:i, isPrevDay: false), dateChanger(date: Date(), i:i, isPrevDay: true))){ t in
+//                                                            }
+//                        }
+//                    }
+                }
             }
             .sheet(item: $editTrade){ t in
                 NewTradeView(realmController: realmController, sheetAction: Binding.constant(nil), isEditing: true, trade: t, tradeID: t._id,
@@ -116,6 +160,44 @@ struct TradesListView: View {
 //            }
             .navigationBarTitle("")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    
+                    Menu {
+                        Button(action: {
+                            menuController.showAllTrades = true
+                            menuController.showWeekTrades = false
+                        }) {
+                            if menuController.showAllTrades{
+                                Label("All", systemImage: "checkmark")
+                            }else{
+                                Text("All")
+                            }
+                        }
+                        
+                        Button(action: {
+                            menuController.showAllTrades = false
+                            menuController.showWeekTrades = true
+                        }) {
+                            if menuController.showWeekTrades{
+                                Label("Week", systemImage: "checkmark")
+                            }else{
+                                Text("Week")
+                            }
+                        }
+                        
+                    }
+                label: {
+                    if menuController.showAllTrades{
+                        Text("All")
+                            .foregroundColor(.green)
+                    }else{
+                        Text("Week")
+                            .foregroundColor(.green)
+                    }
+                        
+                }
+                }}
             .navigationBarItems(
 //                leading:
 //                    Button(action: {
@@ -197,8 +279,31 @@ struct TradesListView: View {
         }
         
     }
+                                    
+    func startOfDay(date: Date) -> Date {
+        let startOfDay = calendar.startOfDay(for: date)
+        
+        return startOfDay
+        
+    }
+    func endOfDay(date: Date) -> Date {
+        let endOfDay = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: date)
+        
+        return endOfDay!
+    }
+                                    
 
+    func weekDates() -> [Date]{
+        let isoDate = "2022-11-04T10:44:00+0000"
 
+        let dateFormatter = ISO8601DateFormatter()
+        let date = dateFormatter.date(from:isoDate)!
+        
+        // Above is for testing
+        
+        let currentWeekdays = Date().currentWeekdays
+        return currentWeekdays
+    }
 
     func getImages(all: Bool, trade: Trade?) -> [IFImage] {
         var temp: Results<Trade>
@@ -234,48 +339,28 @@ struct TradesListView: View {
         images.removeFirst()
         return images
     }
-
-    @ViewBuilder
-    func headerDate(i: Int) -> some View {
-            if i == 0 {
-                Text("Today")
-            }else{
-                HStack{
-                    Text(calendar.date(byAdding: .day, value: -i, to: Date())!, style: .date)
-                        Spacer()
-//                        
-//                    Image(systemName: "photo")
-//                        .fixedSize()
-                }
-                
-            }
-    }
-
-    func dateChanger(date: Date, i: Int, isPrevDay: Bool) -> Date {
-        let calendar = Calendar.current
-        let startOfDay = calendar.startOfDay(for: calendar.date(byAdding: .day, value: -i, to: date)!)
-        let endOfDay = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: calendar.date(byAdding: .day, value: -i, to: date)!)
-        if !isPrevDay{
-            return startOfDay
-        }else{
-            return endOfDay!
-        }
-    }
 }
 
 struct TradeRow: View {
     var trade: Trade
     @Binding var selectedTrade: Trade?
     @Binding var imageIsShown: Bool
+    var isAll: Bool
 
     var myFormatter = MyFormatter()
 
     var body: some View {
         VStack(alignment: .leading){
             HStack{
-                Text(trade.dateEntered, style: .time)
-                    .font(.footnote)
-                    .opacity(0.5)
+                if isAll {
+                    Text(formatDate(date: trade.dateEntered))
+                        .font(.footnote)
+                        .opacity(0.5)
+                }else{
+                    Text(trade.dateEntered, style:  .time)
+                        .font(.footnote)
+                        .opacity(0.5)
+                }
                 Spacer()
                 if trade.photoDirectory != nil {
                     Image(systemName: "photo")
@@ -335,6 +420,12 @@ struct TradeRow: View {
 //            .padding()
 
       }
+    }
+    
+    func formatDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, MMM d, yyyy"
+        return formatter.string(from: date)
     }
 }
 

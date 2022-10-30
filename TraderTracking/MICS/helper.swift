@@ -12,6 +12,7 @@ import RealmSwift
 
 struct MyFormatter {
     
+    let calendar = Calendar.current
     
     func numFormat(num: Decimal128) -> String {
         let numberFormatter = NumberFormatter()
@@ -34,19 +35,23 @@ struct MyFormatter {
     }
     
     @ViewBuilder
-    func headerDate(i: Int) -> some View {
-        if i == 0 {
+    func headerDate(date: Date) -> some View {
+        
+        if calendar.startOfDay(for: date) == calendar.startOfDay(for: Date()) {
             Text("Today")
         }else{
             HStack{
-                Text(Calendar.current.date(byAdding: .day, value: -i, to: Date())!, style: .date)
+                Text(formateHeaderDate(date: date))
                 Spacer()
-                //
-                //                    Image(systemName: "photo")
-                //                        .fixedSize()
             }
             
         }
+    }
+    
+    func formateHeaderDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, MMM d, yyyy"
+        return formatter.string(from: date)
     }
 }
 
@@ -192,6 +197,30 @@ struct AppUtility {
         UINavigationController.attemptRotationToDeviceOrientation()
     }
 
+}
+
+
+extension Calendar {
+    static let iso8601 = Calendar(identifier: .iso8601)
+}
+extension Date {
+    
+    var cureentWeekMonday: Date {
+           return Calendar.iso8601.date(from: Calendar.iso8601.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!
+       }
+       var currentWeekdays: [Date] {
+           
+           return (0...dayNumberOfWeek()!).compactMap{ Calendar.iso8601.date(byAdding: DateComponents(day: $0), to: cureentWeekMonday) } // for Swift versions earlier than 4.1 use flatMap instead
+       }
+    
+    func dayNumberOfWeek() -> Int? {
+        let weekDay = Calendar.iso8601.dateComponents([.weekday], from: self).weekday
+        if weekDay == 1 || weekDay == 7 {
+            return 4
+        }else{
+            return Calendar.iso8601.dateComponents([.weekday], from: self).weekday! - 2
+        }
+    }
 }
 
 

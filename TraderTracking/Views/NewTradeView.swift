@@ -40,131 +40,116 @@ struct NewTradeView: View {
     @State var notes: String = ""
     
     @State private var showPhotoDeleteAlert: Bool = false
-    
+    @State var draggedItem : UIImage?
+    @State var pictureOrder: Bool = false
     
     var body: some View {
-        NavigationView{
-                Form{
-                    Section{
-                        Toggle(isOn: $isHindsight, label: {
-                            Text("Hindsight")
-                        })
-                        Picker("Symbol", selection: $symbol) {
-                            ForEach(symbols){ sy in
-                                Text(sy.name)
-                                    .tag(sy.name)
-                            }
-                        }
-                        
-                        Picker("Session", selection: $selectedSession){
-                            ForEach(Session.allCases, id: \.self){ val in
-                                Text(val.localizedName)
-                                    .tag(val)
-                            }
-                        }
-                        Picker("Type", selection: $selectedPositionType){
-                            ForEach(PositionType.allCases, id: \.self){ val in
-                                Text(val.localizedName)
-                                    .tag(val)
-                            }
+        NavigationStack{
+            Form{
+                Section{
+                    Toggle(isOn: $isHindsight, label: {
+                        Text("Hindsight")
+                    })
+                    Picker("Symbol", selection: $symbol) {
+                        ForEach(symbols){ sy in
+                            Text(sy.name)
+                                .tag(sy.name)
                         }
                     }
-                    Section{
-                        DatePicker("Entered", selection: $dateEntered)
-                            .padding()
-                        TextField("Entry", text: $entry)
-                            .padding()
-                            .keyboardType(.decimalPad)
-                        DatePicker("Exited", selection: $dateExited)
-                            .padding()
-
-                        TextField("Exit", text: $exit)
-                            .padding()
-                            .keyboardType(.decimalPad)
-                        TextField("Stop Loss", text: $stopLoss)
-                            .padding()
-                            .keyboardType(.decimalPad)
-                        TextField("Take Profit", text: $takeProfit)
-                            .padding()
-                            .keyboardType(.decimalPad)
-                        TextField("Size", text: $positionSize)
-                            .padding()
-                            .keyboardType(.decimalPad)
-                        TextField("Fees", text: $fees)
-                            .padding()
-                            .keyboardType(.decimalPad)
-                    }
-                    Section(header: Text("Notes")){
-                        TextEditor(text: $notes)
-                            .frame(height: 200)
-                    }
-                    Section{
-                        PhotosPicker(
-                                    selection: $selectedItems,
-                                    matching: .any(of: [.images, .not(.videos)]),
-                                    photoLibrary: .shared()) {
-                                        HStack{
-                                            Image(systemName: "photo")
-                                            Text("Add Photo(s)")
-                                        }
-
-                                    }
-                                    .onChange(of: selectedItems) { newItem in
-                                        Task {
-                                            photoDirectory = formatDate() + symbol
-//                                            selectedImages.append(screenShotView.asUiImage())
-                                            for item in newItem {
-                                                if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data){
-                                                    selectedImages.append(image)
-                                                }
-                                            }
-                                        }
-                                    }
-                        Button(action: {
-                            openFile.toggle()
-                        }, label: {
-                            HStack{
-                                Image(systemName: "folder")
-                                Text("Select file(s)")
-                            }
-
-                        })
-
-                        if selectedImages.count > 0{
-                            HStack(alignment: .center) {
-                                Image(uiImage: selectedImages[0])
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 100, height: 100)
-
-                            }
-
-                            .alert(isPresented: $showPhotoDeleteAlert, content: {
-                                Alert(title: Text("Do you want to delete all photos?"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete")){
-                                    realmController.myImage.deleteImage(fileName: photoDirectory)
-                                    selectedImages.removeAll()
-                                    photoDirectory = ""
-                                })
-                            })
-
-                                .overlay(
-                                    ZStack{
-                                        Color.black
-                                            .opacity(0.3)
-                                        Text(String(selectedImages.count - 1) + "+")
-                                    }
-                                        .onTapGesture( perform: {
-                                            showPhotoDeleteAlert.toggle()
-                                        })
-                            )
-                        }
-                    }
-                   
                     
+                    Picker("Session", selection: $selectedSession){
+                        ForEach(Session.allCases, id: \.self){ val in
+                            Text(val.localizedName)
+                                .tag(val)
+                        }
+                    }
+                    Picker("Type", selection: $selectedPositionType){
+                        ForEach(PositionType.allCases, id: \.self){ val in
+                            Text(val.localizedName)
+                                .tag(val)
+                        }
+                    }
                 }
-//                .onTapGesture {
-//                    self.hideKeyboard()
-//                }
+                Section{
+                    DatePicker("Entered", selection: $dateEntered)
+                        .padding()
+                    TextField("Entry", text: $entry)
+                        .padding()
+                        .keyboardType(.decimalPad)
+                    DatePicker("Exited", selection: $dateExited)
+                        .padding()
+                    
+                    TextField("Exit", text: $exit)
+                        .padding()
+                        .keyboardType(.decimalPad)
+                    TextField("Stop Loss", text: $stopLoss)
+                        .padding()
+                        .keyboardType(.decimalPad)
+                    TextField("Take Profit", text: $takeProfit)
+                        .padding()
+                        .keyboardType(.decimalPad)
+                    TextField("Size", text: $positionSize)
+                        .padding()
+                        .keyboardType(.decimalPad)
+                    TextField("Fees", text: $fees)
+                        .padding()
+                        .keyboardType(.decimalPad)
+                }
+                Section(header: Text("Notes")){
+                    TextEditor(text: $notes)
+                        .frame(height: 200)
+                }
+                Section{
+                    PhotosPicker(
+                        selection: $selectedItems,
+                        matching: .any(of: [.images, .not(.videos)]),
+                        photoLibrary: .shared()) {
+                            HStack{
+                                Image(systemName: "photo")
+                                Text("Add Photo(s)")
+                            }
+                            
+                        }
+                        .onChange(of: selectedItems) { newItem in
+                            Task {
+                                photoDirectory = formatDate() + symbol
+                                //                                            selectedImages.append(screenShotView.asUiImage())
+                                for item in newItem {
+                                    if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data){
+                                        selectedImages.append(image)
+                                    }
+                                }
+                            }
+                        }
+                    Button(action: {
+                        openFile.toggle()
+                    }, label: {
+                        HStack{
+                            Image(systemName: "folder")
+                            Text("Select file(s)")
+                        }
+                    })
+                    if selectedImages.count > 0{
+                        HStack(alignment: .center) {
+                            Image(uiImage: selectedImages[0])
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 100, height: 100)
+
+                        }
+                        .overlay(
+                            ZStack{
+                                Color.black
+                                    .opacity(0.3)
+                                Text(String(selectedImages.count - 1) + "+")
+                            }
+                                .onTapGesture( perform: {
+                                    pictureOrder.toggle()
+                                })
+                        )
+                    }
+                }
+            }
                 .fileImporter(isPresented: $openFile, allowedContentTypes: [.image], allowsMultipleSelection: true, onCompletion: importImage)
                 .navigationBarTitle(isEditing ? "Edit Trade" : "New Trade")
                 .navigationBarTitleDisplayMode(.inline)
@@ -184,6 +169,29 @@ struct NewTradeView: View {
                             Text("Done")
                         }
                 )
+                .navigationDestination(isPresented: $pictureOrder) {
+                    ScrollView{
+                        LazyVStack(spacing : 15) {
+                            ForEach(selectedImages, id:\.self) { item in
+                                Image(uiImage: item)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .onDrag({
+                                        self.draggedItem = item
+                                        return NSItemProvider()
+                                    }) .onDrop(of: [UTType.image], delegate: MyDropDelegate(item: item, items: $selectedImages, draggedItem: $draggedItem))
+                                    .alert(isPresented: $showPhotoDeleteAlert, content: {
+                                        Alert(title: Text("Do you want to delete all photos?"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete")){
+                                            realmController.myImage.deleteImage(fileName: photoDirectory)
+                                            selectedImages.removeAll()
+                                            photoDirectory = ""
+                                        })
+                                    })
+                            }
+                        }
+                    }
+                    
+                }
         }
     }
 
@@ -315,5 +323,31 @@ struct NewTradeView: View {
         formatter.numberStyle = .decimal
 
         return Decimal128(value: formatter.number(from: str)!.decimalValue)
+    }
+}
+
+
+struct MyDropDelegate : DropDelegate {
+
+    let item : UIImage
+    @Binding var items : [UIImage]
+    @Binding var draggedItem : UIImage?
+
+    func performDrop(info: DropInfo) -> Bool {
+        return true
+    }
+
+    func dropEntered(info: DropInfo) {
+        guard let draggedItem = self.draggedItem else {
+            return
+        }
+
+        if draggedItem != item {
+            let from = items.firstIndex(of: draggedItem)!
+            let to = items.firstIndex(of: item)!
+            withAnimation(.default) {
+                self.items.move(fromOffsets: IndexSet(integer: from), toOffset: to > from ? to + 1 : to)
+            }
+        }
     }
 }

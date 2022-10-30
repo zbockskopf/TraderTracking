@@ -62,11 +62,10 @@ struct TradeView: View {
                     .padding([.bottom])
             }
             if images.count != 0 {
-                ForEach(1...images.count - 1, id: \.self) { i in
+                ForEach(0...images.count - 1, id: \.self) { i in
                     Image(uiImage: images[i])
                         .resizable()
                         .scaledToFit()
-//                        .frame(maxWidth: .infinity, maxHeight: 150)
                         .onTapGesture {
                             selectedPhoto = i
                             imageIsShown.toggle()
