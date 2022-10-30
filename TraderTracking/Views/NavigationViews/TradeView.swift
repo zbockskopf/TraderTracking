@@ -76,7 +76,7 @@ struct TradeView: View {
                             .onDrag({
                                 self.draggedItem = images[i]
                                 return NSItemProvider()
-                            }) .onDrop(of: [UTType.image], delegate: MyDropDelegate(item: images[i], items: $images, draggedItem: $draggedItem))
+                            }) .onDrop(of: [UTType.image], delegate: MyDropDelegate(item: images[i], items: $images, draggedItem: $draggedItem, directory: trade!photoDirectory!).environmentObject(realmController))
                     }
                 }
 //                ForEach(0...images.count - 1, id: \.self) { i in

@@ -137,6 +137,13 @@ struct NewTradeView: View {
                                 .frame(width: 100, height: 100)
 
                         }
+												.alert(isPresented: $showPhotoDeleteAlert, content: {
+                                        Alert(title: Text("Do you want to delete all photos?"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete")){
+                                            realmController.myImage.deleteImage(fileName: photoDirectory)
+                                            selectedImages.removeAll()
+                                            photoDirectory = ""
+                                        })
+																				})
                         .overlay(
                             ZStack{
                                 Color.black
@@ -144,7 +151,7 @@ struct NewTradeView: View {
                                 Text(String(selectedImages.count - 1) + "+")
                             }
                                 .onTapGesture( perform: {
-                                    pictureOrder.toggle()
+                                    showPhotoDeleteAlert.toggle()
                                 })
                         )
                     }
@@ -169,29 +176,6 @@ struct NewTradeView: View {
                             Text("Done")
                         }
                 )
-                .navigationDestination(isPresented: $pictureOrder) {
-                    ScrollView{
-                        LazyVStack(spacing : 15) {
-                            ForEach(selectedImages, id:\.self) { item in
-                                Image(uiImage: item)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .onDrag({
-                                        self.draggedItem = item
-                                        return NSItemProvider()
-                                    }) .onDrop(of: [UTType.image], delegate: MyDropDelegate(item: item, items: $selectedImages, draggedItem: $draggedItem))
-                                    .alert(isPresented: $showPhotoDeleteAlert, content: {
-                                        Alert(title: Text("Do you want to delete all photos?"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete")){
-                                            realmController.myImage.deleteImage(fileName: photoDirectory)
-                                            selectedImages.removeAll()
-                                            photoDirectory = ""
-                                        })
-                                    })
-                            }
-                        }
-                    }
-                    
-                }
         }
     }
 
@@ -328,10 +312,12 @@ struct NewTradeView: View {
 
 
 struct MyDropDelegate : DropDelegate {
-
+	
+		@EnvironmentObject var realmController: RealmController
     let item : UIImage
     @Binding var items : [UIImage]
     @Binding var draggedItem : UIImage?
+		var directory: String
 
     func performDrop(info: DropInfo) -> Bool {
         return true
@@ -347,6 +333,7 @@ struct MyDropDelegate : DropDelegate {
             let to = items.firstIndex(of: item)!
             withAnimation(.default) {
                 self.items.move(fromOffsets: IndexSet(integer: from), toOffset: to > from ? to + 1 : to)
+								realmController.myImages.saveImages(directory: directory, images: items)
             }
         }
     }
