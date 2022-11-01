@@ -12,7 +12,7 @@ import MarkdownView
 
 struct NewTradeView: View {
 
-    @ObservedObject var realmController: RealmController
+    @EnvironmentObject var realmController: RealmController
     @Environment(\.presentationMode) var presentationMode
     @Binding var sheetAction: SheetAction?
     var isEditing: Bool
@@ -37,7 +37,16 @@ struct NewTradeView: View {
     @State var selectedItems: [PhotosPickerItem] = []
     @State var selectedImages: [UIImage] = []
     @State private var openFile: Bool = false
-    @State var notes: String = ""
+    @State var notes: String = """
+    ### Daily Bias
+    
+    ___
+    ### Time and Price
+    
+    ___
+    ### Keys to the trade
+    
+    """
     
     @State private var showPhotoDeleteAlert: Bool = false
     @State var draggedItem : UIImage?
@@ -313,7 +322,7 @@ struct NewTradeView: View {
 
 struct MyDropDelegate : DropDelegate {
 	
-		@EnvironmentObject var realmController: RealmController
+    var realmController: RealmController
     let item : UIImage
     @Binding var items : [UIImage]
     @Binding var draggedItem : UIImage?
@@ -333,7 +342,7 @@ struct MyDropDelegate : DropDelegate {
             let to = items.firstIndex(of: item)!
             withAnimation(.default) {
                 self.items.move(fromOffsets: IndexSet(integer: from), toOffset: to > from ? to + 1 : to)
-								realmController.myImages.saveImages(directory: directory, images: items)
+                realmController.myImage.saveImages(directory: directory, images: items)
             }
         }
     }

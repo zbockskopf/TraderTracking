@@ -15,26 +15,30 @@ enum Tabs: String, Equatable, CaseIterable {
 }
 
 struct DefaultTab: View {
-    @State var tabIndex: Int = UserDefaults.standard.integer(forKey: "defaultTab")
+    
+    @EnvironmentObject var menuController: MenuController
+    
     @State var selectedIndex: Int = 0
+    
     var body: some View {
-        HStack(alignment: .center){
-            Picker("Defualt Tab", selection: $selectedIndex){
+            Picker("Defualt Tab", selection: $menuController.defaultTab){
                 ForEach(Tabs.allCases, id: \.self){ val in
                     Text(val.localizedName)
                         .tag(val)
+                        
                 }
             }
-        }
-        .onChange(of: selectedIndex) { newValue in
-            if newValue == 0 {
-                UserDefaults.standard.setValue(0, forKey: "defaultTab")
-            }else{
-                UserDefaults.standard.setValue(1, forKey: "defaultTab")
-            }
-        }
-        .foregroundColor(.red)
-        .scaledToFit()
+            .onAppear(perform: {
+                selectedIndex = menuController.defaultTab
+            })
+//        .onChange(of: selectedIndex) { newValue in
+//            if newValue == "Tracker" {
+//                menuController.defaultTab = 0
+//            }else{
+//                menuController.defaultTab = 1
+//            }
+//        }
+        .foregroundColor(.primary)
         
     }
     

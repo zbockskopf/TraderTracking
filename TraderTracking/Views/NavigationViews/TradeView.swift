@@ -76,7 +76,7 @@ struct TradeView: View {
                             .onDrag({
                                 self.draggedItem = images[i]
                                 return NSItemProvider()
-                            }) .onDrop(of: [UTType.image], delegate: MyDropDelegate(item: images[i], items: $images, draggedItem: $draggedItem, directory: trade!photoDirectory!).environmentObject(realmController))
+                            }) .onDrop(of: [UTType.image], delegate: MyDropDelegate(realmController: realmController, item: images[i], items: $images, draggedItem: $draggedItem, directory: trade!.photoDirectory!))
                     }
                 }
 //                ForEach(0...images.count - 1, id: \.self) { i in
@@ -112,9 +112,10 @@ struct TradeView: View {
                 }
             )
         .sheet(isPresented: $editTrade){
-            NewTradeView(realmController: realmController, sheetAction: Binding.constant(nil), isEditing: true, trade: trade, tradeID: trade!._id,
+            NewTradeView(sheetAction: Binding.constant(nil), isEditing: true, trade: trade, tradeID: trade!._id,
                          symbol: trade!.symbol!.name, dateEntered: trade!.dateEntered, entry: trade!.entry.stringValue, dateExited: trade!.dateExited, exit: trade!.exit.stringValue, positionSize: String(trade!.positionSize), selectedPositionType: trade!.positionType, selectedSession: trade!.session, stopLoss: trade!.stopLoss?.stringValue ?? "", takeProfit: trade!.takeProfit?.stringValue ?? "", isHindsight: trade!.isHindsight, fees: trade!.fees.stringValue, photoDirectory: trade!.photoDirectory ?? "", selectedImages: myImages.loadImageFromDiskWith(directory: trade!.photoDirectory ?? "") ?? [], notes: trade!.notes ?? ""
             )
+            .environmentObject(realmController)
         }
 //        .overlay(imageIsShown ?
 //            NavigationView{
@@ -195,6 +196,9 @@ struct TradeView: View {
             }
             .toolbarBackground(Color(UIColor.green), for: .navigationBar)
 
+        }
+        .onAppear {
+            print(trade!.notes)
         }
     }
     func convertImages(images: [UIImage]) -> [IFImage] {

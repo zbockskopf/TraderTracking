@@ -6,14 +6,25 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct Settings: View {
     @EnvironmentObject var menuController: MenuController
     @EnvironmentObject var realmController: RealmController
+    @State var newAccountBalance: String = ""
+    @State var resetAccountAlert: Bool = false
     var body: some View {
-        List{
-            DeleteButton(showDeleteAlert: $menuController.showDeleteAlert)
+        Form{
             DefaultTab()
+                .environmentObject(menuController)
+            Button {
+                resetAccountAlert.toggle()
+            } label: {
+                Text("Reset Account")
+            }
+            .foregroundColor(.red)
+            DeleteButton(showDeleteAlert: $menuController.showDeleteAlert)
+
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Settings")
@@ -22,6 +33,18 @@ struct Settings: View {
                 realmController.deleteAll()
             })
         }
+        .alert("Reset Balance", isPresented: $resetAccountAlert, actions: {
+            TextField("New Value", text: $newAccountBalance)
+                .keyboardType(.decimalPad)
+            
+            Button("Reset", role: .destructive ,action: {
+                realmController.resetAccount(newVal: newAccountBalance)
+            })
+                .foregroundColor(.red)
+            Button("Cancel", role: .cancel, action:{})
+        }, message: {
+            Text("add new value")
+        })
     }
 }
 

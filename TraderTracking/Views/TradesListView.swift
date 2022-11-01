@@ -127,9 +127,10 @@ struct TradesListView: View {
                 }
             }
             .sheet(item: $editTrade){ t in
-                NewTradeView(realmController: realmController, sheetAction: Binding.constant(nil), isEditing: true, trade: t, tradeID: t._id,
+                NewTradeView(sheetAction: Binding.constant(nil), isEditing: true, trade: t, tradeID: t._id,
                              symbol: t.symbol!.name, dateEntered: t.dateEntered, entry: t.entry.stringValue, dateExited: t.dateExited, exit: t.exit.stringValue, positionSize: String(t.positionSize), selectedPositionType: t.positionType, selectedSession: t.session, stopLoss: t.stopLoss?.stringValue ?? "", takeProfit: t.takeProfit?.stringValue ?? "", isHindsight: t.isHindsight, fees: t.fees.stringValue, photoDirectory: t.photoDirectory ?? "", selectedImages: myImages.loadImageFromDiskWith(directory: t.photoDirectory ?? "") ?? [], notes: t.notes ?? ""
                 )
+                .environmentObject(realmController)
             }
             .navigationDestination(isPresented: $menuController.showTradeView, destination: {
                 TradeView(trade: selectedTrade, images: myImages.loadImageFromDiskWith(directory: selectedTrade?.photoDirectory ?? "") ?? [])
@@ -188,13 +189,11 @@ struct TradesListView: View {
                         
                     }
                 label: {
-                    if menuController.showAllTrades{
-                        Text("All")
-                            .foregroundColor(.green)
-                    }else{
-                        Text("Week")
-                            .foregroundColor(.green)
-                    }
+                    Image("Filter")
+                        .resizable()
+//                        .scaledToFit()
+                        .frame(width: 25, height: 25)
+                        .foregroundColor(.green)
                         
                 }
                 }}
@@ -276,23 +275,19 @@ struct TradesListView: View {
             }else{
                 sampleProgress = 0
             }
-        }
-        
+        } 
     }
                                     
     func startOfDay(date: Date) -> Date {
         let startOfDay = calendar.startOfDay(for: date)
-        
         return startOfDay
-        
     }
+    
     func endOfDay(date: Date) -> Date {
         let endOfDay = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: date)
-        
         return endOfDay!
     }
                                     
-
     func weekDates() -> [Date]{
         let isoDate = "2022-11-04T10:44:00+0000"
 

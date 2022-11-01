@@ -16,7 +16,7 @@ class RealmController: NSObject, ObservableObject {
     @Published var numWins: String = ""
     @Published var numLosses: String = ""
     @Published var pAndL: String = ""
-    @ObservedResults(Trade.self) var allTrades
+    @ObservedResults(Trade.self, sortDescriptor: SortDescriptor(keyPath: "dateEntered", ascending: false)) var allTrades
     @ObservedResults(Trade.self, filter: NSPredicate(format: "win = true AND isHindsight = false")) var wins
     @ObservedResults(Trade.self, filter: NSPredicate(format: "loss = true AND isHindsight = false")) var losses
     @ObservedResults(Trade.self, filter: NSPredicate(format: "dateEntered BETWEEN {%@, %@}", Calendar.current.date(byAdding: .day, value: -7, to: Date())! as CVarArg, Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: Date())! as CVarArg), sortDescriptor: SortDescriptor(keyPath: "dateEntered", ascending: false)) var trades
@@ -171,11 +171,13 @@ class RealmController: NSObject, ObservableObject {
        
         
         for i in trades{
-            let temp = realm.create(Trade.self, value: i, update: .modified)
-            account!.trades.append(temp)
-            account!.profitAndLoss += temp.p_l
-            account!.balance += (temp.p_l - temp.fees)
-            account!.fees += temp.fees
+            if !i.isHindsight{
+                let temp = realm.create(Trade.self, value: i, update: .modified)
+                account!.trades.append(temp)
+                account!.profitAndLoss += temp.p_l
+                account!.balance += (temp.p_l - temp.fees)
+                account!.fees += temp.fees
+            }
         }
         try! realm.commitWrite()
         getWinRate()
@@ -201,12 +203,15 @@ class RealmController: NSObject, ObservableObject {
     
     func updateAccountAfterTradeDelete(trade: Trade){
         try! realm.write { [self] in
-            let account = realm.object(ofType: Account.self, forPrimaryKey: "Main")
-//            account!.trades.remove(at: trades.firstIndex(of: trade)!)
-            account!.profitAndLoss -= trade.p_l
-            account!.balance -= trade.p_l
-            account!.balance += trade.fees
-            account!.fees -= trade.fees
+            if !trade.isHindsight{
+                let account = realm.object(ofType: Account.self, forPrimaryKey: "Main")
+    //            account!.trades.remove(at: trades.firstIndex(of: trade)!)
+                account!.profitAndLoss -= trade.p_l
+                account!.balance -= trade.p_l
+                account!.balance += trade.fees
+                account!.fees -= trade.fees
+            }
+            
         }
     }
     

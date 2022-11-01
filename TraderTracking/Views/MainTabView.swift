@@ -9,9 +9,9 @@ import SwiftUI
 
 struct MainTabView: View {
 
-    var realmController = RealmController()
-	var menuController = MenuController()
-    var gestureController = GestureController()
+    @StateObject var realmController = RealmController()
+	@StateObject var menuController = MenuController()
+    @StateObject  var gestureController = GestureController()
     
     @EnvironmentObject var notifications: Notifications
 	
@@ -94,9 +94,6 @@ struct MainTabView: View {
                       : nil
             )
         }
-        .onAppear(perform: {
-            selection = UserDefaults.standard.integer(forKey: "defaultTab")
-        })
         .animation(.easeOut, value: offSet == 0)
         .onChange(of: showMenu) { newValue in
             
@@ -114,6 +111,11 @@ struct MainTabView: View {
         }
         .onChange(of: gestureOffset) { newValue in
             onChange()
+        }
+        .onAppear {
+            if selection == 1{
+                showListView = true
+            }
         }
 
     }

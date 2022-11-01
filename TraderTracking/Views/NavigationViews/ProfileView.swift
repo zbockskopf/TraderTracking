@@ -10,7 +10,7 @@ import RealmSwift
 
 struct ProfileView: View {
     @EnvironmentObject var realmController: RealmController
-    @ObservedResults(Trade.self, filter: NSPredicate(format: "dateEntered > %@", Calendar.current.startOfDay(for: Date()) as CVarArg)) var trades
+    
     @State private var newAccountvalue: String = ""
     @State private var resetAccountAlert: Bool = false
     @State private var newBalanceValue: String = ""
@@ -32,7 +32,7 @@ struct ProfileView: View {
                         .onTapGesture {
                             resetBalanceAlert.toggle()
                         }
-                        .alert("Reset Account", isPresented: $resetBalanceAlert, actions: {
+                        .alert("Reset Balance", isPresented: $resetBalanceAlert, actions: {
                             TextField("New Value", text: $newBalanceValue)
                                 .keyboardType(.decimalPad)
                             
@@ -70,13 +70,15 @@ struct ProfileView: View {
                 Section(header: Text("Today Stats")){
                     ProfileAccountItemView(name: "P/L", value: {
                         var temp: Decimal128 = 0.0
-                        for i in trades {
-                            temp += i.p_l
-                            temp -= i.fees
+                        for i in realmController.trades {
+                            if !i.isHindsight{
+                                temp += i.p_l
+                                temp -= i.fees
+                            }
                         }
                         return temp
                     }())
-                    ProfileAccountItemView(name: "# of Trades", value: Decimal128(value: trades.count), isInt: true)
+                    ProfileAccountItemView(name: "# of Trades", value: Decimal128(value: realmController.trades.filter("isHindsight = false").count), isInt: true)
                 }
                 Section(header: Text("Weekly Stats")){
                     ProfileAccountItemView(name: "P/L", value: {
@@ -89,7 +91,7 @@ struct ProfileView: View {
                         }
                         return temp
                     }())
-                    ProfileAccountItemView(name: "# of Trades", value: Decimal128(value: realmController.trades.count), isInt: true)
+                    ProfileAccountItemView(name: "# of Trades", value: Decimal128(value: realmController.trades.filter("isHindsight = false").count), isInt: true)
                 }
                 
 
