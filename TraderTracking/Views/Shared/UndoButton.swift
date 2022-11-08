@@ -35,8 +35,10 @@ class DynamicProgress: NSObject,ObservableObject{
                 
             }
             RealmController.shared.myImage.deleteAllImages(directories: temp)
+            RealmController.shared.deleteTrades(trades: deletedTrades)
             
         }
+        RealmController.shared.getWinRate()
         deletedTrades.removeAll()
         isAdded.toggle()
     }
@@ -139,9 +141,9 @@ struct DynamicProgressView: View{
             .frame(width: 23, height: 23)
         }.onTapGesture(perform: {
             progressBar.undo.toggle()
-            progressBar.removeProgressWithAnimations()
             realmController.reAddTrades(trades: progressBar.deletedTrades)
-            
+            progressBar.removeProgressWithAnimations()
+                        
         })
         .frame(width: 37, height: 37)
         .frame(width: 126,alignment: .center)

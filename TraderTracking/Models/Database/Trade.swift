@@ -30,6 +30,7 @@ class Trade: Object , ObjectKeyIdentifiable {
     @Persisted var loss: Bool?
     @Persisted var p_l: Decimal128
     @Persisted var notes: String = ""
+    @Persisted var isDeleted: Bool = false
 }
 
 

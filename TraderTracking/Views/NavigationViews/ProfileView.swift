@@ -70,7 +70,7 @@ struct ProfileView: View {
                 Section(header: Text("Today Stats")){
                     ProfileAccountItemView(name: "P/L", value: {
                         var temp: Decimal128 = 0.0
-                        for i in realmController.trades {
+                        for i in realmController.trades.filter("dateEntered > %@ AND isHindsight = false", Calendar.current.startOfDay(for: Date())) {
                             if !i.isHindsight{
                                 temp += i.p_l
                                 temp -= i.fees
@@ -78,7 +78,7 @@ struct ProfileView: View {
                         }
                         return temp
                     }())
-                    ProfileAccountItemView(name: "# of Trades", value: Decimal128(value: realmController.trades.filter("isHindsight = false").count), isInt: true)
+                    ProfileAccountItemView(name: "# of Trades", value: Decimal128(value: realmController.trades.filter("dateEntered > %@ AND isHindsight = false", Calendar.current.startOfDay(for: Date())).count), isInt: true)
                 }
                 Section(header: Text("Weekly Stats")){
                     ProfileAccountItemView(name: "P/L", value: {
@@ -91,7 +91,7 @@ struct ProfileView: View {
                         }
                         return temp
                     }())
-                    ProfileAccountItemView(name: "# of Trades", value: Decimal128(value: realmController.trades.filter("isHindsight = false").count), isInt: true)
+                    ProfileAccountItemView(name: "# of Trades", value: Decimal128(value: realmController.allTrades.filter("isHindsight = false").count), isInt: true)
                 }
                 
 

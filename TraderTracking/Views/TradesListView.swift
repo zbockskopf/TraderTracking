@@ -21,6 +21,7 @@ struct TradesListView: View {
 //    @State var account: [Account] = []
     @State var imageIsShown: Bool = false
     @State var tappedImageShown: Bool = false
+    @State var showDot: Bool = true
 
     @State private var all: Bool?
     @State private var selectedTrade: Trade? = nil
@@ -40,7 +41,7 @@ struct TradesListView: View {
             List {
                 if menuController.showAllTrades{
                     ForEach(realmController.allTrades){ t in
-                        TradeRow(trade: t, selectedTrade: $selectedTrade, imageIsShown: $imageIsShown, isAll: menuController.showAllTrades)
+                        TradeRow(trade: t, selectedTrade: $selectedTrade, imageIsShown: $imageIsShown, showDot: $showDot, isAll: menuController.showAllTrades)
                             .onTapGesture {
                                 selectedTrade = t
                                 //                                    if t.photoDirectory != nil {
@@ -61,7 +62,7 @@ struct TradesListView: View {
                                     realmController.updateAccountAfterTradeDelete(trade: t)
                                     progressBar.deletedTrades.append(t)
                                     withAnimation{
-                                        realmController.$trades.remove(t)
+                                        realmController.toggleTradeIsDeleted(trade: t)
                                     }
                                     realmController.getWinRate()
                                     if !progressBar.isAdded{
@@ -80,7 +81,7 @@ struct TradesListView: View {
 //                        myFormatter.headerDate(date: date)
                         Section(header: myFormatter.headerDate(date: date)){
                             ForEach(realmController.trades.filter("dateEntered BETWEEN {%@, %@}", startOfDay(date: date), endOfDay(date: date))){ t in
-                                TradeRow(trade: t, selectedTrade: $selectedTrade, imageIsShown: $imageIsShown, isAll: menuController.showAllTrades)
+                                TradeRow(trade: t, selectedTrade: $selectedTrade, imageIsShown: $imageIsShown, showDot: $showDot, isAll: menuController.showAllTrades)
                                     .onTapGesture {
                                         selectedTrade = t
                                         //                                    if t.photoDirectory != nil {
@@ -101,7 +102,7 @@ struct TradesListView: View {
                                             realmController.updateAccountAfterTradeDelete(trade: t)
                                             progressBar.deletedTrades.append(t)
                                             withAnimation{
-                                                realmController.$trades.remove(t)
+                                                realmController.toggleTradeIsDeleted(trade: t)
                                             }
                                             realmController.getWinRate()
                                             if !progressBar.isAdded{
@@ -247,7 +248,23 @@ struct TradesListView: View {
 //                    .foregroundColor(Color.black)
                 trailing:
                     Text(realmController.pAndL)
-                    .foregroundColor(.primary)
+                    .foregroundColor(showDot ? Color(uiColor: .clear) : .primary)
+                        .overlay(content: {
+                            if showDot{
+                                Circle()
+                                    .fill(.primary)
+                                    .frame(width: 15, height: 15)
+                                    .onTapGesture(perform:{
+                                        showDot.toggle()
+                                    })
+                                    .padding()
+                            }
+                        })
+                        .onTapGesture(perform:{
+                            showDot.toggle()
+                        })
+                        
+                    
             )
         }
             
@@ -340,6 +357,7 @@ struct TradeRow: View {
     var trade: Trade
     @Binding var selectedTrade: Trade?
     @Binding var imageIsShown: Bool
+    @Binding var showDot: Bool
     var isAll: Bool
 
     var myFormatter = MyFormatter()
@@ -386,8 +404,15 @@ struct TradeRow: View {
                 Text(trade.symbol!.name + " @ " + myFormatter.numFormat(num: trade.entry))
 //                    .padding([.top, .leading])
                 Spacer()
-                Text(myFormatter.numFormat(num: trade.p_l))
-                    .foregroundColor(trade.isHindsight ? .blue : trade.p_l == 0.0 ? .primary : trade.p_l > 0.0 ? .green : .red)
+                if showDot {
+                        Circle()
+                            .fill(trade.isHindsight ? .blue : trade.p_l == 0.0 ? .primary : trade.p_l > 0.0 ? .green : .red)
+                            .frame(width: 15, height: 15)
+                }else{
+                    Text(myFormatter.numFormat(num: trade.p_l))
+                        .foregroundColor(trade.isHindsight ? .blue : trade.p_l == 0.0 ? .primary : trade.p_l > 0.0 ? .green : .red)
+                }
+                
             }
             .padding([.top], 2)
 //            Spacer()

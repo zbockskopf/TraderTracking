@@ -18,8 +18,7 @@ struct NewTradeView: View {
     var isEditing: Bool
     var trade: Trade? = nil
     @State private var presentImporter = false
-    @ObservedResults(Trade.self) var trades
-    @ObservedResults(Symbol.self) var symbols
+
     @State var tradeID: ObjectId? = nil
     @State var symbol: String = "MES"
     @State var dateEntered: Date = Date()
@@ -38,14 +37,13 @@ struct NewTradeView: View {
     @State var selectedImages: [UIImage] = []
     @State private var openFile: Bool = false
     @State var notes: String = """
-    ### Daily Bias
+    #### Daily Bias
     
     ___
-    ### Time and Price
+    #### Time and Price 
     
     ___
-    ### Keys to the trade
-    
+    #### Keys to the trade
     """
     
     @State private var showPhotoDeleteAlert: Bool = false
@@ -60,7 +58,7 @@ struct NewTradeView: View {
                         Text("Hindsight")
                     })
                     Picker("Symbol", selection: $symbol) {
-                        ForEach(symbols){ sy in
+                        ForEach(realmController.symbols){ sy in
                             Text(sy.name)
                                 .tag(sy.name)
                         }

@@ -16,11 +16,12 @@ class RealmController: NSObject, ObservableObject {
     @Published var numWins: String = ""
     @Published var numLosses: String = ""
     @Published var pAndL: String = ""
-    @ObservedResults(Trade.self, sortDescriptor: SortDescriptor(keyPath: "dateEntered", ascending: false)) var allTrades
-    @ObservedResults(Trade.self, filter: NSPredicate(format: "win = true AND isHindsight = false")) var wins
-    @ObservedResults(Trade.self, filter: NSPredicate(format: "loss = true AND isHindsight = false")) var losses
-    @ObservedResults(Trade.self, filter: NSPredicate(format: "dateEntered BETWEEN {%@, %@}", Calendar.current.date(byAdding: .day, value: -7, to: Date())! as CVarArg, Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: Date())! as CVarArg), sortDescriptor: SortDescriptor(keyPath: "dateEntered", ascending: false)) var trades
+    @ObservedResults(Trade.self, filter: NSPredicate(format: "isDeleted = false"), sortDescriptor: SortDescriptor(keyPath: "dateEntered", ascending: false)) var allTrades
+    @ObservedResults(Trade.self, filter: NSPredicate(format: "win = true AND isHindsight = false AND isDeleted = false")) var wins
+    @ObservedResults(Trade.self, filter: NSPredicate(format: "loss = true AND isHindsight = false AND isDeleted = false")) var losses
+    @ObservedResults(Trade.self, filter: NSPredicate(format: "dateEntered BETWEEN {%@, %@} AND isDeleted = false", Calendar.current.date(byAdding: .day, value: -7, to: Date())! as CVarArg, Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: Date())! as CVarArg), sortDescriptor: SortDescriptor(keyPath: "dateEntered", ascending: false)) var trades
     @ObservedResults(Account.self) var accounts
+    @ObservedResults(Symbol.self) var symbols
 //    @Published var trades: [Trade] = []
 //    @Published var symbols: [Symbol] = []
     var realm: Realm!
@@ -32,12 +33,13 @@ class RealmController: NSObject, ObservableObject {
     
     override init() {
         super.init()
-        let config = Realm.Configuration(schemaVersion: 3,
+        let config = Realm.Configuration(schemaVersion: 1,
                                                  migrationBlock: { migration, oldSchemaVersion in
 
-                                                    if (oldSchemaVersion <= 2){
+                                                    if (oldSchemaVersion <= 1){
                                                         migration.enumerateObjects(ofType: Trade.className()) { (old, new) in
-                                                            new!["notes"] = ""
+                                                            
+                                                            
                                                         }
                                                     }
                                                     
@@ -95,8 +97,8 @@ class RealmController: NSObject, ObservableObject {
 
 
     func getWinRate() {
-        let wins = Double(realm.objects(Trade.self).filter("win = true AND isHindsight = false").count)
-        let losses = Double(realm.objects(Trade.self).filter("loss = true AND isHindsight = false").count)
+        let wins = Double(realm.objects(Trade.self).filter("win = true AND isHindsight = false AND isDeleted = false").count)
+        let losses = Double(realm.objects(Trade.self).filter("loss = true AND isHindsight = false AND isDeleted = false").count)
 
         let percentFormatter            = NumberFormatter()
         percentFormatter.numberStyle    = NumberFormatter.Style.percent
@@ -171,17 +173,24 @@ class RealmController: NSObject, ObservableObject {
        
         
         for i in trades{
-            if !i.isHindsight{
-                let temp = realm.create(Trade.self, value: i, update: .modified)
-                account!.trades.append(temp)
-                account!.profitAndLoss += temp.p_l
-                account!.balance += (temp.p_l - temp.fees)
-                account!.fees += temp.fees
-            }
+            i.isDeleted = false
+
         }
         try! realm.commitWrite()
         getWinRate()
         
+    }
+    
+    func toggleTradeIsDeleted(trade: Trade){
+        try! realm.write {
+            trade.isDeleted = true
+        }
+    }
+    
+    func deleteTrades(trades: [Trade]){
+        try! realm.write{ [self] in
+            realm.delete(trades)
+        }
     }
     
     func resetAccount(newVal: String) {
