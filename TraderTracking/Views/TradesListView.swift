@@ -137,29 +137,6 @@ struct TradesListView: View {
                 TradeView(trade: selectedTrade, images: myImages.loadImageFromDiskWith(directory: selectedTrade?.photoDirectory ?? "") ?? [])
                     .environmentObject(tradeListData)
             })
-            
-//            .fullScreenCover(item: $selectedTrade) { t in
-//                NavigationView{
-////                    ZStack{
-//                        ImageUIView(isPresented: $tappedImageShown, images: getTappedImages(trade: t))
-//                            .environmentObject(tradeListData)
-//                            .edgesIgnoringSafeArea(.all)
-//
-////                    }
-//                    .navigationBarItems(
-//                        leading:
-//                            Button(action: {
-//                                selectedTrade = nil
-//                            }, label: {
-//                                Text("Cancel")
-//                                    .foregroundColor(.primary)
-//
-//                            })
-//                    )
-//                    .toolbarBackground(Color(UIColor.green), for: .navigationBar)
-//                }
-//
-//            }
             .navigationBarTitle("")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -187,68 +164,46 @@ struct TradesListView: View {
                                 Text("Week")
                             }
                         }
+                        Menu{
+                            Button(action: {
+                                menuController.showHindsightPL = true
+                                menuController.showActualPL = false
+                            }) {
+                                if menuController.showHindsightPL{
+                                    Label("Hindsight", systemImage: "checkmark")
+                                }else{
+                                    Text("Hindsight")
+                                }
+                            }
+
+                            Button(action: {
+                                menuController.showHindsightPL = false
+                                menuController.showActualPL = true
+                            }) {
+                                if menuController.showActualPL{
+                                    Label("Actual", systemImage: "checkmark")
+                                }else{
+                                    Text("Actual")
+                                }
+                            }
+                            
+                        } label:{
+                            Text("P/L")
+                        }
                         
                     }
                 label: {
-                    Image("Filter")
+                    Image(systemName: "line.3.horizontal.circle")
                         .resizable()
 //                        .scaledToFit()
-                        .frame(width: 25, height: 25)
+                        .frame(width: 20, height: 20)
                         .foregroundColor(.green)
                         
                 }
-                }}
-            .navigationBarItems(
-//                leading:
-//                    Button(action: {
-//                        withAnimation(.easeInOut){
-//                            self.all = true
-//                            imageIsShown.toggle()
-//                            tradeListData.showImageViewer.toggle()
-//                        }
-//                    }, label: {
-//                        Text("Study")
-//                            .frame(minWidth: 0, maxWidth: 50)
-//                            .font(.system(size: 10))
-//                            .padding()
-//                            .foregroundColor(Color(UIColor.label))
-//                            .overlay(
-//                                RoundedRectangle(cornerRadius: 25)
-//                                    .stroke(Color.green, lineWidth: 2)
-//                        )
-//                    })
-//                    .fullScreenCover(isPresented: $imageIsShown, onDismiss: {
-//                        self.all = nil
-//                    }, content: {
-//                        NavigationStack{
-//                            ZStack{
-//                                if getImages(all: true, trade: nil).count == 0 {
-//                                    Text("No Photos")
-//                                }else{
-//
-//                                    ImageUIView(isPresented: $imageIsShown, images: getImages(all: all ?? false, trade: selectedTrade ))
-//                                        .environmentObject(tradeListData)
-//                                        .edgesIgnoringSafeArea(.all)
-//                                }
-//
-//                            }
-//                            .navigationBarItems(
-//                                leading:
-//                                    Button(action: {
-//                                        imageIsShown.toggle()
-//                                    }, label: {
-//                                        Text("Cancel")
-//                                            .foregroundColor(Color(UIColor.label))
-//
-//                                    })
-//                            )
-//                            .toolbarBackground(Color(UIColor.secondarySystemBackground), for: .navigationBar)
-//                        }
-//                    }),
-//                    .foregroundColor(Color.black)
-                trailing:
-                    Text(realmController.pAndL)
-                    .foregroundColor(showDot ? Color(uiColor: .clear) : .primary)
+                }
+                ToolbarItemGroup(placement: .navigationBarTrailing){
+                    Text(menuController.showHindsightPL ? realmController.getWeekHindSightPL() : realmController.pAndL)
+                        .foregroundColor(showDot ? Color(uiColor: .clear) : .primary)
                         .overlay(content: {
                             if showDot{
                                 Circle()
@@ -263,11 +218,9 @@ struct TradesListView: View {
                         .onTapGesture(perform:{
                             showDot.toggle()
                         })
-                        
-                    
-            )
+                }
+            }
         }
-            
             if progressBar.isAdded{
                 DynamicProgressView(config: ProgressConfig(title: "iJustine Image", progressImage: "arrow.clockwise", expandedImage: "clock.badge.checkmark.fill", tint: .green,rotationEnabled: true))
                         .environmentObject(progressBar)

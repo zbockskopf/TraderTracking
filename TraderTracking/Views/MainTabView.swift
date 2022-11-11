@@ -29,7 +29,6 @@ struct MainTabView: View {
         let sideBarWidth = getRect().width - 90
         ZStack{
             HStack(spacing: 0){
-                
                 SideMenu(showMenu: $showMenu)
                     .frame(maxWidth: .infinity,alignment: .leading)
                             // Max Width...

@@ -127,6 +127,18 @@ class RealmController: NSObject, ObservableObject {
         }
         pAndL = myFormatter.numFormat(num: temp)
     }
+    
+    func getWeekHindSightPL() -> String {
+        var temp: Decimal128 = 0.0
+        for i in trades {
+            if i.isHindsight{
+                temp += i.p_l
+                temp -= i.fees
+            }
+        }
+        return myFormatter.numFormat(num: temp)
+    }
+    
 
     func addTrade(trade: Trade, images: [UIImage]?, edited: Bool){
         if edited {

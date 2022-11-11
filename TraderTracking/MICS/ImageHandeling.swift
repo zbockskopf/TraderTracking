@@ -53,8 +53,6 @@ class MyImages {
         }
     }
     
-    
-    
     func loadImageFromDiskWith(directory: String) -> [UIImage]? {
         var temp: [UIImage] = []
 

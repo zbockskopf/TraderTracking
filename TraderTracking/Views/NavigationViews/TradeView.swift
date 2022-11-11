@@ -89,6 +89,7 @@ struct TradeView: View {
 //                }
             }
         }
+
         .edgesIgnoringSafeArea(.all)
         .onTapGesture {
             self.hideKeyboard()
