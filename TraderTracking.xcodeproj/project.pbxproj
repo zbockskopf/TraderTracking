@@ -37,6 +37,7 @@
 		F23A79BD28E5FE2B0045D9AB /* DeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A79BC28E5FE2B0045D9AB /* DeleteButton.swift */; };
 		F23A79BF28E5FF2F0045D9AB /* NotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A79BE28E5FF2F0045D9AB /* NotificationButton.swift */; };
 		F23A79C228E603B90045D9AB /* NotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A79C128E603B90045D9AB /* NotificationSettings.swift */; };
+		F25D43F42922A6E8004E380C /* OrientationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25D43F32922A6E8004E380C /* OrientationTest.swift */; };
 		F25FCBB829202B7300CE4DDD /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = F25FCBB729202B7300CE4DDD /* SwiftSoup */; };
 		F25FCBBA29202BDB00CE4DDD /* ForexCrawler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25FCBB929202BDB00CE4DDD /* ForexCrawler.swift */; };
 		F261AECE28F3A7A600CCBC8F /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F261AECD28F3A7A600CCBC8F /* MenuController.swift */; };
@@ -110,6 +111,7 @@
 		F23A79BC28E5FE2B0045D9AB /* DeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButton.swift; sourceTree = "<group>"; };
 		F23A79BE28E5FF2F0045D9AB /* NotificationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationButton.swift; sourceTree = "<group>"; };
 		F23A79C128E603B90045D9AB /* NotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettings.swift; sourceTree = "<group>"; };
+		F25D43F32922A6E8004E380C /* OrientationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationTest.swift; sourceTree = "<group>"; };
 		F25FCBB929202BDB00CE4DDD /* ForexCrawler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForexCrawler.swift; sourceTree = "<group>"; };
 		F261AECD28F3A7A600CCBC8F /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		F28EA63D290AD21000CD1F1E /* DefaultTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTab.swift; sourceTree = "<group>"; };
@@ -118,13 +120,13 @@
 		F2A7524428E656E500B99ABB /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		F2B18A4E29206AC400C31303 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		F2B1C53528DAB293005C6B12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F2C0406528E384F30012CA83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F2D4407D29099D8B00776A7C /* TraderTracking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TraderTracking.entitlements; sourceTree = "<group>"; };
 		F2D8B63F28F9C2C300A70149 /* UndoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoButton.swift; sourceTree = "<group>"; };
 		F2D8B64428F9C33100A70149 /* ProgressConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressConfig.swift; sourceTree = "<group>"; };
 		F2D8B64628FA12D700A70149 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F2D8B64928FA1E0500A70149 /* GestureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureController.swift; sourceTree = "<group>"; };
 		F2DF666E29077F9D006352DA /* TradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeView.swift; sourceTree = "<group>"; };
+		F2E4A7CB2922C69F00F088C3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2FB3DB528D9F82100B7757A /* ImageHandeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHandeling.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -248,8 +250,8 @@
 		9268E23028D3CA4100D63337 /* TraderTracking */ = {
 			isa = PBXGroup;
 			children = (
+				F2E4A7CB2922C69F00F088C3 /* Info.plist */,
 				F2D4407D29099D8B00776A7C /* TraderTracking.entitlements */,
-				F2C0406528E384F30012CA83 /* Info.plist */,
 				F29FF89228D97C0C00F58F24 /* MICS */,
 				92332B8B28D41E31007020FC /* Views */,
 				9220CBC428D3E83A00494F39 /* Models */,
@@ -257,6 +259,7 @@
 				9268E23128D3CA4100D63337 /* TraderTrackingApp.swift */,
 				9268E23528D3CA4300D63337 /* Assets.xcassets */,
 				9268E23728D3CA4300D63337 /* Preview Content */,
+				F25D43F32922A6E8004E380C /* OrientationTest.swift */,
 			);
 			path = TraderTracking;
 			sourceTree = "<group>";
@@ -621,6 +624,7 @@
 				F2D8B64728FA12D700A70149 /* Settings.swift in Sources */,
 				F2D8B64A28FA1E0500A70149 /* GestureController.swift in Sources */,
 				F21809EE28DA628A00E4AFD6 /* ImageUIView.swift in Sources */,
+				F25D43F42922A6E8004E380C /* OrientationTest.swift in Sources */,
 				F25FCBBA29202BDB00CE4DDD /* ForexCrawler.swift in Sources */,
 				F29FF89428D97C3100F58F24 /* helper.swift in Sources */,
 			);
@@ -692,6 +696,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development: Zach Bockskopf (E4RS47CKN8)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -753,6 +758,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development: Zach Bockskopf (E4RS47CKN8)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -783,6 +789,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TraderTracking/TraderTracking.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TraderTracking/Preview Content\"";
@@ -804,11 +811,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.box.TraderTracking;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TestFlight.TraderTracking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -822,6 +829,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TraderTracking/TraderTracking.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TraderTracking/Preview Content\"";
@@ -843,11 +851,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.box.TraderTracking;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TestFlight.TraderTracking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

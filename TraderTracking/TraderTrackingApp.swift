@@ -35,10 +35,14 @@ struct TraderTrackingApp: App {
     
     var body: some Scene {
         WindowGroup {
+//            TestTabs()
+//                .environmentObject(notifications!)
+//                .environmentObject(realmController)
 //            ContentView(currentXOffset: $currentXOffset, xOffset: $xOffset)
 //                .environmentObject(realmController)
             MainTabView()
                 .environmentObject(notifications!)
+                .environmentObject(realmController)
                 .onChange(of: scenePhase) { newPhase in
                                     if newPhase == .background {
                                         UIApplication.shared.applicationIconBadgeNumber = 0

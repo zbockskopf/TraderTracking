@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainTabView: View {
 
-    @StateObject var realmController = RealmController()
+    @EnvironmentObject var realmController: RealmController
 	@StateObject var menuController = MenuController()
     @StateObject  var gestureController = GestureController()
     

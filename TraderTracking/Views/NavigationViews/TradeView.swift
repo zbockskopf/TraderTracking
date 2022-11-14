@@ -175,20 +175,20 @@ struct TradeView: View {
                                         Text("Back")
                                     })
                                 }
-                        
+
                         ToolbarItem(placement: .navigationBarTrailing){
                             HStack{
                                 Button(action: {
                                     imageIsShown = false
                                 }, label: {
-                                   
+
                                         Image(systemName: "pencil.tip.crop.circle")
                                 })
-                                
+
 //                                ShareLink(item: Image(uiImage:images[selectedPhoto]), preview: SharePreview("", image: Image(uiImage:images[selectedPhoto])))
                             }
-                            
-                            
+
+
                         }
                     }
                     .toolbarColorScheme(scheme == .light ? .light : .dark , for: .navigationBar)
@@ -216,7 +216,7 @@ struct TradeView: View {
 //
 //                )
 //                .navigationBarTitleDisplayMode(.inline)
-                
+
             }
             .toolbarBackground(Color(UIColor.green), for: .navigationBar)
 
@@ -225,6 +225,7 @@ struct TradeView: View {
             print(trade!.notes)
         }
     }
+    
     func convertImages(images: [UIImage]) -> [IFImage] {
         var temp: [IFImage] = []
 

@@ -4,7 +4,10 @@
 <dict>
 	<key>CFBundleDocumentTypes</key>
 	<array>
-		<dict/>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>TraderTracking</string>
+		</dict>
 	</array>
 </dict>
 </plist>
