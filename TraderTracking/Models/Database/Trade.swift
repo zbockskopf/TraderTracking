@@ -31,6 +31,7 @@ class Trade: Object , ObjectKeyIdentifiable {
     @Persisted var p_l: Decimal128
     @Persisted var notes: String = ""
     @Persisted var isDeleted: Bool = false
+    @Persisted var news: RealmSwift.List<News>
 }
 
 

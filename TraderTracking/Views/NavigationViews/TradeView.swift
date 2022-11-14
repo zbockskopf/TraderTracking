@@ -48,7 +48,30 @@ struct TradeView: View {
                 }
             }
             Divider()
-                .padding()
+            
+            if trade!.news.count > 0 {
+                Text("News")
+                    .font(.title3)
+                    .bold()
+                    .frame(maxWidth: .infinity ,alignment: .leading)
+                ForEach(trade!.news){ n in
+                    HStack{
+                        Text(n.time)
+                            .font(.system(size: 10))
+                            .opacity(0.5)
+                        Circle()
+                            .fill(n.impact == .high ? .red : n.impact == .medium ? .yellow : .secondary)
+                            .frame(width: 10, height: 10)
+                            .padding([.trailing], 10)
+                        Text(n.name)
+                            .font(.system(size: 10))
+
+                    }
+                    .frame(maxWidth: .infinity ,alignment: .leading)
+                }
+            }
+            Divider()
+                
             if editText {
                 ZStack{
                     TextEditor(text: $notes)

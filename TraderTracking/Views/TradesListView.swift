@@ -76,7 +76,7 @@ struct TradesListView: View {
                                 .tint(.red)
                             }
                     }
-                }else{
+                }else {
                     ForEach(weekDates().reversed(), id: \.self){ date in
 //                        myFormatter.headerDate(date: date)
                         Section(header: myFormatter.headerDate(date: date)){
@@ -119,12 +119,6 @@ struct TradesListView: View {
                             }
                         }
                     }
-//                    ForEach(0..<7){ i in
-//                        Section(header: myFormatter.headerDate(i: i)) {
-//                            ForEach(realmController.trades.filter("dateEntered BETWEEN {%@, %@}", dateChanger(date: Date(), i:i, isPrevDay: false), dateChanger(date: Date(), i:i, isPrevDay: true))){ t in
-//                                                            }
-//                        }
-//                    }
                 }
             }
             .sheet(item: $editTrade){ t in
@@ -140,29 +134,51 @@ struct TradesListView: View {
             .navigationBarTitle("")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItemGroup(placement: .navigationBarLeading) {
-                    
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Menu {
-                        Button(action: {
-                            menuController.showAllTrades = true
-                            menuController.showWeekTrades = false
-                        }) {
-                            if menuController.showAllTrades{
-                                Label("All", systemImage: "checkmark")
-                            }else{
+                        Menu{
+                            Button(action: {
+                                menuController.showAllTrades = true
+                                menuController.showWeekTrades = false
+                            }) {
+                                if menuController.showAllTrades{
+                                    Label("All", systemImage: "checkmark")
+                                }else{
+                                    Text("All")
+                                }
+                            }
+                            
+                            Button(action: {
+                                menuController.showAllTrades = false
+                                menuController.showWeekTrades = true
+                            }) {
+                                if menuController.showWeekTrades{
+                                    Label("Week", systemImage: "checkmark")
+                                }else{
+                                    Text("Week")
+                                }
+                            }
+                        } label:{
+                            Text("Display")
+                        }
+                        Menu{
+                            Button{
+                                
+                            } label: {
                                 Text("All")
                             }
-                        }
-                        
-                        Button(action: {
-                            menuController.showAllTrades = false
-                            menuController.showWeekTrades = true
-                        }) {
-                            if menuController.showWeekTrades{
-                                Label("Week", systemImage: "checkmark")
-                            }else{
-                                Text("Week")
+                            Button{
+                                
+                            } label: {
+                                Text("Hindsight")
                             }
+                            Button{
+                                
+                            } label: {
+                                Text("Actual")
+                            }
+                        }label: {
+                            Text("Filter")
                         }
                         Menu{
                             Button(action: {
@@ -201,7 +217,7 @@ struct TradesListView: View {
                         
                 }
                 }
-                ToolbarItemGroup(placement: .navigationBarTrailing){
+                ToolbarItemGroup(placement: .navigationBarLeading){
                     Text(menuController.showHindsightPL ? realmController.getWeekHindSightPL() : realmController.pAndL)
                         .foregroundColor(showDot ? Color(uiColor: .clear) : .primary)
                         .overlay(content: {
@@ -282,7 +298,7 @@ struct TradesListView: View {
         var images: [IFImage] = []
         for i in temp {
             if i.photoDirectory != nil{
-                let tempPhotos = RealmController.shared.myImage.loadImageFromDiskWith(directory: i.photoDirectory!)!
+                let tempPhotos = realmController.myImage.loadImageFromDiskWith(directory: i.photoDirectory!)!
                 for p in tempPhotos {
                     images.append(IFImage(image: p))
                 }
@@ -296,7 +312,7 @@ struct TradesListView: View {
         var images: [IFImage] = []
 
         if trade.photoDirectory != nil{
-            let tempPhotos = RealmController.shared.myImage.loadImageFromDiskWith(directory: trade.photoDirectory!)!
+            let tempPhotos = realmController.myImage.loadImageFromDiskWith(directory: trade.photoDirectory!)!
             for p in tempPhotos {
                 images.append(IFImage(image: p))
             }
@@ -327,33 +343,25 @@ struct TradeRow: View {
                         .font(.footnote)
                         .opacity(0.5)
                 }
+                if trade.news.count != 0 {
+                    Circle()
+                        .fill(Color.secondary)
+                        .opacity(0.5)
+                        .frame(width: 15, height: 15)
+                        .overlay(
+                            Text(String(trade.news.count))
+                                .font(.caption2)
+                        )
+                }
                 Spacer()
                 if trade.photoDirectory != nil {
                     Image(systemName: "photo")
                         .fixedSize()
                 }
+                
             }
+            
             HStack{
-//                if trade.isHindsight {
-//                    Circle()
-//                        .fill(.blue)
-//                        .frame(width: 15, height: 15)
-////                        .padding(.top)
-//                }else{
-//                    if trade.win!{
-//                        Circle()
-//                            .fill(.green)
-//                            .frame(width: 15, height: 15)
-////                            .padding(.top)
-//                    }
-//
-//                    if trade.loss!{
-//                        Circle()
-//                            .fill(.red)
-//                            .frame(width: 15, height: 15)
-////                            .padding(.top)
-//                    }
-//                }
                 Text(trade.symbol!.name + " @ " + myFormatter.numFormat(num: trade.entry))
 //                    .padding([.top, .leading])
                 Spacer()

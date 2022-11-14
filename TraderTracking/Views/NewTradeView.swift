@@ -28,6 +28,7 @@ struct NewTradeView: View {
     @State var positionSize: String = ""
     @State var selectedPositionType: PositionType = .long
     @State var selectedSession: Session = .ny
+    @State var selectedTags: [String] = []
     @State var stopLoss: String = ""
     @State var takeProfit: String = ""
     @State var isHindsight = false
@@ -40,15 +41,15 @@ struct NewTradeView: View {
     #### Daily Bias
     
     ___
-    #### Time and Price 
-    
-    ___
     #### Keys to the trade
     """
     
     @State private var showPhotoDeleteAlert: Bool = false
     @State var draggedItem : UIImage?
     @State var pictureOrder: Bool = false
+    var tags = ["FOMC", "CPI", "PMI"]
+    
+//    var forex = ForexCrawler()
     
     var body: some View {
         NavigationStack{
@@ -76,6 +77,13 @@ struct NewTradeView: View {
                                 .tag(val)
                         }
                     }
+//                    Picker("Tags", selection: $selectedTags){
+//                        ForEach(tags, id: \.self){ t in
+//                            Text(t)
+//                                .tag(t)
+//                        }
+//                    }
+//                    .pickerStyle(NavigationLinkPickerStyle())
                 }
                 Section{
                     DatePicker("Entered", selection: $dateEntered)
@@ -251,6 +259,7 @@ struct NewTradeView: View {
         temp.fees = formatDecimal(str: fees)
         temp.p_l = getProfitLoss(entry: temp.entry, exit: temp.exit, positionType: temp.positionType, tickValue: temp.symbol!.tickValue, positionSize: temp.positionSize)
         temp.notes = notes
+        
         if selectedPositionType == .long {
           if (Double(exit)! - Double(entry)!).sign == .minus {
               sheetAction = .loss
@@ -278,7 +287,7 @@ struct NewTradeView: View {
         if isHindsight || temp.entry == temp.exit {
             sheetAction = .nothing
         }
-
+        
         realmController.addTrade(trade: temp, images: selectedImages, edited: isEditing)
     }
     
@@ -299,6 +308,12 @@ struct NewTradeView: View {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH-mm-E-d-MMM-y"
         return formatter.string(from: dateEntered)
+    }
+    
+    private func newsDateFormat(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMdd.yyyy"
+        return formatter.string(from: date)
     }
 
 

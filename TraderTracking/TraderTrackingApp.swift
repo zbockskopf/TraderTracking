@@ -13,8 +13,9 @@ struct TraderTrackingApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @State var currentXOffset: CGFloat = 0
     @State var xOffset: CGFloat = 0
-    var realmController = RealmController()
+    @StateObject var realmController = RealmController()
     var notifications: Notifications?
+//    var f = ForexCrawler()
     private var hasLaunched = UserDefaults.standard.bool(forKey: "launchedBefore")
     
     init() {
@@ -44,5 +45,6 @@ struct TraderTrackingApp: App {
                                     }
                                 }
         }
+        
     }
 }

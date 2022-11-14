@@ -52,8 +52,8 @@ class Notifications: NSObject, ObservableObject {
         
         var dateComponents = DateComponents()
         dateComponents.calendar = calendar
-
-        dateComponents.hour = hour    // 14:00 hours
+        
+        dateComponents.hour = hour    
         dateComponents.minute = min
            
         // Create the trigger as a repeating event.
@@ -84,7 +84,7 @@ extension Notifications: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                     didReceive response: UNNotificationResponse,
                                     withCompletionHandler completionHandler: @escaping () -> Void) {
-        print("test")
+        
         self.toggleForexCalendar()
         completionHandler()
         }
