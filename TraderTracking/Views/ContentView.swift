@@ -38,6 +38,11 @@ struct ContentView: View {
 //            .padding()
             ZStack{
                 VStack{
+                    VStack{
+                        Text("Mission Statement:")
+                            .bold()
+                        Text("(Add a mission statement)")
+                    }.padding([.bottom], 30)
                     Text(realmController.winRate)
                         .font(.largeTitle)
                         .padding()

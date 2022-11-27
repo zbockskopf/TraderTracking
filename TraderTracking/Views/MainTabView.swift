@@ -16,7 +16,7 @@ struct MainTabView: View {
     @EnvironmentObject var notifications: Notifications
 	
     @StateObject var tradeListData = TradeListViewModel()
-    @State private var selection = 1
+    @State private var selection = 0
     @State var showMenu: Bool = false
     @State var offSet: CGFloat = 0
     @State var lastStoredOffset: CGFloat = 0
