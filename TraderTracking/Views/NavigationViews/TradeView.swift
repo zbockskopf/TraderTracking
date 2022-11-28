@@ -46,6 +46,7 @@ struct TradeView: View {
                     }
                     Spacer()
                 }
+                Link("Test", destination: URL(string: "https://www.notion.so/9th-fb9c86316a6f497bac701cca92b29c7b")!)
             }
             Divider()
             
