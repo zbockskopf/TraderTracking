@@ -1,0 +1,1014 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03E5E2D175AC946C8F983FB625CD48F9 /* Pods-TraderTrackingTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F486DB417BF288B4E64DE946F0674E /* Pods-TraderTrackingTests-dummy.m */; };
+		109B6D01D3923D375E08F738419B37D2 /* Pods-TraderTracking-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BD4C912A26D2EE8A5F5BF5817C71EA97 /* Pods-TraderTracking-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		160EB60CFE11425A1418F76A6F05F63F /* Pods-TraderTracking-TraderTrackingUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A234181CD99AB17CFDD36ED5D71C78 /* Pods-TraderTracking-TraderTrackingUITests-dummy.m */; };
+		1D5CDE052FCCC3B71BE3FD4DF4DAD8CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7C7CBF4366B196F4F8B133C8319AB1 /* Foundation.framework */; };
+		2EF8635C8FDCE0F129986822A80B5FEF /* NavBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F302524FA2FB5269366D102FF34B1C2 /* NavBarItem.swift */; };
+		2F0DFEC24052AA1E32D937273554E152 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20094AF9A05B5AFEE065EFE5403128D1 /* SwiftUI.framework */; };
+		332797B5A170CB2265ACDBA593C30556 /* PagerTabStripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638B2EB8D128B5EB13C9970C2F0D1521 /* PagerTabStripView.swift */; };
+		3EBE094C593F9F5DC1995328FA80FEE9 /* PagerTabStripView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FA7BA4922DB051294087090314C0AD27 /* PagerTabStripView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6F70D5D6D6674EB3417CFA09342B0ECD /* PagerTabItemModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B555F38911F0C88B0F97555F28F7E4 /* PagerTabItemModifier.swift */; };
+		73388627BE940F4677B198D0B9069A17 /* IndicatorBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD2EC6AA2963CCC199515DFAD99B52D /* IndicatorBarView.swift */; };
+		751B7E512032FFA960C43023821C4180 /* ScrollableNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BF76C1E200A6C83B4CEFBF28BCBC59 /* ScrollableNavBarView.swift */; };
+		7BF7F952FEB357054C8F94E31543A81A /* PagerStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E1FF1DF1B408922A3CF50BEBDC8654 /* PagerStyle.swift */; };
+		86BDF37C136D2666B95696E6B0D44A29 /* FixedSizeNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7F0A925B71E346A5529EEDC079E411 /* FixedSizeNavBarView.swift */; };
+		8D68B6B5A840E6674044649457EB88F4 /* Pods-TraderTracking-TraderTrackingUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8934AF111E119956BA5B95ACD086B273 /* Pods-TraderTracking-TraderTrackingUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		934B82E97435C4FC26BA7C3E207113FE /* Pods-TraderTracking-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A61798C1B2A0A24ED958BFD1D85824 /* Pods-TraderTracking-dummy.m */; };
+		9DAB2A73A37DB596B34B329AF7AE47B0 /* PagerTabStripView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 295F3582C4D1DEBA41E82C89AA6F8868 /* PagerTabStripView-dummy.m */; };
+		A3F0D966F9A83F89FC5ED6ED58C52160 /* View+Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C90EA343A5C59DE5FBF1F5E3B6276 /* View+Modifiers.swift */; };
+		A55FA79745FD8809E65D083F0A96C72E /* SegmentedNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B034065738D2198BCBE83A77BF8EFA /* SegmentedNavBarView.swift */; };
+		A5ED6CCF09D35BA34E365EF6798AB267 /* NavBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582C42E3A7BE875BA4E0E664231A409 /* NavBarModifier.swift */; };
+		A7F96B791C5D178A667716132BFCAD49 /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465B6899C0A99F9FC85ED87E27F648C /* Collection+Extensions.swift */; };
+		B0BFE6646163CDA4E241CE2C87EC7FA9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7C7CBF4366B196F4F8B133C8319AB1 /* Foundation.framework */; };
+		C0079F1B4EE21BB7A76D5C62C98D31AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7C7CBF4366B196F4F8B133C8319AB1 /* Foundation.framework */; };
+		C378FE9288EC85D4A59104E06397D5B9 /* PagerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A19CD94B454A6D084264D68F546345E /* PagerSettings.swift */; };
+		D333E6BECF398D860A5B17BCDFA92146 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7C7CBF4366B196F4F8B133C8319AB1 /* Foundation.framework */; };
+		FCFAE57E4F92B46605C765002C5741E5 /* Pods-TraderTrackingTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 57538C3F628B820860281BE76CC8CD26 /* Pods-TraderTrackingTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		05CD87194EB0E7488CF7C175E886ADDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7BA23BF48A37E07B01A898EA392A734A;
+			remoteInfo = PagerTabStripView;
+		};
+		3D27AC20B818C77FED159D00B242A217 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7BA23BF48A37E07B01A898EA392A734A;
+			remoteInfo = PagerTabStripView;
+		};
+		9CB1CDDAD7DD2564C54067537F573E21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 015A88EA1D221D3008C4B8347C424093;
+			remoteInfo = "Pods-TraderTracking";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		02900088D11BAE65649CBEE2DD3A61D1 /* Pods-TraderTracking-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraderTracking-frameworks.sh"; sourceTree = "<group>"; };
+		11A0A0C7FFC9262F8A93AFA81FD8C153 /* Pods-TraderTracking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraderTracking.release.xcconfig"; sourceTree = "<group>"; };
+		125A2D373319E01BC61B1FC346B6813D /* Pods-TraderTracking-TraderTrackingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraderTracking-TraderTrackingUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		16BC3F859EBE13C6629F0890EC8B9D29 /* Pods-TraderTracking.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TraderTracking.modulemap"; sourceTree = "<group>"; };
+		20094AF9A05B5AFEE065EFE5403128D1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
+		21627B478C46229FCFD8FEAC7625A5CD /* Pods-TraderTracking-TraderTrackingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraderTracking-TraderTrackingUITests.release.xcconfig"; sourceTree = "<group>"; };
+		295F3582C4D1DEBA41E82C89AA6F8868 /* PagerTabStripView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PagerTabStripView-dummy.m"; sourceTree = "<group>"; };
+		296EE12D61B48CBBFB4DBED48276B9AA /* PagerTabStripView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "PagerTabStripView-Info.plist"; sourceTree = "<group>"; };
+		29F5E99C3C51705294F6E328A29B04C4 /* Pods-TraderTracking-TraderTrackingUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraderTracking-TraderTrackingUITests-frameworks.sh"; sourceTree = "<group>"; };
+		2F302524FA2FB5269366D102FF34B1C2 /* NavBarItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NavBarItem.swift; path = Sources/NavBarItem.swift; sourceTree = "<group>"; };
+		323141073D22FB4BB7963871EF1D8EBC /* Pods-TraderTrackingTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TraderTrackingTests.modulemap"; sourceTree = "<group>"; };
+		494C90EA343A5C59DE5FBF1F5E3B6276 /* View+Modifiers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "View+Modifiers.swift"; path = "Sources/View+Modifiers.swift"; sourceTree = "<group>"; };
+		4A19CD94B454A6D084264D68F546345E /* PagerSettings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PagerSettings.swift; path = Sources/PagerSettings.swift; sourceTree = "<group>"; };
+		57538C3F628B820860281BE76CC8CD26 /* Pods-TraderTrackingTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TraderTrackingTests-umbrella.h"; sourceTree = "<group>"; };
+		57BF76C1E200A6C83B4CEFBF28BCBC59 /* ScrollableNavBarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScrollableNavBarView.swift; path = Sources/NavigationBarStyles/ScrollableNavBarView.swift; sourceTree = "<group>"; };
+		58B034065738D2198BCBE83A77BF8EFA /* SegmentedNavBarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SegmentedNavBarView.swift; path = Sources/NavigationBarStyles/SegmentedNavBarView.swift; sourceTree = "<group>"; };
+		638B2EB8D128B5EB13C9970C2F0D1521 /* PagerTabStripView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PagerTabStripView.swift; path = Sources/PagerTabStripView.swift; sourceTree = "<group>"; };
+		697A9D480E2246AFE22A98DC8B5FCD27 /* PagerTabStripView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PagerTabStripView.release.xcconfig; sourceTree = "<group>"; };
+		69F8342ECDFD793D96112EA52A201321 /* Pods-TraderTracking-TraderTrackingUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TraderTracking-TraderTrackingUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		6CA80CF2BA3245E952838C235ED665BA /* Pods-TraderTrackingTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TraderTrackingTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		8333F045B6E2465065B3AA2DD90BDCA1 /* Pods-TraderTracking-TraderTrackingUITests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-TraderTracking-TraderTrackingUITests"; path = Pods_TraderTracking_TraderTrackingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		83E758D8D40D7630A7A0B5277BAEB5A0 /* PagerTabStripView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PagerTabStripView-prefix.pch"; sourceTree = "<group>"; };
+		841F7897E0537748D49E57D6A9825B9E /* Pods-TraderTracking-TraderTrackingUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TraderTracking-TraderTrackingUITests.modulemap"; sourceTree = "<group>"; };
+		8579A1089A0C7064DBB4FE99537D4329 /* PagerTabStripView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PagerTabStripView.debug.xcconfig; sourceTree = "<group>"; };
+		87EFFC1E490551DD97FC1686F2CB74E4 /* Pods-TraderTrackingTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-TraderTrackingTests"; path = Pods_TraderTrackingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		88A234181CD99AB17CFDD36ED5D71C78 /* Pods-TraderTracking-TraderTrackingUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TraderTracking-TraderTrackingUITests-dummy.m"; sourceTree = "<group>"; };
+		8934AF111E119956BA5B95ACD086B273 /* Pods-TraderTracking-TraderTrackingUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TraderTracking-TraderTrackingUITests-umbrella.h"; sourceTree = "<group>"; };
+		8C5907C507FF03BEEBC081A4F74C65DC /* Pods-TraderTracking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraderTracking.debug.xcconfig"; sourceTree = "<group>"; };
+		930C96B25B5646B68E9F0A4C348B370A /* Pods-TraderTracking-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TraderTracking-Info.plist"; sourceTree = "<group>"; };
+		9882B4B26BBEB036604A01C6A5B8E0BC /* Pods-TraderTracking-TraderTrackingUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TraderTracking-TraderTrackingUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9FF37491ED4B59538C4D37FA3173A5DE /* PagerTabStripView */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PagerTabStripView; path = PagerTabStripView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2A61798C1B2A0A24ED958BFD1D85824 /* Pods-TraderTracking-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TraderTracking-dummy.m"; sourceTree = "<group>"; };
+		A4BFDA8D44FBE51135C1BBBD1E84E26E /* Pods-TraderTracking */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-TraderTracking"; path = Pods_TraderTracking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A56AF3A2F266BCB06D6766C76E41B765 /* Pods-TraderTrackingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraderTrackingTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A827DE8CAFED9DF6F6BC7A7BE24B3DCB /* Pods-TraderTrackingTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TraderTrackingTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		A8C9DCFBF857D2AFECD0575EDEF41B50 /* Pods-TraderTrackingTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TraderTrackingTests-Info.plist"; sourceTree = "<group>"; };
+		ACD2EC6AA2963CCC199515DFAD99B52D /* IndicatorBarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IndicatorBarView.swift; path = Sources/NavigationBarStyles/IndicatorBarView.swift; sourceTree = "<group>"; };
+		BA7F0A925B71E346A5529EEDC079E411 /* FixedSizeNavBarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FixedSizeNavBarView.swift; path = Sources/NavigationBarStyles/FixedSizeNavBarView.swift; sourceTree = "<group>"; };
+		BC92EEC301E65A13A5545D90A123459D /* PagerTabStripView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = PagerTabStripView.modulemap; sourceTree = "<group>"; };
+		BD4C912A26D2EE8A5F5BF5817C71EA97 /* Pods-TraderTracking-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TraderTracking-umbrella.h"; sourceTree = "<group>"; };
+		C31E0EA4FD182AACA332EAD735CA68D1 /* Pods-TraderTrackingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraderTrackingTests.release.xcconfig"; sourceTree = "<group>"; };
+		D9E1FF1DF1B408922A3CF50BEBDC8654 /* PagerStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PagerStyle.swift; path = Sources/PagerStyle.swift; sourceTree = "<group>"; };
+		DC7C7CBF4366B196F4F8B133C8319AB1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		DFC0ADD8DE7A6B94F71C745DF4D4F6D3 /* Pods-TraderTracking-TraderTrackingUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TraderTracking-TraderTrackingUITests-Info.plist"; sourceTree = "<group>"; };
+		E0F486DB417BF288B4E64DE946F0674E /* Pods-TraderTrackingTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TraderTrackingTests-dummy.m"; sourceTree = "<group>"; };
+		E582C42E3A7BE875BA4E0E664231A409 /* NavBarModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NavBarModifier.swift; path = Sources/NavBarModifier.swift; sourceTree = "<group>"; };
+		E9B555F38911F0C88B0F97555F28F7E4 /* PagerTabItemModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PagerTabItemModifier.swift; path = Sources/PagerTabItemModifier.swift; sourceTree = "<group>"; };
+		ED2399124403F5FA4F08EC40D28A2DE2 /* Pods-TraderTracking-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TraderTracking-acknowledgements.plist"; sourceTree = "<group>"; };
+		F048891CDDCF9DDA9692678FE6A50D14 /* Pods-TraderTracking-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TraderTracking-acknowledgements.markdown"; sourceTree = "<group>"; };
+		F465B6899C0A99F9FC85ED87E27F648C /* Collection+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Collection+Extensions.swift"; path = "Sources/Collection+Extensions.swift"; sourceTree = "<group>"; };
+		FA7BA4922DB051294087090314C0AD27 /* PagerTabStripView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PagerTabStripView-umbrella.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		34E1878F44480AEF26840871E425AC21 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D333E6BECF398D860A5B17BCDFA92146 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		654022F16FDB6B40ABAC8A4DED7DED5A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0BFE6646163CDA4E241CE2C87EC7FA9 /* Foundation.framework in Frameworks */,
+				2F0DFEC24052AA1E32D937273554E152 /* SwiftUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E21013AA77D8842CB89645503CD975AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D5CDE052FCCC3B71BE3FD4DF4DAD8CB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7B5147AFCFC9FE60379EF5FDED19A89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0079F1B4EE21BB7A76D5C62C98D31AB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		058C45BD2599CAC1EE6C5BD94B82735C /* Pods-TraderTracking-TraderTrackingUITests */ = {
+			isa = PBXGroup;
+			children = (
+				841F7897E0537748D49E57D6A9825B9E /* Pods-TraderTracking-TraderTrackingUITests.modulemap */,
+				69F8342ECDFD793D96112EA52A201321 /* Pods-TraderTracking-TraderTrackingUITests-acknowledgements.markdown */,
+				9882B4B26BBEB036604A01C6A5B8E0BC /* Pods-TraderTracking-TraderTrackingUITests-acknowledgements.plist */,
+				88A234181CD99AB17CFDD36ED5D71C78 /* Pods-TraderTracking-TraderTrackingUITests-dummy.m */,
+				29F5E99C3C51705294F6E328A29B04C4 /* Pods-TraderTracking-TraderTrackingUITests-frameworks.sh */,
+				DFC0ADD8DE7A6B94F71C745DF4D4F6D3 /* Pods-TraderTracking-TraderTrackingUITests-Info.plist */,
+				8934AF111E119956BA5B95ACD086B273 /* Pods-TraderTracking-TraderTrackingUITests-umbrella.h */,
+				125A2D373319E01BC61B1FC346B6813D /* Pods-TraderTracking-TraderTrackingUITests.debug.xcconfig */,
+				21627B478C46229FCFD8FEAC7625A5CD /* Pods-TraderTracking-TraderTrackingUITests.release.xcconfig */,
+			);
+			name = "Pods-TraderTracking-TraderTrackingUITests";
+			path = "Target Support Files/Pods-TraderTracking-TraderTrackingUITests";
+			sourceTree = "<group>";
+		};
+		1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				367350C0206CEB39C83981ABCAA29148 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		367350C0206CEB39C83981ABCAA29148 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				DC7C7CBF4366B196F4F8B133C8319AB1 /* Foundation.framework */,
+				20094AF9A05B5AFEE065EFE5403128D1 /* SwiftUI.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		52AFF188B7B27DF730A39CF0450A872A /* Pods-TraderTracking */ = {
+			isa = PBXGroup;
+			children = (
+				16BC3F859EBE13C6629F0890EC8B9D29 /* Pods-TraderTracking.modulemap */,
+				F048891CDDCF9DDA9692678FE6A50D14 /* Pods-TraderTracking-acknowledgements.markdown */,
+				ED2399124403F5FA4F08EC40D28A2DE2 /* Pods-TraderTracking-acknowledgements.plist */,
+				A2A61798C1B2A0A24ED958BFD1D85824 /* Pods-TraderTracking-dummy.m */,
+				02900088D11BAE65649CBEE2DD3A61D1 /* Pods-TraderTracking-frameworks.sh */,
+				930C96B25B5646B68E9F0A4C348B370A /* Pods-TraderTracking-Info.plist */,
+				BD4C912A26D2EE8A5F5BF5817C71EA97 /* Pods-TraderTracking-umbrella.h */,
+				8C5907C507FF03BEEBC081A4F74C65DC /* Pods-TraderTracking.debug.xcconfig */,
+				11A0A0C7FFC9262F8A93AFA81FD8C153 /* Pods-TraderTracking.release.xcconfig */,
+			);
+			name = "Pods-TraderTracking";
+			path = "Target Support Files/Pods-TraderTracking";
+			sourceTree = "<group>";
+		};
+		612B2F55098CEAB12DDA6A2A05687E36 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				52AFF188B7B27DF730A39CF0450A872A /* Pods-TraderTracking */,
+				058C45BD2599CAC1EE6C5BD94B82735C /* Pods-TraderTracking-TraderTrackingUITests */,
+				B3A0AD58804F028F2545946C71FD55D0 /* Pods-TraderTrackingTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		643884E199E5F2AEF5463B1B9D0622F1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9CEB940E2DE229A04E24DB3F00FAE55E /* PagerTabStripView */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9CEB940E2DE229A04E24DB3F00FAE55E /* PagerTabStripView */ = {
+			isa = PBXGroup;
+			children = (
+				F465B6899C0A99F9FC85ED87E27F648C /* Collection+Extensions.swift */,
+				BA7F0A925B71E346A5529EEDC079E411 /* FixedSizeNavBarView.swift */,
+				ACD2EC6AA2963CCC199515DFAD99B52D /* IndicatorBarView.swift */,
+				2F302524FA2FB5269366D102FF34B1C2 /* NavBarItem.swift */,
+				E582C42E3A7BE875BA4E0E664231A409 /* NavBarModifier.swift */,
+				4A19CD94B454A6D084264D68F546345E /* PagerSettings.swift */,
+				D9E1FF1DF1B408922A3CF50BEBDC8654 /* PagerStyle.swift */,
+				E9B555F38911F0C88B0F97555F28F7E4 /* PagerTabItemModifier.swift */,
+				638B2EB8D128B5EB13C9970C2F0D1521 /* PagerTabStripView.swift */,
+				57BF76C1E200A6C83B4CEFBF28BCBC59 /* ScrollableNavBarView.swift */,
+				58B034065738D2198BCBE83A77BF8EFA /* SegmentedNavBarView.swift */,
+				494C90EA343A5C59DE5FBF1F5E3B6276 /* View+Modifiers.swift */,
+				A8DA8E58193962C1195CFD395463D852 /* Support Files */,
+			);
+			name = PagerTabStripView;
+			path = PagerTabStripView;
+			sourceTree = "<group>";
+		};
+		A8DA8E58193962C1195CFD395463D852 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BC92EEC301E65A13A5545D90A123459D /* PagerTabStripView.modulemap */,
+				295F3582C4D1DEBA41E82C89AA6F8868 /* PagerTabStripView-dummy.m */,
+				296EE12D61B48CBBFB4DBED48276B9AA /* PagerTabStripView-Info.plist */,
+				83E758D8D40D7630A7A0B5277BAEB5A0 /* PagerTabStripView-prefix.pch */,
+				FA7BA4922DB051294087090314C0AD27 /* PagerTabStripView-umbrella.h */,
+				8579A1089A0C7064DBB4FE99537D4329 /* PagerTabStripView.debug.xcconfig */,
+				697A9D480E2246AFE22A98DC8B5FCD27 /* PagerTabStripView.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/PagerTabStripView";
+			sourceTree = "<group>";
+		};
+		B3A0AD58804F028F2545946C71FD55D0 /* Pods-TraderTrackingTests */ = {
+			isa = PBXGroup;
+			children = (
+				323141073D22FB4BB7963871EF1D8EBC /* Pods-TraderTrackingTests.modulemap */,
+				A827DE8CAFED9DF6F6BC7A7BE24B3DCB /* Pods-TraderTrackingTests-acknowledgements.markdown */,
+				6CA80CF2BA3245E952838C235ED665BA /* Pods-TraderTrackingTests-acknowledgements.plist */,
+				E0F486DB417BF288B4E64DE946F0674E /* Pods-TraderTrackingTests-dummy.m */,
+				A8C9DCFBF857D2AFECD0575EDEF41B50 /* Pods-TraderTrackingTests-Info.plist */,
+				57538C3F628B820860281BE76CC8CD26 /* Pods-TraderTrackingTests-umbrella.h */,
+				A56AF3A2F266BCB06D6766C76E41B765 /* Pods-TraderTrackingTests.debug.xcconfig */,
+				C31E0EA4FD182AACA332EAD735CA68D1 /* Pods-TraderTrackingTests.release.xcconfig */,
+			);
+			name = "Pods-TraderTrackingTests";
+			path = "Target Support Files/Pods-TraderTrackingTests";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */,
+				643884E199E5F2AEF5463B1B9D0622F1 /* Pods */,
+				F445DE9FDE708A45C21476DA2A9289D8 /* Products */,
+				612B2F55098CEAB12DDA6A2A05687E36 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		F445DE9FDE708A45C21476DA2A9289D8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9FF37491ED4B59538C4D37FA3173A5DE /* PagerTabStripView */,
+				A4BFDA8D44FBE51135C1BBBD1E84E26E /* Pods-TraderTracking */,
+				8333F045B6E2465065B3AA2DD90BDCA1 /* Pods-TraderTracking-TraderTrackingUITests */,
+				87EFFC1E490551DD97FC1686F2CB74E4 /* Pods-TraderTrackingTests */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		194783981B61DEA7D26C15318B90D35B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				109B6D01D3923D375E08F738419B37D2 /* Pods-TraderTracking-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		938B2F585653BC4A6341BD23A09B9D92 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D68B6B5A840E6674044649457EB88F4 /* Pods-TraderTracking-TraderTrackingUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		989EB851EDC0CD7293336DE5A1AC34E8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCFAE57E4F92B46605C765002C5741E5 /* Pods-TraderTrackingTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE7F646B0B8EF301BE1CF94268E60577 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EBE094C593F9F5DC1995328FA80FEE9 /* PagerTabStripView-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		015A88EA1D221D3008C4B8347C424093 /* Pods-TraderTracking */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE0B2274A156F9FDEE7E09B1F2B6A800 /* Build configuration list for PBXNativeTarget "Pods-TraderTracking" */;
+			buildPhases = (
+				194783981B61DEA7D26C15318B90D35B /* Headers */,
+				6BD983093592A3E4C3434869E99D6576 /* Sources */,
+				F7B5147AFCFC9FE60379EF5FDED19A89 /* Frameworks */,
+				C4529E51802FD60CE25D899C16AC49F5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				02BDAAE57C167CDA5B2723C144917DC2 /* PBXTargetDependency */,
+			);
+			name = "Pods-TraderTracking";
+			productName = Pods_TraderTracking;
+			productReference = A4BFDA8D44FBE51135C1BBBD1E84E26E /* Pods-TraderTracking */;
+			productType = "com.apple.product-type.framework";
+		};
+		774815D2EF1FE95D0A0939A913B1464E /* Pods-TraderTracking-TraderTrackingUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D36A9F8AE5376776CBE013D04E4600B /* Build configuration list for PBXNativeTarget "Pods-TraderTracking-TraderTrackingUITests" */;
+			buildPhases = (
+				938B2F585653BC4A6341BD23A09B9D92 /* Headers */,
+				CD64F372CA44DACF4E00F28D6F13081E /* Sources */,
+				34E1878F44480AEF26840871E425AC21 /* Frameworks */,
+				9E3A1071F3D02959559D4523EECEEB7C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				746567DF1A90067D0198420FBA6135D9 /* PBXTargetDependency */,
+			);
+			name = "Pods-TraderTracking-TraderTrackingUITests";
+			productName = Pods_TraderTracking_TraderTrackingUITests;
+			productReference = 8333F045B6E2465065B3AA2DD90BDCA1 /* Pods-TraderTracking-TraderTrackingUITests */;
+			productType = "com.apple.product-type.framework";
+		};
+		7BA23BF48A37E07B01A898EA392A734A /* PagerTabStripView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C686CB20CAA4DEAD7E43840FFF4B8EC /* Build configuration list for PBXNativeTarget "PagerTabStripView" */;
+			buildPhases = (
+				EE7F646B0B8EF301BE1CF94268E60577 /* Headers */,
+				880369AD343882FBD9FFBBD910D2ED01 /* Sources */,
+				654022F16FDB6B40ABAC8A4DED7DED5A /* Frameworks */,
+				DFBDF171CC563851FFC204FB0EC9F682 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PagerTabStripView;
+			productName = PagerTabStripView;
+			productReference = 9FF37491ED4B59538C4D37FA3173A5DE /* PagerTabStripView */;
+			productType = "com.apple.product-type.framework";
+		};
+		8D91626048608BAEC26CCAECDEFCF7C9 /* Pods-TraderTrackingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A9519A2751209DAF7D2A5E3586BFA25 /* Build configuration list for PBXNativeTarget "Pods-TraderTrackingTests" */;
+			buildPhases = (
+				989EB851EDC0CD7293336DE5A1AC34E8 /* Headers */,
+				655980457CF49CFBDCDB551D1DAA0AB6 /* Sources */,
+				E21013AA77D8842CB89645503CD975AE /* Frameworks */,
+				034B12220360FA80068FB0ACD2F41D50 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				224271092CDB2A7DAB97AB492945564F /* PBXTargetDependency */,
+			);
+			name = "Pods-TraderTrackingTests";
+			productName = Pods_TraderTrackingTests;
+			productReference = 87EFFC1E490551DD97FC1686F2CB74E4 /* Pods-TraderTrackingTests */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = F445DE9FDE708A45C21476DA2A9289D8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7BA23BF48A37E07B01A898EA392A734A /* PagerTabStripView */,
+				015A88EA1D221D3008C4B8347C424093 /* Pods-TraderTracking */,
+				774815D2EF1FE95D0A0939A913B1464E /* Pods-TraderTracking-TraderTrackingUITests */,
+				8D91626048608BAEC26CCAECDEFCF7C9 /* Pods-TraderTrackingTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		034B12220360FA80068FB0ACD2F41D50 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E3A1071F3D02959559D4523EECEEB7C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4529E51802FD60CE25D899C16AC49F5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFBDF171CC563851FFC204FB0EC9F682 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		655980457CF49CFBDCDB551D1DAA0AB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03E5E2D175AC946C8F983FB625CD48F9 /* Pods-TraderTrackingTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6BD983093592A3E4C3434869E99D6576 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				934B82E97435C4FC26BA7C3E207113FE /* Pods-TraderTracking-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		880369AD343882FBD9FFBBD910D2ED01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7F96B791C5D178A667716132BFCAD49 /* Collection+Extensions.swift in Sources */,
+				86BDF37C136D2666B95696E6B0D44A29 /* FixedSizeNavBarView.swift in Sources */,
+				73388627BE940F4677B198D0B9069A17 /* IndicatorBarView.swift in Sources */,
+				2EF8635C8FDCE0F129986822A80B5FEF /* NavBarItem.swift in Sources */,
+				A5ED6CCF09D35BA34E365EF6798AB267 /* NavBarModifier.swift in Sources */,
+				C378FE9288EC85D4A59104E06397D5B9 /* PagerSettings.swift in Sources */,
+				7BF7F952FEB357054C8F94E31543A81A /* PagerStyle.swift in Sources */,
+				6F70D5D6D6674EB3417CFA09342B0ECD /* PagerTabItemModifier.swift in Sources */,
+				332797B5A170CB2265ACDBA593C30556 /* PagerTabStripView.swift in Sources */,
+				9DAB2A73A37DB596B34B329AF7AE47B0 /* PagerTabStripView-dummy.m in Sources */,
+				751B7E512032FFA960C43023821C4180 /* ScrollableNavBarView.swift in Sources */,
+				A55FA79745FD8809E65D083F0A96C72E /* SegmentedNavBarView.swift in Sources */,
+				A3F0D966F9A83F89FC5ED6ED58C52160 /* View+Modifiers.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD64F372CA44DACF4E00F28D6F13081E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				160EB60CFE11425A1418F76A6F05F63F /* Pods-TraderTracking-TraderTrackingUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		02BDAAE57C167CDA5B2723C144917DC2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PagerTabStripView;
+			target = 7BA23BF48A37E07B01A898EA392A734A /* PagerTabStripView */;
+			targetProxy = 3D27AC20B818C77FED159D00B242A217 /* PBXContainerItemProxy */;
+		};
+		224271092CDB2A7DAB97AB492945564F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-TraderTracking";
+			target = 015A88EA1D221D3008C4B8347C424093 /* Pods-TraderTracking */;
+			targetProxy = 9CB1CDDAD7DD2564C54067537F573E21 /* PBXContainerItemProxy */;
+		};
+		746567DF1A90067D0198420FBA6135D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PagerTabStripView;
+			target = 7BA23BF48A37E07B01A898EA392A734A /* PagerTabStripView */;
+			targetProxy = 05CD87194EB0E7488CF7C175E886ADDD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		14B4F5C40BCF267622CF82223F5EA791 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11A0A0C7FFC9262F8A93AFA81FD8C153 /* Pods-TraderTracking.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-TraderTracking/Pods-TraderTracking-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TraderTracking/Pods-TraderTracking.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		1FC886838AADB9A4812D071AD4CA5524 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 125A2D373319E01BC61B1FC346B6813D /* Pods-TraderTracking-TraderTrackingUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-TraderTracking-TraderTrackingUITests/Pods-TraderTracking-TraderTrackingUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TraderTracking-TraderTrackingUITests/Pods-TraderTracking-TraderTrackingUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6A5C026ED62BBFE3380CD257EEFAEB20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		8772CF7EBBBAEB933A3C24F8BD5E4F44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C5907C507FF03BEEBC081A4F74C65DC /* Pods-TraderTracking.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-TraderTracking/Pods-TraderTracking-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TraderTracking/Pods-TraderTracking.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8C6C3CC09EA0ED91CC8FD52A2FC456FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21627B478C46229FCFD8FEAC7625A5CD /* Pods-TraderTracking-TraderTrackingUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-TraderTracking-TraderTrackingUITests/Pods-TraderTracking-TraderTrackingUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TraderTracking-TraderTrackingUITests/Pods-TraderTracking-TraderTrackingUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		97052BA645B6B17646C4817BCFDF4C0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 697A9D480E2246AFE22A98DC8B5FCD27 /* PagerTabStripView.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/PagerTabStripView/PagerTabStripView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PagerTabStripView/PagerTabStripView-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/PagerTabStripView/PagerTabStripView.modulemap";
+				PRODUCT_MODULE_NAME = PagerTabStripView;
+				PRODUCT_NAME = PagerTabStripView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.7;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		97FE3D14B2234A8628C64F30D815445A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A56AF3A2F266BCB06D6766C76E41B765 /* Pods-TraderTrackingTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-TraderTrackingTests/Pods-TraderTrackingTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TraderTrackingTests/Pods-TraderTrackingTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CFE1FC25CFA45E6F7E5E6485952CA0EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8579A1089A0C7064DBB4FE99537D4329 /* PagerTabStripView.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/PagerTabStripView/PagerTabStripView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PagerTabStripView/PagerTabStripView-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/PagerTabStripView/PagerTabStripView.modulemap";
+				PRODUCT_MODULE_NAME = PagerTabStripView;
+				PRODUCT_NAME = PagerTabStripView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.7;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		DAEA5D14340EA28C7BD1502F32175DD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C31E0EA4FD182AACA332EAD735CA68D1 /* Pods-TraderTrackingTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-TraderTrackingTests/Pods-TraderTrackingTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TraderTrackingTests/Pods-TraderTrackingTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E873CA97BD124B21839AF13C9BE1CD18 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A5C026ED62BBFE3380CD257EEFAEB20 /* Debug */,
+				E873CA97BD124B21839AF13C9BE1CD18 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5A9519A2751209DAF7D2A5E3586BFA25 /* Build configuration list for PBXNativeTarget "Pods-TraderTrackingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97FE3D14B2234A8628C64F30D815445A /* Debug */,
+				DAEA5D14340EA28C7BD1502F32175DD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C686CB20CAA4DEAD7E43840FFF4B8EC /* Build configuration list for PBXNativeTarget "PagerTabStripView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFE1FC25CFA45E6F7E5E6485952CA0EB /* Debug */,
+				97052BA645B6B17646C4817BCFDF4C0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9D36A9F8AE5376776CBE013D04E4600B /* Build configuration list for PBXNativeTarget "Pods-TraderTracking-TraderTrackingUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FC886838AADB9A4812D071AD4CA5524 /* Debug */,
+				8C6C3CC09EA0ED91CC8FD52A2FC456FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE0B2274A156F9FDEE7E09B1F2B6A800 /* Build configuration list for PBXNativeTarget "Pods-TraderTracking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8772CF7EBBBAEB933A3C24F8BD5E4F44 /* Debug */,
+				14B4F5C40BCF267622CF82223F5EA791 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}
