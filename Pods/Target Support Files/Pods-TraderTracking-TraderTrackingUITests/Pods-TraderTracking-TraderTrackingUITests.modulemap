@@ -1,0 +1,6 @@
+framework module Pods_TraderTracking_TraderTrackingUITests {
+  umbrella header "Pods-TraderTracking-TraderTrackingUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,2165 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		077467A4221CD5EDEBDE3FEC /* Pods_TraderTracking_TraderTrackingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 779291EFCE302DE141887D68 /* Pods_TraderTracking_TraderTrackingUITests.framework */; };
+		9220CBC328D3E83300494F39 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220CBC228D3E83300494F39 /* DataBase.swift */; };
+		9220CBC728D3E8E400494F39 /* Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220CBC628D3E8E400494F39 /* Trade.swift */; };
+		92332B8F28D41EB3007020FC /* TradesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92332B8E28D41EB3007020FC /* TradesListView.swift */; };
+		9268E23228D3CA4100D63337 /* TraderTrackingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9268E23128D3CA4100D63337 /* TraderTrackingApp.swift */; };
+		9268E23428D3CA4100D63337 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9268E23328D3CA4100D63337 /* ContentView.swift */; };
+		9268E23628D3CA4300D63337 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9268E23528D3CA4300D63337 /* Assets.xcassets */; };
+		9268E23928D3CA4300D63337 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9268E23828D3CA4300D63337 /* Preview Assets.xcassets */; };
+		9268E24328D3CA4400D63337 /* TraderTrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9268E24228D3CA4400D63337 /* TraderTrackingTests.swift */; };
+		9268E24D28D3CA4400D63337 /* TraderTrackingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9268E24C28D3CA4400D63337 /* TraderTrackingUITests.swift */; };
+		9268E24F28D3CA4400D63337 /* TraderTrackingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9268E24E28D3CA4400D63337 /* TraderTrackingUITestsLaunchTests.swift */; };
+		926CEB9328D3D29F00540365 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 926CEB9228D3D29F00540365 /* ConfettiSwiftUI */; };
+		929DFC4528D3E2B700A7268E /* SwiftPieChart in Frameworks */ = {isa = PBXBuildFile; productRef = 929DFC4428D3E2B700A7268E /* SwiftPieChart */; };
+		92E5B40F28D4FBBE006FA51A /* NewTradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E5B40E28D4FBBE006FA51A /* NewTradeView.swift */; };
+		92FEC2B928D4E12200AAF81E /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FEC2B828D4E12200AAF81E /* SideMenu.swift */; };
+		92FEC2BB28D4E58000AAF81E /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FEC2BA28D4E58000AAF81E /* MainTabView.swift */; };
+		A6BA8E30CBC3C0A7B1700D6B /* Pods_TraderTracking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB904011651AF64681AB5590 /* Pods_TraderTracking.framework */; };
+		BF7E4019AA371030B697681D /* Pods_TraderTrackingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E32C42B584ACE6BC42046842 /* Pods_TraderTrackingTests.framework */; };
+		F20427A329EEF7600005C5D2 /* NewsFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20427A229EEF7600005C5D2 /* NewsFilterButton.swift */; };
+		F20427A529EEF8220005C5D2 /* TradeFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20427A429EEF8220005C5D2 /* TradeFilterButton.swift */; };
+		F20427A929EF053F0005C5D2 /* AccountsViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20427A829EF053F0005C5D2 /* AccountsViewButton.swift */; };
+		F20427AB29EF0BE70005C5D2 /* TradingViewAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20427AA29EF0BE70005C5D2 /* TradingViewAPI.swift */; };
+		F208F36F2D625A140092B55A /* DiscordTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = F208F36E2D625A0D0092B55A /* DiscordTokens.swift */; };
+		F20B72852C3059BC0022F534 /* MacTraderTrackingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B72842C3059BC0022F534 /* MacTraderTrackingApp.swift */; };
+		F20B72872C3059BC0022F534 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B72862C3059BC0022F534 /* ContentView.swift */; };
+		F20B72892C3059BD0022F534 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F20B72882C3059BD0022F534 /* Assets.xcassets */; };
+		F20B728C2C3059BD0022F534 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F20B728B2C3059BD0022F534 /* Preview Assets.xcassets */; };
+		F20B72972C3059BE0022F534 /* MacTraderTrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B72962C3059BE0022F534 /* MacTraderTrackingTests.swift */; };
+		F20B72A12C3059BE0022F534 /* MacTraderTrackingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B72A02C3059BE0022F534 /* MacTraderTrackingUITests.swift */; };
+		F20B72A32C3059BE0022F534 /* MacTraderTrackingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B72A22C3059BE0022F534 /* MacTraderTrackingUITestsLaunchTests.swift */; };
+		F20B72B62C3066140022F534 /* RichTextKit in Frameworks */ = {isa = PBXBuildFile; productRef = F20B72B52C3066140022F534 /* RichTextKit */; };
+		F20C0BD329958F5B0054ABAF /* thinkorswim_bell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F20C0BD229958F5B0054ABAF /* thinkorswim_bell.mp3 */; };
+		F20C6B7C2C3794C3007E2A14 /* TabModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20C6B7B2C3794BC007E2A14 /* TabModel.swift */; };
+		F20C6B7E2C37A6CC007E2A14 /* LandscapeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20C6B7D2C37A6CA007E2A14 /* LandscapeController.swift */; };
+		F20F89DC298D82E600798726 /* NewsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F89DB298D82E600798726 /* NewsTab.swift */; };
+		F21809EE28DA628A00E4AFD6 /* ImageUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21809ED28DA628A00E4AFD6 /* ImageUIView.swift */; };
+		F219DD5E2B11C63600233BAB /* ImageUI in Frameworks */ = {isa = PBXBuildFile; productRef = F219DD5D2B11C63600233BAB /* ImageUI */; };
+		F2206E0528DA147C0041B8CB /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2206E0428DA147C0041B8CB /* ImageView.swift */; };
+		F2206E0728DA27AB0041B8CB /* TradeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2206E0628DA27AB0041B8CB /* TradeListViewModel.swift */; };
+		F2232E792C3080000056B942 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F2232E782C3080000056B942 /* Alamofire */; };
+		F2232E7C2C308CA90056B942 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = F2232E7B2C308CA90056B942 /* SDWebImageSwiftUI */; };
+		F2232E7E2C309C070056B942 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2232E7D2C309BFD0056B942 /* JournalView.swift */; };
+		F2232E822C30B0D00056B942 /* JournalPagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2232E812C30B0BE0056B942 /* JournalPagerView.swift */; };
+		F2232E842C30B0F70056B942 /* JournalPagerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2232E832C30B0EE0056B942 /* JournalPagerViewModel.swift */; };
+		F2232E862C30B8040056B942 /* ImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2232E852C30B7FB0056B942 /* ImageDetailView.swift */; };
+		F2232E882C30CAB40056B942 /* PinchToZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2232E872C30CAAB0056B942 /* PinchToZoom.swift */; };
+		F2262F2D28D96721005F85B2 /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2262F2C28D96721005F85B2 /* Symbol.swift */; };
+		F234971F2C404F70004CD41B /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = F24F4DDD2C3F4DEB00270770 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		F238E32129783564003D5EF7 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F238E32029783564003D5EF7 /* AccountView.swift */; };
+		F238E32329783868003D5EF7 /* SideMenuStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F238E32229783868003D5EF7 /* SideMenuStatsView.swift */; };
+		F23A79B528E4A75F0045D9AB /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A79B428E4A75F0045D9AB /* Account.swift */; };
+		F23A79B728E5EAB50045D9AB /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A79B628E5EAB50045D9AB /* WebView.swift */; };
+		F23A79BB28E5FD5D0045D9AB /* ForexCalendarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A79BA28E5FD5D0045D9AB /* ForexCalendarButton.swift */; };
+		F23A79BD28E5FE2B0045D9AB /* DeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A79BC28E5FE2B0045D9AB /* DeleteButton.swift */; };
+		F23A79BF28E5FF2F0045D9AB /* NotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A79BE28E5FF2F0045D9AB /* NotificationButton.swift */; };
+		F23A79C228E603B90045D9AB /* NotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A79C128E603B90045D9AB /* NotificationSettings.swift */; };
+		F240D9A22B51C77A006A7DCE /* WinRatePieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F240D9A12B51C77A006A7DCE /* WinRatePieChart.swift */; };
+		F240D9A42B51D47D006A7DCE /* AccontBalanceLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F240D9A32B51D47D006A7DCE /* AccontBalanceLineChart.swift */; };
+		F240F14B29E5B5D9002D257E /* RemoveTradesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F240F14A29E5B5D9002D257E /* RemoveTradesButton.swift */; };
+		F24EBEBB2B547C4500854DA5 /* TradeSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24EBEBA2B547C4500854DA5 /* TradeSchedule.swift */; };
+		F24EBEBD2B547D3A00854DA5 /* TradeDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24EBEBC2B547D3A00854DA5 /* TradeDay.swift */; };
+		F24F4DDE2C3F4DEB00270770 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F24F4DDD2C3F4DEB00270770 /* RealmSwift */; };
+		F252EC102B4A5A6200E2BD45 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F252EC0F2B4A5A6200E2BD45 /* Dashboard.swift */; };
+		F252EC122B4B267F00E2BD45 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F252EC112B4B267F00E2BD45 /* MonthView.swift */; };
+		F252EC142B4B27CB00E2BD45 /* SessionTimers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F252EC132B4B27CB00E2BD45 /* SessionTimers.swift */; };
+		F252EC1B2B4B2EA700E2BD45 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F252EC1A2B4B2EA700E2BD45 /* WidgetKit.framework */; };
+		F252EC1D2B4B2EA700E2BD45 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F252EC1C2B4B2EA700E2BD45 /* SwiftUI.framework */; };
+		F252EC202B4B2EA700E2BD45 /* TraderWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F252EC1F2B4B2EA700E2BD45 /* TraderWidgetsBundle.swift */; };
+		F252EC222B4B2EA700E2BD45 /* TraderWidgetsLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F252EC212B4B2EA700E2BD45 /* TraderWidgetsLiveActivity.swift */; };
+		F252EC242B4B2EA700E2BD45 /* TraderWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F252EC232B4B2EA700E2BD45 /* TraderWidgets.swift */; };
+		F252EC262B4B2EA700E2BD45 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F252EC252B4B2EA700E2BD45 /* AppIntent.swift */; };
+		F252EC282B4B2EA900E2BD45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F252EC272B4B2EA900E2BD45 /* Assets.xcassets */; };
+		F252EC2D2B4B2EA900E2BD45 /* TraderWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F252EC192B4B2EA700E2BD45 /* TraderWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F25353DE2AC0E76800FB98D2 /* Journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25353DD2AC0E76800FB98D2 /* Journal.swift */; };
+		F25D43F42922A6E8004E380C /* OrientationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25D43F32922A6E8004E380C /* OrientationTest.swift */; };
+		F25FCBB829202B7300CE4DDD /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = F25FCBB729202B7300CE4DDD /* SwiftSoup */; };
+		F25FCBBA29202BDB00CE4DDD /* ForexCrawler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25FCBB929202BDB00CE4DDD /* ForexCrawler.swift */; };
+		F261AECE28F3A7A600CCBC8F /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F261AECD28F3A7A600CCBC8F /* MenuController.swift */; };
+		F262156A2A4DE9980002A11C /* DailyReviewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26215692A4DE9980002A11C /* DailyReviewButton.swift */; };
+		F26FF7B92C307840001DC70F /* DiscordChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26FF7B82C30783A001DC70F /* DiscordChat.swift */; };
+		F2736DB82B53626E00281544 /* DashBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2736DB72B53626E00281544 /* DashBoardController.swift */; };
+		F277B05029DCDD21009FE0CC /* StatsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F277B04F29DCDD21009FE0CC /* StatsController.swift */; };
+		F2832C4829EDA6150093322C /* NewsScrollToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2832C4729EDA6150093322C /* NewsScrollToggle.swift */; };
+		F28EA63E290AD21000CD1F1E /* DefaultTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28EA63D290AD21000CD1F1E /* DefaultTab.swift */; };
+		F28EA93329F2D7A500382187 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28EA93229F2D7A500382187 /* Model.swift */; };
+		F28EA93529F2D8C600382187 /* ModelsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28EA93429F2D8C600382187 /* ModelsButton.swift */; };
+		F28EA93929F2DBAA00382187 /* ModelsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28EA93829F2DBAA00382187 /* ModelsListView.swift */; };
+		F28EA93B29F2DEAC00382187 /* HiddenNavViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28EA93A29F2DEAC00382187 /* HiddenNavViews.swift */; };
+		F28EA94029F2E16F00382187 /* ModelsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28EA93F29F2E16F00382187 /* ModelsListViewModel.swift */; };
+		F28EA94329F2E1CC00382187 /* AddModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28EA94229F2E1CC00382187 /* AddModelView.swift */; };
+		F28EA94529F2E1F600382187 /* AddModelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28EA94429F2E1F600382187 /* AddModelViewModel.swift */; };
+		F28EA94729F2E23100382187 /* EditModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28EA94629F2E23100382187 /* EditModelView.swift */; };
+		F28EA94929F2E70F00382187 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28EA94829F2E70F00382187 /* ImagePicker.swift */; };
+		F29045B32C3C87CB001B68CB /* Journal_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29045B22C3C87C0001B68CB /* Journal_Data.swift */; };
+		F29045B52C3C87F9001B68CB /* Account_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29045B42C3C87F5001B68CB /* Account_Data.swift */; };
+		F29C91512B47847C0022AA46 /* TradeovateCSVImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29C91502B47847C0022AA46 /* TradeovateCSVImporter.swift */; };
+		F29EBD3E28E6109300D6229B /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29EBD3D28E6109300D6229B /* Notifications.swift */; };
+		F29FF89428D97C3100F58F24 /* helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FF89328D97C3100F58F24 /* helper.swift */; };
+		F2A7524528E656E500B99ABB /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A7524428E656E500B99ABB /* ProfileView.swift */; };
+		F2AC62DD29F30E5700BD868E /* PanZoomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AC62DC29F30E5700BD868E /* PanZoomImageView.swift */; };
+		F2AC62DF29F30F7700BD868E /* ThumbnailImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AC62DE29F30F7700BD868E /* ThumbnailImageView.swift */; };
+		F2B18A4F29206AC400C31303 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B18A4E29206AC400C31303 /* News.swift */; };
+		F2B1C53628DAB293005C6B12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B1C53528DAB293005C6B12 /* AppDelegate.swift */; };
+		F2C2F9A429CA198700422818 /* NewTradeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C2F9A329CA198700422818 /* NewTradeController.swift */; };
+		F2C3384C2C7A731900869C5F /* ResetJournalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C3384B2C7A730700869C5F /* ResetJournalButton.swift */; };
+		F2D51AC12908431C007D8CD7 /* MarkdownView in Frameworks */ = {isa = PBXBuildFile; productRef = F2D51AC02908431C007D8CD7 /* MarkdownView */; };
+		F2D8B64028F9C2C300A70149 /* UndoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D8B63F28F9C2C300A70149 /* UndoButton.swift */; };
+		F2D8B64528F9C33100A70149 /* ProgressConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D8B64428F9C33100A70149 /* ProgressConfig.swift */; };
+		F2D8B64728FA12D700A70149 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D8B64628FA12D700A70149 /* Settings.swift */; };
+		F2D8B64828FA1DA000A70149 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FEC2BA28D4E58000AAF81E /* MainTabView.swift */; };
+		F2D8B64A28FA1E0500A70149 /* GestureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D8B64928FA1E0500A70149 /* GestureController.swift */; };
+		F2DAD5132A3CC251004A519A /* SwiftUITestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DAD5122A3CC251004A519A /* SwiftUITestView.swift */; };
+		F2DF1BFC2D610CAA00954192 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DF1BFB2D610CA500954192 /* StatsView.swift */; };
+		F2DF1BFE2D610F0100954192 /* ScrollableMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DF1BFD2D610EFF00954192 /* ScrollableMonthView.swift */; };
+		F2DF666F29077F9D006352DA /* TradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DF666E29077F9D006352DA /* TradeView.swift */; };
+		F2F15AE02943A55E00DE6168 /* ArchiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F15ADF2943A55E00DE6168 /* ArchiveButton.swift */; };
+		F2FA5CBF29DCEA0800CA1296 /* TradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FA5CBE29DCEA0800CA1296 /* TradeViewController.swift */; };
+		F2FB3DB628D9F82100B7757A /* ImageHandeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FB3DB528D9F82100B7757A /* ImageHandeling.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9268E23F28D3CA4400D63337 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9268E22628D3CA4100D63337 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9268E22D28D3CA4100D63337;
+			remoteInfo = TraderTracking;
+		};
+		9268E24928D3CA4400D63337 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9268E22628D3CA4100D63337 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9268E22D28D3CA4100D63337;
+			remoteInfo = TraderTracking;
+		};
+		F20B72932C3059BD0022F534 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9268E22628D3CA4100D63337 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F20B72812C3059BC0022F534;
+			remoteInfo = MacTraderTracking;
+		};
+		F20B729D2C3059BE0022F534 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9268E22628D3CA4100D63337 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F20B72812C3059BC0022F534;
+			remoteInfo = MacTraderTracking;
+		};
+		F252EC2A2B4B2EA900E2BD45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9268E22628D3CA4100D63337 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F252EC182B4B2EA700E2BD45;
+			remoteInfo = TraderWidgetsExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F252EC2C2B4B2EA900E2BD45 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F252EC2D2B4B2EA900E2BD45 /* TraderWidgetsExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2F69D4E2C307C5A00C1ED1F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F234971F2C404F70004CD41B /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2BAAB0B43517A95392DE2445 /* Pods-TraderTrackingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraderTrackingTests.debug.xcconfig"; path = "Target Support Files/Pods-TraderTrackingTests/Pods-TraderTrackingTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4FF8CF9BC6DA980E9768E18B /* Pods-TraderTracking-TraderTrackingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraderTracking-TraderTrackingUITests.release.xcconfig"; path = "Target Support Files/Pods-TraderTracking-TraderTrackingUITests/Pods-TraderTracking-TraderTrackingUITests.release.xcconfig"; sourceTree = "<group>"; };
+		61F4177819CA5E62A0A13CB0 /* Pods-TraderTrackingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraderTrackingTests.release.xcconfig"; path = "Target Support Files/Pods-TraderTrackingTests/Pods-TraderTrackingTests.release.xcconfig"; sourceTree = "<group>"; };
+		779291EFCE302DE141887D68 /* Pods_TraderTracking_TraderTrackingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraderTracking_TraderTrackingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		78330894C737E4F9919D692A /* Pods-TraderTracking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraderTracking.debug.xcconfig"; path = "Target Support Files/Pods-TraderTracking/Pods-TraderTracking.debug.xcconfig"; sourceTree = "<group>"; };
+		9220CBC228D3E83300494F39 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
+		9220CBC628D3E8E400494F39 /* Trade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trade.swift; sourceTree = "<group>"; };
+		92332B8E28D41EB3007020FC /* TradesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradesListView.swift; sourceTree = "<group>"; };
+		9268E22E28D3CA4100D63337 /* TraderTracking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TraderTracking.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9268E23128D3CA4100D63337 /* TraderTrackingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraderTrackingApp.swift; sourceTree = "<group>"; };
+		9268E23328D3CA4100D63337 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9268E23528D3CA4300D63337 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9268E23828D3CA4300D63337 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9268E23E28D3CA4400D63337 /* TraderTrackingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TraderTrackingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9268E24228D3CA4400D63337 /* TraderTrackingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraderTrackingTests.swift; sourceTree = "<group>"; };
+		9268E24828D3CA4400D63337 /* TraderTrackingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TraderTrackingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9268E24C28D3CA4400D63337 /* TraderTrackingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraderTrackingUITests.swift; sourceTree = "<group>"; };
+		9268E24E28D3CA4400D63337 /* TraderTrackingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraderTrackingUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		92E5B40E28D4FBBE006FA51A /* NewTradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTradeView.swift; sourceTree = "<group>"; };
+		92FEC2B828D4E12200AAF81E /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
+		92FEC2BA28D4E58000AAF81E /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		B4CB2A8035A0A4F752049A6C /* Pods-TraderTracking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraderTracking.release.xcconfig"; path = "Target Support Files/Pods-TraderTracking/Pods-TraderTracking.release.xcconfig"; sourceTree = "<group>"; };
+		C33FA7982D5CF05B81D2CB79 /* Pods-TraderTracking-TraderTrackingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraderTracking-TraderTrackingUITests.debug.xcconfig"; path = "Target Support Files/Pods-TraderTracking-TraderTrackingUITests/Pods-TraderTracking-TraderTrackingUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E32C42B584ACE6BC42046842 /* Pods_TraderTrackingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraderTrackingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB904011651AF64681AB5590 /* Pods_TraderTracking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraderTracking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F20427A229EEF7600005C5D2 /* NewsFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFilterButton.swift; sourceTree = "<group>"; };
+		F20427A429EEF8220005C5D2 /* TradeFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeFilterButton.swift; sourceTree = "<group>"; };
+		F20427A829EF053F0005C5D2 /* AccountsViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewButton.swift; sourceTree = "<group>"; };
+		F20427AA29EF0BE70005C5D2 /* TradingViewAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingViewAPI.swift; sourceTree = "<group>"; };
+		F208F36E2D625A0D0092B55A /* DiscordTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscordTokens.swift; sourceTree = "<group>"; };
+		F20B72822C3059BC0022F534 /* MacTraderTracking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacTraderTracking.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F20B72842C3059BC0022F534 /* MacTraderTrackingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacTraderTrackingApp.swift; sourceTree = "<group>"; };
+		F20B72862C3059BC0022F534 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F20B72882C3059BD0022F534 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F20B728B2C3059BD0022F534 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F20B728D2C3059BD0022F534 /* MacTraderTracking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacTraderTracking.entitlements; sourceTree = "<group>"; };
+		F20B72922C3059BD0022F534 /* MacTraderTrackingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacTraderTrackingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F20B72962C3059BE0022F534 /* MacTraderTrackingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacTraderTrackingTests.swift; sourceTree = "<group>"; };
+		F20B729C2C3059BE0022F534 /* MacTraderTrackingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacTraderTrackingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F20B72A02C3059BE0022F534 /* MacTraderTrackingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacTraderTrackingUITests.swift; sourceTree = "<group>"; };
+		F20B72A22C3059BE0022F534 /* MacTraderTrackingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacTraderTrackingUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F20C0BD229958F5B0054ABAF /* thinkorswim_bell.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thinkorswim_bell.mp3; sourceTree = "<group>"; };
+		F20C6B7B2C3794BC007E2A14 /* TabModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabModel.swift; sourceTree = "<group>"; };
+		F20C6B7D2C37A6CA007E2A14 /* LandscapeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeController.swift; sourceTree = "<group>"; };
+		F20F89DB298D82E600798726 /* NewsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTab.swift; sourceTree = "<group>"; };
+		F21809ED28DA628A00E4AFD6 /* ImageUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUIView.swift; sourceTree = "<group>"; };
+		F2206E0428DA147C0041B8CB /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		F2206E0628DA27AB0041B8CB /* TradeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeListViewModel.swift; sourceTree = "<group>"; };
+		F2232E7D2C309BFD0056B942 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
+		F2232E812C30B0BE0056B942 /* JournalPagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalPagerView.swift; sourceTree = "<group>"; };
+		F2232E832C30B0EE0056B942 /* JournalPagerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalPagerViewModel.swift; sourceTree = "<group>"; };
+		F2232E852C30B7FB0056B942 /* ImageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailView.swift; sourceTree = "<group>"; };
+		F2232E872C30CAAB0056B942 /* PinchToZoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoom.swift; sourceTree = "<group>"; };
+		F2262F2C28D96721005F85B2 /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
+		F238E32029783564003D5EF7 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		F238E32229783868003D5EF7 /* SideMenuStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuStatsView.swift; sourceTree = "<group>"; };
+		F23A79B428E4A75F0045D9AB /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		F23A79B628E5EAB50045D9AB /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		F23A79BA28E5FD5D0045D9AB /* ForexCalendarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForexCalendarButton.swift; sourceTree = "<group>"; };
+		F23A79BC28E5FE2B0045D9AB /* DeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButton.swift; sourceTree = "<group>"; };
+		F23A79BE28E5FF2F0045D9AB /* NotificationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationButton.swift; sourceTree = "<group>"; };
+		F23A79C128E603B90045D9AB /* NotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettings.swift; sourceTree = "<group>"; };
+		F240D9A12B51C77A006A7DCE /* WinRatePieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinRatePieChart.swift; sourceTree = "<group>"; };
+		F240D9A32B51D47D006A7DCE /* AccontBalanceLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccontBalanceLineChart.swift; sourceTree = "<group>"; };
+		F240F14A29E5B5D9002D257E /* RemoveTradesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveTradesButton.swift; sourceTree = "<group>"; };
+		F24EBEBA2B547C4500854DA5 /* TradeSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeSchedule.swift; sourceTree = "<group>"; };
+		F24EBEBC2B547D3A00854DA5 /* TradeDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeDay.swift; sourceTree = "<group>"; };
+		F252EC0F2B4A5A6200E2BD45 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		F252EC112B4B267F00E2BD45 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
+		F252EC132B4B27CB00E2BD45 /* SessionTimers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTimers.swift; sourceTree = "<group>"; };
+		F252EC192B4B2EA700E2BD45 /* TraderWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TraderWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F252EC1A2B4B2EA700E2BD45 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		F252EC1C2B4B2EA700E2BD45 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		F252EC1F2B4B2EA700E2BD45 /* TraderWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraderWidgetsBundle.swift; sourceTree = "<group>"; };
+		F252EC212B4B2EA700E2BD45 /* TraderWidgetsLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraderWidgetsLiveActivity.swift; sourceTree = "<group>"; };
+		F252EC232B4B2EA700E2BD45 /* TraderWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraderWidgets.swift; sourceTree = "<group>"; };
+		F252EC252B4B2EA700E2BD45 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		F252EC272B4B2EA900E2BD45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F252EC292B4B2EA900E2BD45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F25353DD2AC0E76800FB98D2 /* Journal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journal.swift; sourceTree = "<group>"; };
+		F25D43F32922A6E8004E380C /* OrientationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationTest.swift; sourceTree = "<group>"; };
+		F25FCBB929202BDB00CE4DDD /* ForexCrawler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForexCrawler.swift; sourceTree = "<group>"; };
+		F261AECD28F3A7A600CCBC8F /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		F26215692A4DE9980002A11C /* DailyReviewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReviewButton.swift; sourceTree = "<group>"; };
+		F26FF7B82C30783A001DC70F /* DiscordChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscordChat.swift; sourceTree = "<group>"; };
+		F2736DB72B53626E00281544 /* DashBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardController.swift; sourceTree = "<group>"; };
+		F277B04F29DCDD21009FE0CC /* StatsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsController.swift; sourceTree = "<group>"; };
+		F2832C4729EDA6150093322C /* NewsScrollToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsScrollToggle.swift; sourceTree = "<group>"; };
+		F28EA63D290AD21000CD1F1E /* DefaultTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTab.swift; sourceTree = "<group>"; };
+		F28EA93229F2D7A500382187 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		F28EA93429F2D8C600382187 /* ModelsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsButton.swift; sourceTree = "<group>"; };
+		F28EA93829F2DBAA00382187 /* ModelsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsListView.swift; sourceTree = "<group>"; };
+		F28EA93A29F2DEAC00382187 /* HiddenNavViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenNavViews.swift; sourceTree = "<group>"; };
+		F28EA93F29F2E16F00382187 /* ModelsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsListViewModel.swift; sourceTree = "<group>"; };
+		F28EA94229F2E1CC00382187 /* AddModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModelView.swift; sourceTree = "<group>"; };
+		F28EA94429F2E1F600382187 /* AddModelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModelViewModel.swift; sourceTree = "<group>"; };
+		F28EA94629F2E23100382187 /* EditModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditModelView.swift; sourceTree = "<group>"; };
+		F28EA94829F2E70F00382187 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		F29045B22C3C87C0001B68CB /* Journal_Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journal_Data.swift; sourceTree = "<group>"; };
+		F29045B42C3C87F5001B68CB /* Account_Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account_Data.swift; sourceTree = "<group>"; };
+		F29C91502B47847C0022AA46 /* TradeovateCSVImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeovateCSVImporter.swift; sourceTree = "<group>"; };
+		F29EBD3D28E6109300D6229B /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		F29FF89328D97C3100F58F24 /* helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helper.swift; sourceTree = "<group>"; };
+		F2A7524428E656E500B99ABB /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		F2AC62DC29F30E5700BD868E /* PanZoomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanZoomImageView.swift; sourceTree = "<group>"; };
+		F2AC62DE29F30F7700BD868E /* ThumbnailImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailImageView.swift; sourceTree = "<group>"; };
+		F2B18A4E29206AC400C31303 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		F2B1C53528DAB293005C6B12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F2C2F9A329CA198700422818 /* NewTradeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTradeController.swift; sourceTree = "<group>"; };
+		F2C3384B2C7A730700869C5F /* ResetJournalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetJournalButton.swift; sourceTree = "<group>"; };
+		F2D4407D29099D8B00776A7C /* TraderTracking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TraderTracking.entitlements; sourceTree = "<group>"; };
+		F2D8B63F28F9C2C300A70149 /* UndoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoButton.swift; sourceTree = "<group>"; };
+		F2D8B64428F9C33100A70149 /* ProgressConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressConfig.swift; sourceTree = "<group>"; };
+		F2D8B64628FA12D700A70149 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		F2D8B64928FA1E0500A70149 /* GestureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureController.swift; sourceTree = "<group>"; };
+		F2DAD5122A3CC251004A519A /* SwiftUITestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUITestView.swift; sourceTree = "<group>"; };
+		F2DF1BFB2D610CA500954192 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		F2DF1BFD2D610EFF00954192 /* ScrollableMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableMonthView.swift; sourceTree = "<group>"; };
+		F2DF666E29077F9D006352DA /* TradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeView.swift; sourceTree = "<group>"; };
+		F2E4A7CB2922C69F00F088C3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2F15ADF2943A55E00DE6168 /* ArchiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveButton.swift; sourceTree = "<group>"; };
+		F2FA5CBE29DCEA0800CA1296 /* TradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeViewController.swift; sourceTree = "<group>"; };
+		F2FB3DB528D9F82100B7757A /* ImageHandeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHandeling.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9268E22B28D3CA4100D63337 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2232E7C2C308CA90056B942 /* SDWebImageSwiftUI in Frameworks */,
+				F2232E792C3080000056B942 /* Alamofire in Frameworks */,
+				F219DD5E2B11C63600233BAB /* ImageUI in Frameworks */,
+				F24F4DDE2C3F4DEB00270770 /* RealmSwift in Frameworks */,
+				926CEB9328D3D29F00540365 /* ConfettiSwiftUI in Frameworks */,
+				F2D51AC12908431C007D8CD7 /* MarkdownView in Frameworks */,
+				F25FCBB829202B7300CE4DDD /* SwiftSoup in Frameworks */,
+				929DFC4528D3E2B700A7268E /* SwiftPieChart in Frameworks */,
+				A6BA8E30CBC3C0A7B1700D6B /* Pods_TraderTracking.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9268E23B28D3CA4400D63337 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF7E4019AA371030B697681D /* Pods_TraderTrackingTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9268E24528D3CA4400D63337 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				077467A4221CD5EDEBDE3FEC /* Pods_TraderTracking_TraderTrackingUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F20B727F2C3059BC0022F534 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F20B72B62C3066140022F534 /* RichTextKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F20B728F2C3059BD0022F534 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F20B72992C3059BE0022F534 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F252EC162B4B2EA700E2BD45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F252EC1D2B4B2EA700E2BD45 /* SwiftUI.framework in Frameworks */,
+				F252EC1B2B4B2EA700E2BD45 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4BBA2E9A39154A001F5C1289 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EB904011651AF64681AB5590 /* Pods_TraderTracking.framework */,
+				779291EFCE302DE141887D68 /* Pods_TraderTracking_TraderTrackingUITests.framework */,
+				E32C42B584ACE6BC42046842 /* Pods_TraderTrackingTests.framework */,
+				F252EC1A2B4B2EA700E2BD45 /* WidgetKit.framework */,
+				F252EC1C2B4B2EA700E2BD45 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5AF3D09093C53D20CBE6A812 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				78330894C737E4F9919D692A /* Pods-TraderTracking.debug.xcconfig */,
+				B4CB2A8035A0A4F752049A6C /* Pods-TraderTracking.release.xcconfig */,
+				C33FA7982D5CF05B81D2CB79 /* Pods-TraderTracking-TraderTrackingUITests.debug.xcconfig */,
+				4FF8CF9BC6DA980E9768E18B /* Pods-TraderTracking-TraderTrackingUITests.release.xcconfig */,
+				2BAAB0B43517A95392DE2445 /* Pods-TraderTrackingTests.debug.xcconfig */,
+				61F4177819CA5E62A0A13CB0 /* Pods-TraderTrackingTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9220CBC428D3E83A00494F39 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F20C6B7A2C3794B1007E2A14 /* Journal */,
+				F2D8B64328F9C31B00A70149 /* Shared */,
+				9220CBC528D3E85500494F39 /* Database */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9220CBC528D3E85500494F39 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				F25353DC2AC0E75600FB98D2 /* Journal */,
+				9220CBC628D3E8E400494F39 /* Trade.swift */,
+				F2262F2C28D96721005F85B2 /* Symbol.swift */,
+				F23A79B428E4A75F0045D9AB /* Account.swift */,
+				F2B18A4E29206AC400C31303 /* News.swift */,
+				F28EA93229F2D7A500382187 /* Model.swift */,
+				F24EBEBC2B547D3A00854DA5 /* TradeDay.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		92332B8B28D41E31007020FC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F28D98522995518800B68B41 /* Tabs */,
+				F2D8B64128F9C2D400A70149 /* Shared */,
+				F23A79B828E5FCD20045D9AB /* SideMenu */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9268E22528D3CA4100D63337 = {
+			isa = PBXGroup;
+			children = (
+				9268E23028D3CA4100D63337 /* TraderTracking */,
+				9268E24128D3CA4400D63337 /* TraderTrackingTests */,
+				9268E24B28D3CA4400D63337 /* TraderTrackingUITests */,
+				F252EC1E2B4B2EA700E2BD45 /* TraderWidgets */,
+				F20B72832C3059BC0022F534 /* MacTraderTracking */,
+				F20B72952C3059BD0022F534 /* MacTraderTrackingTests */,
+				F20B729F2C3059BE0022F534 /* MacTraderTrackingUITests */,
+				9268E22F28D3CA4100D63337 /* Products */,
+				5AF3D09093C53D20CBE6A812 /* Pods */,
+				4BBA2E9A39154A001F5C1289 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9268E22F28D3CA4100D63337 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9268E22E28D3CA4100D63337 /* TraderTracking.app */,
+				9268E23E28D3CA4400D63337 /* TraderTrackingTests.xctest */,
+				9268E24828D3CA4400D63337 /* TraderTrackingUITests.xctest */,
+				F252EC192B4B2EA700E2BD45 /* TraderWidgetsExtension.appex */,
+				F20B72822C3059BC0022F534 /* MacTraderTracking.app */,
+				F20B72922C3059BD0022F534 /* MacTraderTrackingTests.xctest */,
+				F20B729C2C3059BE0022F534 /* MacTraderTrackingUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9268E23028D3CA4100D63337 /* TraderTracking */ = {
+			isa = PBXGroup;
+			children = (
+				F2E4A7CB2922C69F00F088C3 /* Info.plist */,
+				F2D4407D29099D8B00776A7C /* TraderTracking.entitlements */,
+				F29FF89228D97C0C00F58F24 /* MICS */,
+				92332B8B28D41E31007020FC /* Views */,
+				F28EA93C29F2E02B00382187 /* ViewModels */,
+				9220CBC428D3E83A00494F39 /* Models */,
+				929DFC4628D3E66F00A7268E /* Controllers */,
+				9268E23728D3CA4300D63337 /* Preview Content */,
+				9268E23528D3CA4300D63337 /* Assets.xcassets */,
+				F25D43F32922A6E8004E380C /* OrientationTest.swift */,
+				9268E23128D3CA4100D63337 /* TraderTrackingApp.swift */,
+			);
+			path = TraderTracking;
+			sourceTree = "<group>";
+		};
+		9268E23728D3CA4300D63337 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				9268E23828D3CA4300D63337 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		9268E24128D3CA4400D63337 /* TraderTrackingTests */ = {
+			isa = PBXGroup;
+			children = (
+				9268E24228D3CA4400D63337 /* TraderTrackingTests.swift */,
+			);
+			path = TraderTrackingTests;
+			sourceTree = "<group>";
+		};
+		9268E24B28D3CA4400D63337 /* TraderTrackingUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9268E24C28D3CA4400D63337 /* TraderTrackingUITests.swift */,
+				9268E24E28D3CA4400D63337 /* TraderTrackingUITestsLaunchTests.swift */,
+			);
+			path = TraderTrackingUITests;
+			sourceTree = "<group>";
+		};
+		929DFC4628D3E66F00A7268E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F29045B12C3C87AC001B68CB /* Other */,
+				F29045B02C3C87A2001B68CB /* DataBase */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F20427A629EEFA1F0005C5D2 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				F20427A429EEF8220005C5D2 /* TradeFilterButton.swift */,
+				F2DF666E29077F9D006352DA /* TradeView.swift */,
+			);
+			path = Items;
+			sourceTree = "<group>";
+		};
+		F20427A729EEFA410005C5D2 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				F20427A229EEF7600005C5D2 /* NewsFilterButton.swift */,
+			);
+			path = Items;
+			sourceTree = "<group>";
+		};
+		F20B72832C3059BC0022F534 /* MacTraderTracking */ = {
+			isa = PBXGroup;
+			children = (
+				F20B72842C3059BC0022F534 /* MacTraderTrackingApp.swift */,
+				F20B72862C3059BC0022F534 /* ContentView.swift */,
+				F20B72882C3059BD0022F534 /* Assets.xcassets */,
+				F20B728D2C3059BD0022F534 /* MacTraderTracking.entitlements */,
+				F20B728A2C3059BD0022F534 /* Preview Content */,
+			);
+			path = MacTraderTracking;
+			sourceTree = "<group>";
+		};
+		F20B728A2C3059BD0022F534 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F20B728B2C3059BD0022F534 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F20B72952C3059BD0022F534 /* MacTraderTrackingTests */ = {
+			isa = PBXGroup;
+			children = (
+				F20B72962C3059BE0022F534 /* MacTraderTrackingTests.swift */,
+			);
+			path = MacTraderTrackingTests;
+			sourceTree = "<group>";
+		};
+		F20B729F2C3059BE0022F534 /* MacTraderTrackingUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F20B72A02C3059BE0022F534 /* MacTraderTrackingUITests.swift */,
+				F20B72A22C3059BE0022F534 /* MacTraderTrackingUITestsLaunchTests.swift */,
+			);
+			path = MacTraderTrackingUITests;
+			sourceTree = "<group>";
+		};
+		F20C0BD129958F4E0054ABAF /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				F20C0BD229958F5B0054ABAF /* thinkorswim_bell.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		F20C6B7A2C3794B1007E2A14 /* Journal */ = {
+			isa = PBXGroup;
+			children = (
+				F20C6B7B2C3794BC007E2A14 /* TabModel.swift */,
+			);
+			path = Journal;
+			sourceTree = "<group>";
+		};
+		F23A79B828E5FCD20045D9AB /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				F28EA93729F2DB6D00382187 /* SubViews */,
+				F23A79B928E5FD420045D9AB /* Buttons */,
+				92FEC2B828D4E12200AAF81E /* SideMenu.swift */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		F23A79B928E5FD420045D9AB /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				F23A79BA28E5FD5D0045D9AB /* ForexCalendarButton.swift */,
+				F23A79BE28E5FF2F0045D9AB /* NotificationButton.swift */,
+				F20427A829EF053F0005C5D2 /* AccountsViewButton.swift */,
+				F28EA93429F2D8C600382187 /* ModelsButton.swift */,
+				F26215692A4DE9980002A11C /* DailyReviewButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		F240D9A02B51C766006A7DCE /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				F2DF1BFD2D610EFF00954192 /* ScrollableMonthView.swift */,
+				F252EC112B4B267F00E2BD45 /* MonthView.swift */,
+				F240D9A12B51C77A006A7DCE /* WinRatePieChart.swift */,
+				F240D9A32B51D47D006A7DCE /* AccontBalanceLineChart.swift */,
+				F24EBEBA2B547C4500854DA5 /* TradeSchedule.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		F252EC1E2B4B2EA700E2BD45 /* TraderWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				F252EC1F2B4B2EA700E2BD45 /* TraderWidgetsBundle.swift */,
+				F252EC212B4B2EA700E2BD45 /* TraderWidgetsLiveActivity.swift */,
+				F252EC232B4B2EA700E2BD45 /* TraderWidgets.swift */,
+				F252EC252B4B2EA700E2BD45 /* AppIntent.swift */,
+				F252EC272B4B2EA900E2BD45 /* Assets.xcassets */,
+				F252EC292B4B2EA900E2BD45 /* Info.plist */,
+			);
+			path = TraderWidgets;
+			sourceTree = "<group>";
+		};
+		F25353DC2AC0E75600FB98D2 /* Journal */ = {
+			isa = PBXGroup;
+			children = (
+				F25353DD2AC0E76800FB98D2 /* Journal.swift */,
+			);
+			path = Journal;
+			sourceTree = "<group>";
+		};
+		F26215682A4DE9610002A11C /* Journal */ = {
+			isa = PBXGroup;
+			children = (
+				F29045B72C3C8C69001B68CB /* Trades */,
+				F29045B92C3C8C7E001B68CB /* Reviews */,
+				F29045B82C3C8C77001B68CB /* Forecast */,
+				F2232E832C30B0EE0056B942 /* JournalPagerViewModel.swift */,
+				F2232E812C30B0BE0056B942 /* JournalPagerView.swift */,
+				F2232E7D2C309BFD0056B942 /* JournalView.swift */,
+			);
+			path = Journal;
+			sourceTree = "<group>";
+		};
+		F26215702A4DEC020002A11C /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				F29045B62C3C8B9A001B68CB /* Journal */,
+				F28EA93D29F2E13A00382187 /* Models */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		F28D98522995518800B68B41 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				F26215682A4DE9610002A11C /* Journal */,
+				F28D9855299551C500B68B41 /* News */,
+				F28D9854299551B600B68B41 /* Trade List */,
+				F28D9853299551A200B68B41 /* Dashboard */,
+				92FEC2BA28D4E58000AAF81E /* MainTabView.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		F28D9853299551A200B68B41 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				F28EA93629F2DB0A00382187 /* SubViews */,
+				9268E23328D3CA4100D63337 /* ContentView.swift */,
+				F252EC0F2B4A5A6200E2BD45 /* Dashboard.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		F28D9854299551B600B68B41 /* Trade List */ = {
+			isa = PBXGroup;
+			children = (
+				F20427A629EEFA1F0005C5D2 /* Items */,
+				92332B8E28D41EB3007020FC /* TradesListView.swift */,
+			);
+			path = "Trade List";
+			sourceTree = "<group>";
+		};
+		F28D9855299551C500B68B41 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				F20427A729EEFA410005C5D2 /* Items */,
+				F20F89DB298D82E600798726 /* NewsTab.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		F28EA63B290AD1C800CD1F1E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F28EA63C290AD1CF00CD1F1E /* Items */,
+				F2D8B64628FA12D700A70149 /* Settings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		F28EA63C290AD1CF00CD1F1E /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				F2C3384B2C7A730700869C5F /* ResetJournalButton.swift */,
+				F23A79BC28E5FE2B0045D9AB /* DeleteButton.swift */,
+				F28EA63D290AD21000CD1F1E /* DefaultTab.swift */,
+				F2F15ADF2943A55E00DE6168 /* ArchiveButton.swift */,
+				F240F14A29E5B5D9002D257E /* RemoveTradesButton.swift */,
+				F2832C4729EDA6150093322C /* NewsScrollToggle.swift */,
+			);
+			path = Items;
+			sourceTree = "<group>";
+		};
+		F28EA93629F2DB0A00382187 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				F2DF1BFA2D610C9700954192 /* Stats */,
+				F240D9A02B51C766006A7DCE /* Widgets */,
+				F28EA94129F2E1B200382187 /* Models */,
+				F28EA63B290AD1C800CD1F1E /* Settings */,
+				F2A7524428E656E500B99ABB /* ProfileView.swift */,
+				F23A79C128E603B90045D9AB /* NotificationSettings.swift */,
+				F238E32029783564003D5EF7 /* AccountView.swift */,
+				F28EA93A29F2DEAC00382187 /* HiddenNavViews.swift */,
+				F252EC132B4B27CB00E2BD45 /* SessionTimers.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		F28EA93729F2DB6D00382187 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				F238E32229783868003D5EF7 /* SideMenuStatsView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		F28EA93C29F2E02B00382187 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F26215702A4DEC020002A11C /* Dashboard */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F28EA93D29F2E13A00382187 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F28EA93F29F2E16F00382187 /* ModelsListViewModel.swift */,
+				F28EA94429F2E1F600382187 /* AddModelViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F28EA94129F2E1B200382187 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F28EA93829F2DBAA00382187 /* ModelsListView.swift */,
+				F28EA94229F2E1CC00382187 /* AddModelView.swift */,
+				F28EA94629F2E23100382187 /* EditModelView.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F29045B02C3C87A2001B68CB /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				F29045B42C3C87F5001B68CB /* Account_Data.swift */,
+				F29045B22C3C87C0001B68CB /* Journal_Data.swift */,
+				9220CBC228D3E83300494F39 /* DataBase.swift */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
+		F29045B12C3C87AC001B68CB /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				F20C6B7D2C37A6CA007E2A14 /* LandscapeController.swift */,
+				F26FF7B82C30783A001DC70F /* DiscordChat.swift */,
+				F261AECD28F3A7A600CCBC8F /* MenuController.swift */,
+				F2206E0628DA27AB0041B8CB /* TradeListViewModel.swift */,
+				F29EBD3D28E6109300D6229B /* Notifications.swift */,
+				F2D8B64928FA1E0500A70149 /* GestureController.swift */,
+				F25FCBB929202BDB00CE4DDD /* ForexCrawler.swift */,
+				F2C2F9A329CA198700422818 /* NewTradeController.swift */,
+				F277B04F29DCDD21009FE0CC /* StatsController.swift */,
+				F2FA5CBE29DCEA0800CA1296 /* TradeViewController.swift */,
+				F2736DB72B53626E00281544 /* DashBoardController.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		F29045B62C3C8B9A001B68CB /* Journal */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Journal;
+			sourceTree = "<group>";
+		};
+		F29045B72C3C8C69001B68CB /* Trades */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Trades;
+			sourceTree = "<group>";
+		};
+		F29045B82C3C8C77001B68CB /* Forecast */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Forecast;
+			sourceTree = "<group>";
+		};
+		F29045B92C3C8C7E001B68CB /* Reviews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Reviews;
+			sourceTree = "<group>";
+		};
+		F29FF89228D97C0C00F58F24 /* MICS */ = {
+			isa = PBXGroup;
+			children = (
+				F208F36E2D625A0D0092B55A /* DiscordTokens.swift */,
+				F20C0BD129958F4E0054ABAF /* Sounds */,
+				F2232E872C30CAAB0056B942 /* PinchToZoom.swift */,
+				F29FF89328D97C3100F58F24 /* helper.swift */,
+				F2FB3DB528D9F82100B7757A /* ImageHandeling.swift */,
+				F2B1C53528DAB293005C6B12 /* AppDelegate.swift */,
+				F20427AA29EF0BE70005C5D2 /* TradingViewAPI.swift */,
+				F2DAD5122A3CC251004A519A /* SwiftUITestView.swift */,
+			);
+			path = MICS;
+			sourceTree = "<group>";
+		};
+		F2D8B64128F9C2D400A70149 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				F2232E852C30B7FB0056B942 /* ImageDetailView.swift */,
+				F2206E0428DA147C0041B8CB /* ImageView.swift */,
+				F21809ED28DA628A00E4AFD6 /* ImageUIView.swift */,
+				F23A79B628E5EAB50045D9AB /* WebView.swift */,
+				92E5B40E28D4FBBE006FA51A /* NewTradeView.swift */,
+				F2D8B63F28F9C2C300A70149 /* UndoButton.swift */,
+				F28EA94829F2E70F00382187 /* ImagePicker.swift */,
+				F2AC62DC29F30E5700BD868E /* PanZoomImageView.swift */,
+				F2AC62DE29F30F7700BD868E /* ThumbnailImageView.swift */,
+				F29C91502B47847C0022AA46 /* TradeovateCSVImporter.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		F2D8B64328F9C31B00A70149 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				F2D8B64428F9C33100A70149 /* ProgressConfig.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		F2DF1BFA2D610C9700954192 /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				F2DF1BFB2D610CA500954192 /* StatsView.swift */,
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9268E22D28D3CA4100D63337 /* TraderTracking */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9268E25228D3CA4400D63337 /* Build configuration list for PBXNativeTarget "TraderTracking" */;
+			buildPhases = (
+				B58EA7E9F52D57A77F1D31D8 /* [CP] Check Pods Manifest.lock */,
+				9268E22A28D3CA4100D63337 /* Sources */,
+				9268E22B28D3CA4100D63337 /* Frameworks */,
+				9268E22C28D3CA4100D63337 /* Resources */,
+				2A9A9D3783CB685D938C094A /* [CP] Embed Pods Frameworks */,
+				F252EC2C2B4B2EA900E2BD45 /* Embed Foundation Extensions */,
+				F2F69D4E2C307C5A00C1ED1F /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F252EC2B2B4B2EA900E2BD45 /* PBXTargetDependency */,
+			);
+			name = TraderTracking;
+			packageProductDependencies = (
+				926CEB9228D3D29F00540365 /* ConfettiSwiftUI */,
+				929DFC4428D3E2B700A7268E /* SwiftPieChart */,
+				F2D51AC02908431C007D8CD7 /* MarkdownView */,
+				F25FCBB729202B7300CE4DDD /* SwiftSoup */,
+				F219DD5D2B11C63600233BAB /* ImageUI */,
+				F2232E782C3080000056B942 /* Alamofire */,
+				F2232E7B2C308CA90056B942 /* SDWebImageSwiftUI */,
+				F24F4DDD2C3F4DEB00270770 /* RealmSwift */,
+			);
+			productName = TraderTracking;
+			productReference = 9268E22E28D3CA4100D63337 /* TraderTracking.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9268E23D28D3CA4400D63337 /* TraderTrackingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9268E25528D3CA4400D63337 /* Build configuration list for PBXNativeTarget "TraderTrackingTests" */;
+			buildPhases = (
+				D036C33C04F7C666CC80D762 /* [CP] Check Pods Manifest.lock */,
+				9268E23A28D3CA4400D63337 /* Sources */,
+				9268E23B28D3CA4400D63337 /* Frameworks */,
+				9268E23C28D3CA4400D63337 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9268E24028D3CA4400D63337 /* PBXTargetDependency */,
+			);
+			name = TraderTrackingTests;
+			productName = TraderTrackingTests;
+			productReference = 9268E23E28D3CA4400D63337 /* TraderTrackingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9268E24728D3CA4400D63337 /* TraderTrackingUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9268E25828D3CA4400D63337 /* Build configuration list for PBXNativeTarget "TraderTrackingUITests" */;
+			buildPhases = (
+				08E63A5DAA86B524C034E35A /* [CP] Check Pods Manifest.lock */,
+				9268E24428D3CA4400D63337 /* Sources */,
+				9268E24528D3CA4400D63337 /* Frameworks */,
+				9268E24628D3CA4400D63337 /* Resources */,
+				DC573641ED4886EC65D8B84D /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9268E24A28D3CA4400D63337 /* PBXTargetDependency */,
+			);
+			name = TraderTrackingUITests;
+			productName = TraderTrackingUITests;
+			productReference = 9268E24828D3CA4400D63337 /* TraderTrackingUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		F20B72812C3059BC0022F534 /* MacTraderTracking */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F20B72A42C3059BE0022F534 /* Build configuration list for PBXNativeTarget "MacTraderTracking" */;
+			buildPhases = (
+				F20B727E2C3059BC0022F534 /* Sources */,
+				F20B727F2C3059BC0022F534 /* Frameworks */,
+				F20B72802C3059BC0022F534 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MacTraderTracking;
+			packageProductDependencies = (
+				F20B72B52C3066140022F534 /* RichTextKit */,
+			);
+			productName = MacTraderTracking;
+			productReference = F20B72822C3059BC0022F534 /* MacTraderTracking.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F20B72912C3059BD0022F534 /* MacTraderTrackingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F20B72A72C3059BE0022F534 /* Build configuration list for PBXNativeTarget "MacTraderTrackingTests" */;
+			buildPhases = (
+				F20B728E2C3059BD0022F534 /* Sources */,
+				F20B728F2C3059BD0022F534 /* Frameworks */,
+				F20B72902C3059BD0022F534 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F20B72942C3059BD0022F534 /* PBXTargetDependency */,
+			);
+			name = MacTraderTrackingTests;
+			productName = MacTraderTrackingTests;
+			productReference = F20B72922C3059BD0022F534 /* MacTraderTrackingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F20B729B2C3059BE0022F534 /* MacTraderTrackingUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F20B72AA2C3059BE0022F534 /* Build configuration list for PBXNativeTarget "MacTraderTrackingUITests" */;
+			buildPhases = (
+				F20B72982C3059BE0022F534 /* Sources */,
+				F20B72992C3059BE0022F534 /* Frameworks */,
+				F20B729A2C3059BE0022F534 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F20B729E2C3059BE0022F534 /* PBXTargetDependency */,
+			);
+			name = MacTraderTrackingUITests;
+			productName = MacTraderTrackingUITests;
+			productReference = F20B729C2C3059BE0022F534 /* MacTraderTrackingUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		F252EC182B4B2EA700E2BD45 /* TraderWidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F252EC2E2B4B2EA900E2BD45 /* Build configuration list for PBXNativeTarget "TraderWidgetsExtension" */;
+			buildPhases = (
+				F252EC152B4B2EA700E2BD45 /* Sources */,
+				F252EC162B4B2EA700E2BD45 /* Frameworks */,
+				F252EC172B4B2EA700E2BD45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TraderWidgetsExtension;
+			productName = TraderWidgetsExtension;
+			productReference = F252EC192B4B2EA700E2BD45 /* TraderWidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9268E22628D3CA4100D63337 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					9268E22D28D3CA4100D63337 = {
+						CreatedOnToolsVersion = 14.0;
+					};
+					9268E23D28D3CA4400D63337 = {
+						CreatedOnToolsVersion = 14.0;
+						TestTargetID = 9268E22D28D3CA4100D63337;
+					};
+					9268E24728D3CA4400D63337 = {
+						CreatedOnToolsVersion = 14.0;
+						TestTargetID = 9268E22D28D3CA4100D63337;
+					};
+					F20B72812C3059BC0022F534 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					F20B72912C3059BD0022F534 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = F20B72812C3059BC0022F534;
+					};
+					F20B729B2C3059BE0022F534 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = F20B72812C3059BC0022F534;
+					};
+					F252EC182B4B2EA700E2BD45 = {
+						CreatedOnToolsVersion = 15.1;
+					};
+				};
+			};
+			buildConfigurationList = 9268E22928D3CA4100D63337 /* Build configuration list for PBXProject "TraderTracking" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9268E22528D3CA4100D63337;
+			packageReferences = (
+				926CEB9128D3D29F00540365 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+				929DFC4328D3E2B700A7268E /* XCRemoteSwiftPackageReference "SwiftPieChart" */,
+				F2D51ABF2908431C007D8CD7 /* XCRemoteSwiftPackageReference "MarkdownView" */,
+				F25FCBB629202B7300CE4DDD /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				F219DD5C2B11C63600233BAB /* XCRemoteSwiftPackageReference "ImageUI" */,
+				F20B72B42C3066140022F534 /* XCRemoteSwiftPackageReference "RichTextKit" */,
+				F2232E772C3080000056B942 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				F2232E7A2C308CA90056B942 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				F24F4DDC2C3F4DEB00270770 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
+			productRefGroup = 9268E22F28D3CA4100D63337 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9268E22D28D3CA4100D63337 /* TraderTracking */,
+				9268E23D28D3CA4400D63337 /* TraderTrackingTests */,
+				9268E24728D3CA4400D63337 /* TraderTrackingUITests */,
+				F252EC182B4B2EA700E2BD45 /* TraderWidgetsExtension */,
+				F20B72812C3059BC0022F534 /* MacTraderTracking */,
+				F20B72912C3059BD0022F534 /* MacTraderTrackingTests */,
+				F20B729B2C3059BE0022F534 /* MacTraderTrackingUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9268E22C28D3CA4100D63337 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F20C0BD329958F5B0054ABAF /* thinkorswim_bell.mp3 in Resources */,
+				9268E23928D3CA4300D63337 /* Preview Assets.xcassets in Resources */,
+				9268E23628D3CA4300D63337 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9268E23C28D3CA4400D63337 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9268E24628D3CA4400D63337 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F20B72802C3059BC0022F534 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F20B728C2C3059BD0022F534 /* Preview Assets.xcassets in Resources */,
+				F20B72892C3059BD0022F534 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F20B72902C3059BD0022F534 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F20B729A2C3059BE0022F534 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F252EC172B4B2EA700E2BD45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F252EC282B4B2EA900E2BD45 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		08E63A5DAA86B524C034E35A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TraderTracking-TraderTrackingUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2A9A9D3783CB685D938C094A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TraderTracking/Pods-TraderTracking-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TraderTracking/Pods-TraderTracking-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TraderTracking/Pods-TraderTracking-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B58EA7E9F52D57A77F1D31D8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TraderTracking-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D036C33C04F7C666CC80D762 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TraderTrackingTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC573641ED4886EC65D8B84D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TraderTracking-TraderTrackingUITests/Pods-TraderTracking-TraderTrackingUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TraderTracking-TraderTrackingUITests/Pods-TraderTracking-TraderTrackingUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TraderTracking-TraderTrackingUITests/Pods-TraderTracking-TraderTrackingUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9268E22A28D3CA4100D63337 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2FB3DB628D9F82100B7757A /* ImageHandeling.swift in Sources */,
+				F2206E0728DA27AB0041B8CB /* TradeListViewModel.swift in Sources */,
+				F2B18A4F29206AC400C31303 /* News.swift in Sources */,
+				F2AC62DD29F30E5700BD868E /* PanZoomImageView.swift in Sources */,
+				F28EA93329F2D7A500382187 /* Model.swift in Sources */,
+				F2FA5CBF29DCEA0800CA1296 /* TradeViewController.swift in Sources */,
+				F240D9A42B51D47D006A7DCE /* AccontBalanceLineChart.swift in Sources */,
+				F24EBEBD2B547D3A00854DA5 /* TradeDay.swift in Sources */,
+				F28EA93929F2DBAA00382187 /* ModelsListView.swift in Sources */,
+				F24EBEBB2B547C4500854DA5 /* TradeSchedule.swift in Sources */,
+				F2D8B64528F9C33100A70149 /* ProgressConfig.swift in Sources */,
+				F28EA94929F2E70F00382187 /* ImagePicker.swift in Sources */,
+				F238E32129783564003D5EF7 /* AccountView.swift in Sources */,
+				F252EC142B4B27CB00E2BD45 /* SessionTimers.swift in Sources */,
+				F29EBD3E28E6109300D6229B /* Notifications.swift in Sources */,
+				F20C6B7E2C37A6CC007E2A14 /* LandscapeController.swift in Sources */,
+				F20427AB29EF0BE70005C5D2 /* TradingViewAPI.swift in Sources */,
+				F2736DB82B53626E00281544 /* DashBoardController.swift in Sources */,
+				F23A79C228E603B90045D9AB /* NotificationSettings.swift in Sources */,
+				F20F89DC298D82E600798726 /* NewsTab.swift in Sources */,
+				9268E23428D3CA4100D63337 /* ContentView.swift in Sources */,
+				F20C6B7C2C3794C3007E2A14 /* TabModel.swift in Sources */,
+				F29045B52C3C87F9001B68CB /* Account_Data.swift in Sources */,
+				F2AC62DF29F30F7700BD868E /* ThumbnailImageView.swift in Sources */,
+				F29045B32C3C87CB001B68CB /* Journal_Data.swift in Sources */,
+				F2C2F9A429CA198700422818 /* NewTradeController.swift in Sources */,
+				F252EC122B4B267F00E2BD45 /* MonthView.swift in Sources */,
+				F238E32329783868003D5EF7 /* SideMenuStatsView.swift in Sources */,
+				F2232E862C30B8040056B942 /* ImageDetailView.swift in Sources */,
+				F208F36F2D625A140092B55A /* DiscordTokens.swift in Sources */,
+				F2232E822C30B0D00056B942 /* JournalPagerView.swift in Sources */,
+				F2262F2D28D96721005F85B2 /* Symbol.swift in Sources */,
+				F2D8B64028F9C2C300A70149 /* UndoButton.swift in Sources */,
+				F2206E0528DA147C0041B8CB /* ImageView.swift in Sources */,
+				92332B8F28D41EB3007020FC /* TradesListView.swift in Sources */,
+				F23A79BD28E5FE2B0045D9AB /* DeleteButton.swift in Sources */,
+				F20427A329EEF7600005C5D2 /* NewsFilterButton.swift in Sources */,
+				F262156A2A4DE9980002A11C /* DailyReviewButton.swift in Sources */,
+				92E5B40F28D4FBBE006FA51A /* NewTradeView.swift in Sources */,
+				F261AECE28F3A7A600CCBC8F /* MenuController.swift in Sources */,
+				F26FF7B92C307840001DC70F /* DiscordChat.swift in Sources */,
+				F25353DE2AC0E76800FB98D2 /* Journal.swift in Sources */,
+				F20427A529EEF8220005C5D2 /* TradeFilterButton.swift in Sources */,
+				F28EA94529F2E1F600382187 /* AddModelViewModel.swift in Sources */,
+				F23A79BB28E5FD5D0045D9AB /* ForexCalendarButton.swift in Sources */,
+				F2B1C53628DAB293005C6B12 /* AppDelegate.swift in Sources */,
+				F2C3384C2C7A731900869C5F /* ResetJournalButton.swift in Sources */,
+				F252EC102B4A5A6200E2BD45 /* Dashboard.swift in Sources */,
+				F28EA93B29F2DEAC00382187 /* HiddenNavViews.swift in Sources */,
+				9220CBC328D3E83300494F39 /* DataBase.swift in Sources */,
+				92FEC2B928D4E12200AAF81E /* SideMenu.swift in Sources */,
+				F2232E882C30CAB40056B942 /* PinchToZoom.swift in Sources */,
+				F28EA94729F2E23100382187 /* EditModelView.swift in Sources */,
+				F2832C4829EDA6150093322C /* NewsScrollToggle.swift in Sources */,
+				F28EA94029F2E16F00382187 /* ModelsListViewModel.swift in Sources */,
+				F20427A929EF053F0005C5D2 /* AccountsViewButton.swift in Sources */,
+				F23A79BF28E5FF2F0045D9AB /* NotificationButton.swift in Sources */,
+				F23A79B728E5EAB50045D9AB /* WebView.swift in Sources */,
+				F2F15AE02943A55E00DE6168 /* ArchiveButton.swift in Sources */,
+				F2A7524528E656E500B99ABB /* ProfileView.swift in Sources */,
+				F29C91512B47847C0022AA46 /* TradeovateCSVImporter.swift in Sources */,
+				F23A79B528E4A75F0045D9AB /* Account.swift in Sources */,
+				F28EA63E290AD21000CD1F1E /* DefaultTab.swift in Sources */,
+				F2DF1BFC2D610CAA00954192 /* StatsView.swift in Sources */,
+				92FEC2BB28D4E58000AAF81E /* MainTabView.swift in Sources */,
+				F2DF666F29077F9D006352DA /* TradeView.swift in Sources */,
+				9220CBC728D3E8E400494F39 /* Trade.swift in Sources */,
+				9268E23228D3CA4100D63337 /* TraderTrackingApp.swift in Sources */,
+				F2232E7E2C309C070056B942 /* JournalView.swift in Sources */,
+				F2DF1BFE2D610F0100954192 /* ScrollableMonthView.swift in Sources */,
+				F2D8B64728FA12D700A70149 /* Settings.swift in Sources */,
+				F2DAD5132A3CC251004A519A /* SwiftUITestView.swift in Sources */,
+				F2D8B64A28FA1E0500A70149 /* GestureController.swift in Sources */,
+				F21809EE28DA628A00E4AFD6 /* ImageUIView.swift in Sources */,
+				F25D43F42922A6E8004E380C /* OrientationTest.swift in Sources */,
+				F28EA94329F2E1CC00382187 /* AddModelView.swift in Sources */,
+				F25FCBBA29202BDB00CE4DDD /* ForexCrawler.swift in Sources */,
+				F277B05029DCDD21009FE0CC /* StatsController.swift in Sources */,
+				F28EA93529F2D8C600382187 /* ModelsButton.swift in Sources */,
+				F2232E842C30B0F70056B942 /* JournalPagerViewModel.swift in Sources */,
+				F240F14B29E5B5D9002D257E /* RemoveTradesButton.swift in Sources */,
+				F240D9A22B51C77A006A7DCE /* WinRatePieChart.swift in Sources */,
+				F29FF89428D97C3100F58F24 /* helper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9268E23A28D3CA4400D63337 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9268E24328D3CA4400D63337 /* TraderTrackingTests.swift in Sources */,
+				F2D8B64828FA1DA000A70149 /* MainTabView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9268E24428D3CA4400D63337 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9268E24D28D3CA4400D63337 /* TraderTrackingUITests.swift in Sources */,
+				9268E24F28D3CA4400D63337 /* TraderTrackingUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F20B727E2C3059BC0022F534 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F20B72872C3059BC0022F534 /* ContentView.swift in Sources */,
+				F20B72852C3059BC0022F534 /* MacTraderTrackingApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F20B728E2C3059BD0022F534 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F20B72972C3059BE0022F534 /* MacTraderTrackingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F20B72982C3059BE0022F534 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F20B72A12C3059BE0022F534 /* MacTraderTrackingUITests.swift in Sources */,
+				F20B72A32C3059BE0022F534 /* MacTraderTrackingUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F252EC152B4B2EA700E2BD45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F252EC242B4B2EA700E2BD45 /* TraderWidgets.swift in Sources */,
+				F252EC262B4B2EA700E2BD45 /* AppIntent.swift in Sources */,
+				F252EC222B4B2EA700E2BD45 /* TraderWidgetsLiveActivity.swift in Sources */,
+				F252EC202B4B2EA700E2BD45 /* TraderWidgetsBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9268E24028D3CA4400D63337 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9268E22D28D3CA4100D63337 /* TraderTracking */;
+			targetProxy = 9268E23F28D3CA4400D63337 /* PBXContainerItemProxy */;
+		};
+		9268E24A28D3CA4400D63337 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9268E22D28D3CA4100D63337 /* TraderTracking */;
+			targetProxy = 9268E24928D3CA4400D63337 /* PBXContainerItemProxy */;
+		};
+		F20B72942C3059BD0022F534 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F20B72812C3059BC0022F534 /* MacTraderTracking */;
+			targetProxy = F20B72932C3059BD0022F534 /* PBXContainerItemProxy */;
+		};
+		F20B729E2C3059BE0022F534 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F20B72812C3059BC0022F534 /* MacTraderTracking */;
+			targetProxy = F20B729D2C3059BE0022F534 /* PBXContainerItemProxy */;
+		};
+		F252EC2B2B4B2EA900E2BD45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F252EC182B4B2EA700E2BD45 /* TraderWidgetsExtension */;
+			targetProxy = F252EC2A2B4B2EA900E2BD45 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		9268E25028D3CA4400D63337 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development: Zach Bockskopf (E4RS47CKN8)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9268E25128D3CA4400D63337 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development: Zach Bockskopf (E4RS47CKN8)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9268E25328D3CA4400D63337 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78330894C737E4F9919D692A /* Pods-TraderTracking.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TraderTracking/TraderTracking.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TraderTracking/Preview Content\"";
+				DEVELOPMENT_TEAM = B6CP63MQWE;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TraderTracking/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Trader;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Use for saving photos";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.box.TraderTracking;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9268E25428D3CA4400D63337 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4CB2A8035A0A4F752049A6C /* Pods-TraderTracking.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TraderTracking/TraderTracking.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TraderTracking/Preview Content\"";
+				DEVELOPMENT_TEAM = B6CP63MQWE;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TraderTracking/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Trader;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Use for saving photos";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.box.TraderTracking;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9268E25628D3CA4400D63337 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BAAB0B43517A95392DE2445 /* Pods-TraderTrackingTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6CP63MQWE;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.box.TraderTrackingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TraderTracking.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TraderTracking";
+			};
+			name = Debug;
+		};
+		9268E25728D3CA4400D63337 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61F4177819CA5E62A0A13CB0 /* Pods-TraderTrackingTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6CP63MQWE;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.box.TraderTrackingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TraderTracking.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TraderTracking";
+			};
+			name = Release;
+		};
+		9268E25928D3CA4400D63337 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C33FA7982D5CF05B81D2CB79 /* Pods-TraderTracking-TraderTrackingUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6CP63MQWE;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.box.TraderTrackingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TraderTracking;
+			};
+			name = Debug;
+		};
+		9268E25A28D3CA4400D63337 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FF8CF9BC6DA980E9768E18B /* Pods-TraderTracking-TraderTrackingUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6CP63MQWE;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.box.TraderTrackingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TraderTracking;
+			};
+			name = Release;
+		};
+		F20B72A52C3059BE0022F534 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MacTraderTracking/MacTraderTracking.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MacTraderTracking/Preview Content\"";
+				DEVELOPMENT_TEAM = B6CP63MQWE;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = zbox.MacTraderTracking;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F20B72A62C3059BE0022F534 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MacTraderTracking/MacTraderTracking.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MacTraderTracking/Preview Content\"";
+				DEVELOPMENT_TEAM = B6CP63MQWE;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = zbox.MacTraderTracking;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		F20B72A82C3059BE0022F534 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6CP63MQWE;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = zbox.MacTraderTrackingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MacTraderTracking.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MacTraderTracking";
+			};
+			name = Debug;
+		};
+		F20B72A92C3059BE0022F534 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6CP63MQWE;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = zbox.MacTraderTrackingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MacTraderTracking.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MacTraderTracking";
+			};
+			name = Release;
+		};
+		F20B72AB2C3059BE0022F534 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6CP63MQWE;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = zbox.MacTraderTrackingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = MacTraderTracking;
+			};
+			name = Debug;
+		};
+		F20B72AC2C3059BE0022F534 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6CP63MQWE;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = zbox.MacTraderTrackingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = MacTraderTracking;
+			};
+			name = Release;
+		};
+		F252EC2F2B4B2EA900E2BD45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6CP63MQWE;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TraderWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TraderWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.box.TraderTracking.TraderWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F252EC302B4B2EA900E2BD45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6CP63MQWE;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TraderWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TraderWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.box.TraderTracking.TraderWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9268E22928D3CA4100D63337 /* Build configuration list for PBXProject "TraderTracking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9268E25028D3CA4400D63337 /* Debug */,
+				9268E25128D3CA4400D63337 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9268E25228D3CA4400D63337 /* Build configuration list for PBXNativeTarget "TraderTracking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9268E25328D3CA4400D63337 /* Debug */,
+				9268E25428D3CA4400D63337 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9268E25528D3CA4400D63337 /* Build configuration list for PBXNativeTarget "TraderTrackingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9268E25628D3CA4400D63337 /* Debug */,
+				9268E25728D3CA4400D63337 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9268E25828D3CA4400D63337 /* Build configuration list for PBXNativeTarget "TraderTrackingUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9268E25928D3CA4400D63337 /* Debug */,
+				9268E25A28D3CA4400D63337 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F20B72A42C3059BE0022F534 /* Build configuration list for PBXNativeTarget "MacTraderTracking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F20B72A52C3059BE0022F534 /* Debug */,
+				F20B72A62C3059BE0022F534 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F20B72A72C3059BE0022F534 /* Build configuration list for PBXNativeTarget "MacTraderTrackingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F20B72A82C3059BE0022F534 /* Debug */,
+				F20B72A92C3059BE0022F534 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F20B72AA2C3059BE0022F534 /* Build configuration list for PBXNativeTarget "MacTraderTrackingUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F20B72AB2C3059BE0022F534 /* Debug */,
+				F20B72AC2C3059BE0022F534 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F252EC2E2B4B2EA900E2BD45 /* Build configuration list for PBXNativeTarget "TraderWidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F252EC2F2B4B2EA900E2BD45 /* Debug */,
+				F252EC302B4B2EA900E2BD45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		926CEB9128D3D29F00540365 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		929DFC4328D3E2B700A7268E /* XCRemoteSwiftPackageReference "SwiftPieChart" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ilamanov/SwiftPieChart";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		F20B72B42C3066140022F534 /* XCRemoteSwiftPackageReference "RichTextKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielsaidi/RichTextKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		F219DD5C2B11C63600233BAB /* XCRemoteSwiftPackageReference "ImageUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alberto093/ImageUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		F2232E772C3080000056B942 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+		F2232E7A2C308CA90056B942 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.0;
+			};
+		};
+		F24F4DDC2C3F4DEB00270770 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.52.1;
+			};
+		};
+		F25FCBB629202B7300CE4DDD /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		F2D51ABF2908431C007D8CD7 /* XCRemoteSwiftPackageReference "MarkdownView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LiYanan2004/MarkdownView.git";
+			requirement = {
+				kind = revision;
+				revision = 69cc2046df3b588df1e07366b698322663bffec5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		926CEB9228D3D29F00540365 /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 926CEB9128D3D29F00540365 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+		929DFC4428D3E2B700A7268E /* SwiftPieChart */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 929DFC4328D3E2B700A7268E /* XCRemoteSwiftPackageReference "SwiftPieChart" */;
+			productName = SwiftPieChart;
+		};
+		F20B72B52C3066140022F534 /* RichTextKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F20B72B42C3066140022F534 /* XCRemoteSwiftPackageReference "RichTextKit" */;
+			productName = RichTextKit;
+		};
+		F219DD5D2B11C63600233BAB /* ImageUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F219DD5C2B11C63600233BAB /* XCRemoteSwiftPackageReference "ImageUI" */;
+			productName = ImageUI;
+		};
+		F2232E782C3080000056B942 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F2232E772C3080000056B942 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		F2232E7B2C308CA90056B942 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F2232E7A2C308CA90056B942 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+		F24F4DDD2C3F4DEB00270770 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F24F4DDC2C3F4DEB00270770 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		F25FCBB729202B7300CE4DDD /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F25FCBB629202B7300CE4DDD /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+		F2D51AC02908431C007D8CD7 /* MarkdownView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F2D51ABF2908431C007D8CD7 /* XCRemoteSwiftPackageReference "MarkdownView" */;
+			productName = MarkdownView;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 9268E22628D3CA4100D63337 /* Project object */;
+}
