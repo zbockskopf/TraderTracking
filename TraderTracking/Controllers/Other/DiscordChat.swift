@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 import RealmSwift
 import UIKit
+import SwiftUI
 
 
 class DiscordBot: NSObject, ObservableObject {
@@ -18,10 +19,10 @@ class DiscordBot: NSObject, ObservableObject {
     
     private let baseAPIURL = "https://discord.com/api/v9"
     
-    var discordTokens = DiscordTokens()
+    var discordTokens: DiscordTokens
     override init() {
+        discordTokens = DiscordTokens()
         super.init()
-        
     }
     
     

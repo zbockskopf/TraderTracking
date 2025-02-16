@@ -66,6 +66,7 @@ class RealmController: NSObject, ObservableObject {
 
         if !hasLaunched {
             setDefaults()
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
         }else{
             self.account = realm.object(ofType: Account.self, forPrimaryKey: UserDefaults.standard.string(forKey: "currentAccount"))!
             self.tradeJounalEnties = realm.objects(Trade_Journal.self)

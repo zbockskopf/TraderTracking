@@ -24,7 +24,7 @@ struct TraderTrackingApp: App {
     private var last = UserDefaults.standard.bool(forKey: "isNewDay")
     
     init() {
-        UserDefaults.standard.set(true, forKey: "personalDevice")
+//        UserDefaults.standard.set(true, forKey: "personalDevice")
         if !hasLaunched {
             // Set UserDefaults
             UserDefaults.standard.set(Date(), forKey: "notificationTime")
@@ -34,13 +34,7 @@ struct TraderTrackingApp: App {
             UserDefaults.standard.setValue(0, forKey: "defaultTab")
             UserDefaults.standard.set(Date(), forKey: "COTReleaseTime")
             UserDefaults.standard.set("Import", forKey: "currentTradeButtonFunction")
-            UserDefaults.standard.set(true, forKey: "launchedBefore")
-            
-            if UserDefaults.standard.bool(forKey: "personalDevice"){
-                discordBot = DiscordBot()
-            }
-            
-            
+
             // Discord refresh
             let calendar = Calendar.current
             var components = DateComponents()
@@ -53,25 +47,22 @@ struct TraderTrackingApp: App {
                 UserDefaults.standard.set(discordReleaseDate, forKey: "discordLastForecastFetched")
                 UserDefaults.standard.set(discordReleaseDate, forKey: "discordLastReviewFetched")
             }
-            
-            
-            
+
             //Setup default Journal Directories
             _ = createDirectory(named: "Journal/Trades")
             _ = createDirectory(named: "Journal/Forecast")
             _ = createDirectory(named: "Journal/Reviews")
 
-
+        }
+        
+        if UserDefaults.standard.bool(forKey: "personalDevice"){
+            discordBot = DiscordBot()
         }
 
         runIfNewDay()
-//        UserDefaults.standard.set("Import", forKey: "currentTradeButtonFunction")
-
-//        UserDefaults.standard.removeObject(forKey: "personalDevice")
         
         notifications = MyNotifications()
-//        notifications.clearNotification()
-//        UNUserNotificationCenter.current().delegate = notifications
+
         UINavigationBar.appearance().tintColor = UIColor.green // Change to your desired color
 
     }
